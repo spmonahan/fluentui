@@ -1,8 +1,24 @@
 # Change Log - @fluentui/react-slider
 
-This log was last generated on Tue, 05 Oct 2021 12:47:58 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Oct 2021 09:25:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 9.0.0-beta.1
+
+Wed, 06 Oct 2021 09:25:46 GMT
+
+### Changes
+
+- bum (lingfangao@hotmail.com)
+- Bump @fluentui/react-make-styles to v9.0.0-beta.1
+- Bump @fluentui/react-shared-contexts to v9.0.0-beta.1
+- Bump @fluentui/react-tabster to v9.0.0-beta.1
+- Bump @fluentui/react-utilities to v9.0.0-beta.1
+- Bump @fluentui/jest-serializer-make-styles to v9.0.0-beta.1
+- Bump @fluentui/react-conformance-make-styles to v9.0.0-beta.1
+- Bump @fluentui/react-label to v9.0.0-beta.1
+- Bump @fluentui/babel-make-styles to v9.0.0-beta.1
 
 ## [9.0.0-alpha.18](https://github.com/microsoft/fluentui/tree/@fluentui/react-slider_v9.0.0-alpha.18)
 

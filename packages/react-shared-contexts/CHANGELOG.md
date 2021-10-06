@@ -1,8 +1,17 @@
 # Change Log - @fluentui/react-shared-contexts
 
-This log was last generated on Fri, 01 Oct 2021 14:13:08 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Oct 2021 09:25:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 9.0.0-beta.1
+
+Wed, 06 Oct 2021 09:25:46 GMT
+
+### Changes
+
+- bum (lingfangao@hotmail.com)
+- Bump @fluentui/react-theme to v9.0.0-beta.1
 
 ## [9.0.0-alpha.28](https://github.com/microsoft/fluentui/tree/@fluentui/react-shared-contexts_v9.0.0-alpha.28)
 

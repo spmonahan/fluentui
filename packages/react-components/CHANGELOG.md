@@ -1,8 +1,81 @@
 # Change Log - @fluentui/react-components
 
-This log was last generated on Tue, 05 Oct 2021 12:47:58 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Oct 2021 09:25:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 9.0.0-beta.1
+
+Wed, 06 Oct 2021 09:25:46 GMT
+
+### Changes
+
+- `@fluentui/babel-make-styles`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/jest-serializer-make-styles`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/keyboard-keys`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/make-styles`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/make-styles-webpack-loader`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-accordion`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-aria`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-avatar`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-badge`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-button`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-card`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-checkbox`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-components`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-conformance-make-styles`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-context-selector`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-divider`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-image`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-label`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-link`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-make-styles`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-menu`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-popover`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-portal`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-positioning`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-provider`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-shared-contexts`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-slider`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-switch`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-tabster`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-text`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-theme`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-tooltip`
+  - bum (lingfangao@hotmail.com)
+- `@fluentui/react-utilities`
+  - bum (lingfangao@hotmail.com)
 
 ## [9.0.0-alpha.124](https://github.com/microsoft/fluentui/tree/@fluentui/react-components_v9.0.0-alpha.124)
 

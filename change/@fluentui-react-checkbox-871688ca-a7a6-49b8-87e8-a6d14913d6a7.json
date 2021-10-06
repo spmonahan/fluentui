@@ -1,7 +1,0 @@
-{
-  "type": "prerelease",
-  "comment": "bum",
-  "packageName": "@fluentui/react-checkbox",
-  "email": "lingfangao@hotmail.com",
-  "dependentChangeType": "patch"
-}

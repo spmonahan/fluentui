@@ -1,8 +1,20 @@
 # Change Log - @fluentui/react-aria
 
-This log was last generated on Tue, 05 Oct 2021 12:47:58 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Oct 2021 09:25:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 9.0.0-beta.1
+
+Wed, 06 Oct 2021 09:25:46 GMT
+
+### Changes
+
+- bum (lingfangao@hotmail.com)
+- Bump @fluentui/keyboard-keys to v9.0.0-beta.1
+- Bump @fluentui/react-make-styles to v9.0.0-beta.1
+- Bump @fluentui/react-utilities to v9.0.0-beta.1
+- Bump @fluentui/jest-serializer-make-styles to v9.0.0-beta.1
 
 ## [9.0.0-alpha.45](https://github.com/microsoft/fluentui/tree/@fluentui/react-aria_v9.0.0-alpha.45)
 

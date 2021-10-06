@@ -1,8 +1,18 @@
 # Change Log - @fluentui/react-positioning
 
-This log was last generated on Tue, 05 Oct 2021 09:28:07 GMT and should not be manually modified.
+This log was last generated on Wed, 06 Oct 2021 09:25:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 9.0.0-beta.1
+
+Wed, 06 Oct 2021 09:25:46 GMT
+
+### Changes
+
+- bum (lingfangao@hotmail.com)
+- Bump @fluentui/react-shared-contexts to v9.0.0-beta.1
+- Bump @fluentui/react-utilities to v9.0.0-beta.1
 
 ## [9.0.0-alpha.65](https://github.com/microsoft/fluentui/tree/@fluentui/react-positioning_v9.0.0-alpha.65)
 
