@@ -1,0 +1,7 @@
+{
+  "type": "prerelease",
+  "comment": "bum",
+  "packageName": "@fluentui/react-popover",
+  "email": "lingfangao@hotmail.com",
+  "dependentChangeType": "patch"
+}
