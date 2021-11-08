@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 
 const useFocusStylesA = makeStyles({
   root: {
-    ...macros.border('5px', 'solid', 'blue'),
+    ...macros.border('3px', 'solid', 'blue'),
     ...macros.padding('10px'),
 
     ':focus': {
@@ -49,7 +49,7 @@ const useFocusStylesA = makeStyles({
 });
 const useFocusStylesB = makeStyles({
   root: {
-    ...macros.border('5px', 'solid', 'orange'),
+    ...macros.border('3px', 'solid', 'orange'),
     ...macros.padding('10px'),
 
     ':hover': {
