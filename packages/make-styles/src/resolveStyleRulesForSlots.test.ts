@@ -12,20 +12,20 @@ describe('resolveStyleRulesForSlots', () => {
       Array [
         Object {
           "icon": Object {
-            "ayd6f0": "fmqh8ev",
+            "De3pzq": "f1ta0kgp",
             "sj55zd": "f163i14w",
           },
           "root": Object {
-            "ayd6f0": "fwix7fp",
+            "De3pzq": "fnf68zh",
             "sj55zd": "fe3e8s9",
           },
         },
         Object {
           "d": Array [
             ".fe3e8s9{color:red;}",
-            ".fwix7fp{background:pink;}",
+            ".fnf68zh{background-color:pink;}",
             ".f163i14w{color:blue;}",
-            ".fmqh8ev{background:lightblue;}",
+            ".f1ta0kgp{background-color:lightblue;}",
           ],
         },
       ]
