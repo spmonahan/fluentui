@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@fluentui/react-make-styles';
+import { macros, makeStyles, mergeClasses } from '@fluentui/react-make-styles';
 import { createFocusOutlineStyle } from '@fluentui/react-tabster';
 import type { AccordionHeaderState } from './AccordionHeader.types';
 
@@ -8,12 +8,12 @@ const useStyles = makeStyles({
   // TODO: this should be extracted to another package
   resetButton: {
     boxSizing: 'content-box',
-    background: 'none',
+    backgroundColor: 'none',
     color: 'inherit',
     font: 'inherit',
     lineHeight: 'normal',
     overflow: 'visible',
-    padding: '0',
+    ...macros.padding('0'),
     WebkitAppearance: 'button',
     userSelect: 'none',
     textAlign: 'unset',
@@ -22,7 +22,10 @@ const useStyles = makeStyles({
   root: theme => ({
     color: theme.colorNeutralForeground1,
     backgroundColor: theme.colorNeutralBackground1,
-    borderRadius: '2px',
+    ...macros.borderRadius('top', '2px'),
+    ...macros.borderRadius('left', '2px'),
+    ...macros.borderRadius('right', '2px'),
+    ...macros.borderRadius('bottom', '2px'),
   }),
   rootDisabled: theme => ({
     backgroundColor: 'none',
@@ -34,7 +37,7 @@ const useStyles = makeStyles({
   button: {
     position: 'relative',
     width: 'calc(100% - 22px)',
-    border: '1px solid transparent',
+    ...macros.border('1px', 'solid', 'transparent'),
     paddingRight: '10px',
     paddingLeft: '10px',
     height: '44px',

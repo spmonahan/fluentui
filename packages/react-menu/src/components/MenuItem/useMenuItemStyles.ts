@@ -1,4 +1,4 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { mergeClasses, makeStyles, macros } from '@fluentui/react-make-styles';
 import { createFocusOutlineStyle } from '@fluentui/react-tabster';
 import type { MenuItemState } from './MenuItem.types';
 
@@ -7,7 +7,10 @@ export const menuItemClassName = 'fui-MenuItem';
 const useStyles = makeStyles({
   focusIndicator: theme => createFocusOutlineStyle(theme),
   root: theme => ({
-    borderRadius: theme.borderRadiusMedium,
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
     position: 'relative',
     color: theme.colorNeutralForeground1,
     backgroundColor: theme.colorNeutralBackground1,

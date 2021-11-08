@@ -1,3 +1,7 @@
+import { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding } from 'polished';
+
+export const macros = { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding };
+
 export { createDOMRenderer } from './renderer/createDOMRenderer';
 export { styleBucketOrdering } from './renderer/getStyleSheetForBucket';
 export { rehydrateRendererCache } from './renderer/rehydrateRendererCache';
@@ -12,5 +16,23 @@ export { createCSSVariablesProxy, resolveProxyValues } from './runtime/createCSS
 export { resolveStyleRules } from './runtime/resolveStyleRules';
 export { __styles } from './__styles';
 
-export * from './types';
 export * from './constants';
+export {
+  // Static styles
+  MakeStaticStylesStyle,
+  MakeStaticStyles,
+  // Styles
+  MakeStylesAnimation,
+  MakeStylesStyle,
+  MakeStylesStyleRule,
+  MakeStylesStyleFunctionRule,
+  // Internal types
+  CSSClasses,
+  CSSClassesMapBySlot,
+  CSSRulesByBucket,
+  StyleBucketName,
+  // Util
+  MakeStaticStylesOptions,
+  MakeStylesOptions,
+  MakeStylesRenderer,
+} from './types';

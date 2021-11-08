@@ -38,10 +38,10 @@ describe('mergeClasses', () => {
       block: { display: 'block' },
       flex: { display: 'flex' },
       grid: { display: 'grid' },
-      padding: { padding: '5px' },
+      padding: { paddingLeft: '5px' },
     })(options);
 
-    const resultClassName = makeStyles({ root: { display: 'grid', padding: '5px' } })(options).root;
+    const resultClassName = makeStyles({ root: { display: 'grid', paddingLeft: '5px' } })(options).root;
 
     expect(mergeClasses(classes.block, classes.flex, classes.grid, classes.padding)).toBe(resultClassName);
   });
@@ -70,7 +70,7 @@ describe('mergeClasses', () => {
     const sequence1 = mergeClasses('ui-button', className1, className2);
 
     const className3 = makeStyles({ root: { display: 'grid' } })(options).root;
-    const className4 = makeStyles({ root: { padding: '5px' } })(options).root;
+    const className4 = makeStyles({ root: { paddingLeft: '5px' } })(options).root;
     const className5 = makeStyles({ root: { marginTop: '5px' } })(options).root;
 
     const sequence2 = mergeClasses('ui-flex', className3, className4);
@@ -118,8 +118,8 @@ describe('mergeClasses', () => {
   describe('"dir" option', () => {
     it('performs deduplication for RTL classes', () => {
       const computeClasses = makeStyles({
-        start: { borderLeft: '5px' },
-        end: { borderRight: '5px' },
+        start: { borderRightWidth: '5px' },
+        end: { borderRightWidth: '5px' },
       });
 
       const rtlClasses1 = computeClasses({ ...options, dir: 'rtl' });

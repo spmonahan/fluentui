@@ -1,4 +1,4 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { mergeClasses, macros, makeStyles } from '@fluentui/react-make-styles';
 import { DividerState } from './Divider.types';
 
 export const dividerClassName = 'fui-Divider';
@@ -29,7 +29,7 @@ const useBaseStyles = makeStyles({
       display: 'flex',
       flexGrow: 1,
 
-      borderColor: theme.colorNeutralStroke2,
+      ...macros.borderColor(theme.colorNeutralStroke2),
     },
 
     ':after': {
@@ -37,7 +37,7 @@ const useBaseStyles = makeStyles({
       display: 'flex',
       flexGrow: 1,
 
-      borderColor: theme.colorNeutralStroke2,
+      ...macros.borderColor(theme.colorNeutralStroke2),
     },
   }),
 
@@ -79,29 +79,29 @@ const useBaseStyles = makeStyles({
     color: theme.colorBrandForeground1,
 
     ':before': {
-      borderColor: theme.colorBrandStroke1,
+      ...macros.borderColor(theme.colorBrandStroke1),
     },
 
     ':after': {
-      borderColor: theme.colorBrandStroke1,
+      ...macros.borderColor(theme.colorBrandStroke1),
     },
   }),
   subtle: theme => ({
     ':before': {
-      borderColor: theme.colorNeutralStroke3,
+      ...macros.borderColor(theme.colorNeutralStroke3),
     },
 
     ':after': {
-      borderColor: theme.colorNeutralStroke3,
+      ...macros.borderColor(theme.colorNeutralStroke3),
     },
   }),
   strong: theme => ({
     ':before': {
-      borderColor: theme.colorNeutralStroke1,
+      ...macros.borderColor(theme.colorNeutralStroke1),
     },
 
     ':after': {
-      borderColor: theme.colorNeutralStroke1,
+      ...macros.borderColor(theme.colorNeutralStroke1),
     },
   }),
 });

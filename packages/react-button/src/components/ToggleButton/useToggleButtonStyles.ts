@@ -1,4 +1,4 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { macros, mergeClasses, makeStyles } from '@fluentui/react-make-styles';
 import { useButtonStyles } from '../Button/useButtonStyles';
 import type { ToggleButtonState } from './ToggleButton.types';
 
@@ -7,85 +7,85 @@ export const toggleButtonClassName = 'fui-ToggleButton';
 const useCheckedStyles = makeStyles({
   // Base styles
   base: theme => ({
-    background: theme.colorNeutralBackground1Selected,
-    borderColor: theme.colorNeutralStroke1,
+    backgroundColor: theme.colorNeutralBackground1Selected,
+    ...macros.borderColor(theme.colorNeutralStroke1),
     color: theme.colorNeutralForeground1,
 
-    borderWidth: theme.strokeWidthThin,
+    ...macros.borderWidth(theme.strokeWidthThin),
 
     ':hover': {
-      background: theme.colorNeutralBackground1Hover,
-      borderColor: theme.colorNeutralStroke1Hover,
+      backgroundColor: theme.colorNeutralBackground1Hover,
+      ...macros.borderColor(theme.colorNeutralStroke1Hover),
       color: theme.colorNeutralForeground1,
     },
 
     ':active': {
-      background: theme.colorNeutralBackground1Pressed,
-      borderColor: theme.colorNeutralStroke1Pressed,
+      backgroundColor: theme.colorNeutralBackground1Pressed,
+      ...macros.borderColor(theme.colorNeutralStroke1Pressed),
       color: theme.colorNeutralForeground1,
     },
   }),
 
   // Appearance variations
   outline: theme => ({
-    background: theme.colorTransparentBackgroundSelected,
+    backgroundColor: theme.colorTransparentBackgroundSelected,
 
     ':hover': {
-      background: theme.colorTransparentBackgroundHover,
+      backgroundColor: theme.colorTransparentBackgroundHover,
     },
 
     ':active': {
-      background: theme.colorTransparentBackgroundPressed,
+      backgroundColor: theme.colorTransparentBackgroundPressed,
     },
   }),
   primary: theme => ({
-    background: theme.colorBrandBackgroundSelected,
-    borderColor: 'transparent',
+    backgroundColor: theme.colorBrandBackgroundSelected,
+    ...macros.borderColor('transparent'),
     color: theme.colorNeutralForegroundOnBrand,
 
     ':hover': {
-      background: theme.colorBrandBackgroundHover,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorBrandBackgroundHover,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForegroundOnBrand,
     },
 
     ':active': {
-      background: theme.colorBrandBackgroundPressed,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorBrandBackgroundPressed,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForegroundOnBrand,
     },
   }),
   subtle: theme => ({
-    background: theme.colorSubtleBackgroundSelected,
-    borderColor: 'transparent',
+    backgroundColor: theme.colorSubtleBackgroundSelected,
+    ...macros.borderColor('transparent'),
     color: theme.colorNeutralForeground2BrandSelected,
 
     ':hover': {
-      background: theme.colorSubtleBackgroundHover,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorSubtleBackgroundHover,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForeground2BrandHover,
     },
 
     ':active': {
-      background: theme.colorSubtleBackgroundPressed,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorSubtleBackgroundPressed,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForeground2BrandPressed,
     },
   }),
   transparent: theme => ({
-    background: theme.colorTransparentBackgroundSelected,
-    borderColor: 'transparent',
+    backgroundColor: theme.colorTransparentBackgroundSelected,
+    ...macros.borderColor('transparent'),
     color: theme.colorNeutralForeground2BrandSelected,
 
     ':hover': {
-      background: theme.colorTransparentBackgroundHover,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorTransparentBackgroundHover,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForeground2BrandHover,
     },
 
     ':active': {
-      background: theme.colorTransparentBackgroundPressed,
-      borderColor: 'transparent',
+      backgroundColor: theme.colorTransparentBackgroundPressed,
+      ...macros.borderColor('transparent'),
       color: theme.colorNeutralForeground2BrandPressed,
     },
   }),
@@ -94,19 +94,19 @@ const useCheckedStyles = makeStyles({
 const useDisabledStyles = makeStyles({
   // Base styles
   base: theme => ({
-    background: theme.colorNeutralBackgroundDisabled,
-    borderColor: theme.colorNeutralStrokeDisabled,
+    backgroundColor: theme.colorNeutralBackgroundDisabled,
+    ...macros.borderColor(theme.colorNeutralStrokeDisabled),
     color: theme.colorNeutralForegroundDisabled,
 
     ':hover': {
-      background: theme.colorNeutralBackgroundDisabled,
-      borderColor: theme.colorNeutralStrokeDisabled,
+      backgroundColor: theme.colorNeutralBackgroundDisabled,
+      ...macros.borderColor(theme.colorNeutralStrokeDisabled),
       color: theme.colorNeutralForegroundDisabled,
     },
 
     ':active': {
-      background: theme.colorNeutralBackgroundDisabled,
-      borderColor: theme.colorNeutralStrokeDisabled,
+      backgroundColor: theme.colorNeutralBackgroundDisabled,
+      ...macros.borderColor(theme.colorNeutralStrokeDisabled),
       color: theme.colorNeutralForegroundDisabled,
     },
   }),
@@ -116,42 +116,42 @@ const useDisabledStyles = makeStyles({
     /* No styles */
   },
   primary: {
-    borderColor: 'transparent',
+    ...macros.borderColor('transparent'),
 
     ':hover': {
-      borderColor: 'transparent',
+      ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      borderColor: 'transparent',
+      ...macros.borderColor('transparent'),
     },
   },
   subtle: {
-    background: 'none',
-    borderColor: 'transparent',
+    backgroundColor: 'none',
+    ...macros.borderColor('transparent'),
 
     ':hover': {
-      background: 'none',
-      borderColor: 'transparent',
+      backgroundColor: 'none',
+      ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      background: 'none',
-      borderColor: 'transparent',
+      backgroundColor: 'none',
+      ...macros.borderColor('transparent'),
     },
   },
   transparent: {
-    background: 'none',
-    borderColor: 'transparent',
+    backgroundColor: 'none',
+    ...macros.borderColor('transparent'),
 
     ':hover': {
-      background: 'none',
-      borderColor: 'transparent',
+      backgroundColor: 'none',
+      ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      background: 'none',
-      borderColor: 'transparent',
+      backgroundColor: 'none',
+      ...macros.borderColor('transparent'),
     },
   },
 });

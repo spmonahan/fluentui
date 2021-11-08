@@ -1,4 +1,4 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { macros, mergeClasses, makeStyles } from '@fluentui/react-make-styles';
 import type { BadgeState } from './Badge.types';
 
 export const badgeClassName = 'fui-Badge';
@@ -10,11 +10,11 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.colorBrandBackground,
-    borderColor: theme.colorBrandBackground,
+    ...macros.borderColor(theme.colorBrandBackground),
     color: theme.colorNeutralForegroundOnBrand,
     fontWeight: theme.fontWeightSemibold,
-    borderWidth: theme.strokeWidthThin,
-    borderStyle: 'solid',
+    ...macros.borderWidth(theme.strokeWidthThin),
+    ...macros.borderStyle('solid'),
     fontFamily: theme.fontFamilyBase,
     position: 'relative',
   }),
@@ -59,39 +59,54 @@ const useStyles = makeStyles({
     paddingLeft: '12px',
     gap: '6px',
     fontSize: '12px',
-    borderWidth: theme.strokeWidthThick,
+    ...macros.borderWidth(theme.strokeWidthThick),
   }),
-  rootRounded: theme => ({ borderRadius: theme.borderRadiusMedium }),
-  rootRoundedSmallToTiny: theme => ({ borderRadius: theme.borderRadiusSmall }),
-  rootCircular: { borderRadius: '99px' },
+  rootRounded: theme => ({
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+  }),
+  rootRoundedSmallToTiny: theme => ({
+    ...macros.borderRadius('top', theme.borderRadiusSmall),
+    ...macros.borderRadius('left', theme.borderRadiusSmall),
+    ...macros.borderRadius('right', theme.borderRadiusSmall),
+    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+  }),
+  rootCircular: {
+    ...macros.borderRadius('top', '99px'),
+    ...macros.borderRadius('left', '99px'),
+    ...macros.borderRadius('right', '99px'),
+    ...macros.borderRadius('bottom', '99px'),
+  },
   rootGhost: theme => ({
-    background: 'transparent',
-    border: 'none',
+    backgroundColor: 'transparent',
+    ...macros.borderStyle('none'),
     color: theme.colorBrandBackground,
   }),
   rootOutline: theme => ({
-    background: 'transparent',
-    borderColor: theme.colorBrandBackground,
+    backgroundColor: 'transparent',
+    ...macros.borderColor(theme.colorBrandBackground),
     color: theme.colorBrandBackground,
   }),
   rootTint: theme => ({
     backgroundColor: theme.colorBrandBackground2,
     color: theme.colorBrandForeground2,
-    borderColor: 'none',
+    ...macros.borderStyle('none'),
   }),
   rootFilledDanger: theme => ({
     backgroundColor: theme.colorPaletteRedBackground3,
     color: theme.colorNeutralForegroundOnBrand,
-    borderColor: theme.colorPaletteRedBackground3,
+    ...macros.borderColor(theme.colorPaletteRedBackground3),
   }),
   rootOutlineDanger: theme => ({
     color: theme.colorPaletteRedForeground3,
-    borderColor: theme.colorPaletteRedForeground3,
+    ...macros.borderColor(theme.colorPaletteRedForeground3),
   }),
   rootTintDanger: theme => ({
     backgroundColor: theme.colorPaletteRedBackground1,
     color: theme.colorPaletteRedForeground1,
-    borderColor: theme.colorPaletteRedForeground2,
+    ...macros.borderColor(theme.colorPaletteRedForeground2),
   }),
   rootGhostDanger: theme => ({
     color: theme.colorPaletteRedForeground3,
@@ -99,16 +114,16 @@ const useStyles = makeStyles({
   rootFilledSevere: theme => ({
     backgroundColor: theme.colorPaletteDarkOrangeBackground3,
     color: theme.colorNeutralForegroundOnBrand,
-    borderColor: 'none',
+    ...macros.borderColor('none'),
   }),
   rootOutlineSevere: theme => ({
     color: theme.colorPaletteDarkOrangeForeground3,
-    borderColor: theme.colorPaletteDarkOrangeForeground3,
+    ...macros.borderColor(theme.colorPaletteDarkOrangeForeground3),
   }),
   rootTintSevere: theme => ({
     backgroundColor: theme.colorPaletteDarkOrangeBackground1,
     color: theme.colorPaletteDarkOrangeForeground1,
-    borderColor: theme.colorPaletteDarkOrangeForeground2,
+    ...macros.borderColor(theme.colorPaletteDarkOrangeForeground2),
   }),
   rootGhostSevere: theme => ({
     color: theme.colorPaletteDarkOrangeForeground3,
@@ -116,16 +131,16 @@ const useStyles = makeStyles({
   rootFilledWarning: theme => ({
     backgroundColor: theme.colorPaletteYellowBackground3,
     color: theme.colorNeutralForeground1,
-    borderColor: theme.colorPaletteYellowBackground3,
+    ...macros.borderColor(theme.colorPaletteYellowBackground3),
   }),
   rootOutlineWarning: theme => ({
     color: theme.colorPaletteYellowForeground2,
-    borderColor: theme.colorPaletteYellowForeground2,
+    ...macros.borderColor(theme.colorPaletteYellowForeground2),
   }),
   rootTintWarning: theme => ({
     backgroundColor: theme.colorPaletteYellowBackground1,
     color: theme.colorPaletteYellowForeground2,
-    borderColor: theme.colorPaletteYellowBackground2,
+    ...macros.borderColor(theme.colorPaletteYellowBackground2),
   }),
   rootGhostWarning: theme => ({
     color: theme.colorPaletteYellowForeground2,
@@ -133,16 +148,16 @@ const useStyles = makeStyles({
   rootFilledSuccess: theme => ({
     backgroundColor: theme.colorPaletteGreenBackground3,
     color: theme.colorNeutralForegroundOnBrand,
-    borderColor: 'none',
+    ...macros.borderColor('none'),
   }),
   rootOutlineSuccess: theme => ({
     color: theme.colorPaletteGreenForeground2,
-    borderColor: theme.colorPaletteGreenForeground2,
+    ...macros.borderColor(theme.colorPaletteGreenForeground2),
   }),
   rootTintSuccess: theme => ({
     backgroundColor: theme.colorPaletteGreenBackground1,
     color: theme.colorPaletteGreenForeground1,
-    borderColor: theme.colorPaletteGreenBackground2,
+    ...macros.borderColor(theme.colorPaletteGreenBackground2),
   }),
   rootGhostSuccess: theme => ({
     color: theme.colorPaletteGreenForeground3,
@@ -150,16 +165,16 @@ const useStyles = makeStyles({
   rootFilledImportant: theme => ({
     backgroundColor: theme.colorNeutralForeground1,
     color: theme.colorNeutralBackground1,
-    borderColor: theme.colorTransparentStroke,
+    ...macros.borderColor(theme.colorTransparentStroke),
   }),
   rootOutlineImportant: theme => ({
     color: theme.colorNeutralForeground1,
-    borderColor: theme.colorNeutralForeground1,
+    ...macros.borderColor(theme.colorNeutralForeground1),
   }),
   rootTintImportant: theme => ({
     backgroundColor: theme.colorNeutralForeground3,
     color: theme.colorNeutralBackground1,
-    borderColor: theme.colorTransparentStroke,
+    ...macros.borderColor(theme.colorTransparentStroke),
   }),
   rootGhostImportant: theme => ({
     color: theme.colorNeutralForeground1,
@@ -167,17 +182,17 @@ const useStyles = makeStyles({
   rootFilledInformative: theme => ({
     backgroundColor: theme.colorNeutralBackground5,
     color: theme.colorNeutralForeground3,
-    borderColor: theme.colorTransparentStroke,
+    ...macros.borderColor(theme.colorTransparentStroke),
   }),
   rootOutlineInformative: theme => ({
     backgroundColor: theme.colorPaletteDarkOrangeBackground3,
     color: theme.colorNeutralBackground5,
-    borderColor: theme.colorNeutralBackground5,
+    ...macros.borderColor(theme.colorNeutralBackground5),
   }),
   rootTintInformative: theme => ({
     backgroundColor: theme.colorNeutralBackground4,
     color: theme.colorNeutralForeground3,
-    borderColor: theme.colorNeutralStroke2,
+    ...macros.borderColor(theme.colorNeutralStroke2),
   }),
   rootGhostInformative: theme => ({
     color: theme.colorNeutralBackground5,
@@ -185,16 +200,16 @@ const useStyles = makeStyles({
   rootFilledSubtle: theme => ({
     backgroundColor: theme.colorNeutralBackground1,
     color: theme.colorNeutralForeground1,
-    borderColor: theme.colorTransparentStroke,
+    ...macros.borderColor(theme.colorTransparentStroke),
   }),
   rootOutlineSubtle: theme => ({
     color: theme.colorNeutralForegroundOnBrand,
-    borderColor: theme.colorNeutralForegroundOnBrand,
+    ...macros.borderColor(theme.colorNeutralForegroundOnBrand),
   }),
   rootTintSubtle: theme => ({
     backgroundColor: theme.colorNeutralBackground1,
     color: theme.colorNeutralForeground3,
-    borderColor: theme.colorNeutralStroke2,
+    ...macros.borderColor(theme.colorNeutralStroke2),
   }),
   rootGhostSubtle: theme => ({
     color: theme.colorNeutralForegroundOnBrand,

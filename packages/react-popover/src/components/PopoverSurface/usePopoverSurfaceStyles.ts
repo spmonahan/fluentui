@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@fluentui/react-make-styles';
+import { macros, makeStyles, mergeClasses } from '@fluentui/react-make-styles';
 import type { PopoverSize } from '../Popover/Popover.types';
 import type { PopoverSurfaceState } from './PopoverSurface.types';
 
@@ -17,8 +17,11 @@ const useStyles = makeStyles({
   root: theme => ({
     backgroundColor: theme.colorNeutralBackground1,
     boxShadow: theme.shadow16,
-    borderRadius: '4px',
-    border: `1px solid ${theme.colorTransparentStroke}`,
+    ...macros.borderRadius('top', '4px'),
+    ...macros.borderRadius('left', '4px'),
+    ...macros.borderRadius('right', '4px'),
+    ...macros.borderRadius('bottom', '4px'),
+    ...macros.border('1px', 'solid', theme.colorTransparentStroke),
   }),
 
   inverted: theme => ({
@@ -34,15 +37,15 @@ const useStyles = makeStyles({
   }),
 
   smallPadding: () => ({
-    padding: '12px',
+    ...macros.padding('12px'),
   }),
 
   mediumPadding: () => ({
-    padding: '16px',
+    ...macros.padding('16px'),
   }),
 
   largePadding: () => ({
-    padding: '20px',
+    ...macros.padding('20px'),
   }),
 
   smallArrow: () => ({
@@ -58,19 +61,22 @@ const useStyles = makeStyles({
   // TODO dedupe these styles with tooltip
   arrow: theme => ({
     position: 'absolute',
-    background: 'inherit',
+    backgroundColor: 'inherit',
     visibility: 'hidden',
     zIndex: -1,
 
     ':before': {
       content: '""',
-      borderRadius: '4px',
+      ...macros.borderRadius('top', '4px'),
+      ...macros.borderRadius('left', '4px'),
+      ...macros.borderRadius('right', '4px'),
+      ...macros.borderRadius('bottom', '4px'),
+      borderBottomRightRadius: theme.borderRadiusSmall,
       position: 'absolute',
       width: 'inherit',
       height: 'inherit',
-      background: 'inherit',
+      backgroundColor: 'inherit',
       visibility: 'visible',
-      borderBottomRightRadius: theme.borderRadiusSmall,
       transform: 'rotate(var(--angle)) translate(0, 50%) rotate(45deg)',
     },
 

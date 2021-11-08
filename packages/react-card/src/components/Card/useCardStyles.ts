@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@fluentui/react-make-styles';
+import { macros, makeStyles, mergeClasses } from '@fluentui/react-make-styles';
 import { cardPreviewClassName } from '../CardPreview/index';
 import type { CardState } from './Card.types';
 
@@ -20,9 +20,12 @@ const useStyles = makeStyles({
     // Size: medium
     // TODO: Validate if we should use a token instead + the unit of said token
     // TODO: Explore alternate way of applying padding
-    padding: '12px',
+    ...macros.padding('12px'),
     gap: '12px',
-    borderRadius: theme.borderRadiusMedium,
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
 
     [`> .${cardPreviewClassName}`]: {
       marginLeft: '-12px',

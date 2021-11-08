@@ -1,7 +1,7 @@
-import { MakeStylesStyle } from '../../types';
+import { MakeStaticStylesStyle, MakeStylesStyle } from '../../types';
 import { hyphenateProperty } from './hyphenateProperty';
 
-export function cssifyObject(style: MakeStylesStyle) {
+export function cssifyObject(style: MakeStylesStyle | MakeStaticStylesStyle) {
   let css = '';
 
   // eslint-disable-next-line guard-for-in

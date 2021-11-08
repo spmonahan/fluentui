@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@fluentui/react-make-styles';
+import { macros, makeStyles } from '@fluentui/react-make-styles';
 import { webLightTheme } from '@fluentui/react-theme';
 import { FluentProvider } from '../FluentProvider'; // codesandbox-dependency: @fluentui/react-components ^9.0.0-beta
 
@@ -7,12 +7,15 @@ const useStyles = makeStyles({
   example: theme => ({
     backgroundColor: theme.colorBrandBackground2,
     color: theme.colorBrandForeground2,
-    border: `5px solid ${theme.colorBrandStroke1}`,
-    borderRadius: '5px',
-    margin: '5px',
+    ...macros.border('5px', 'solid', theme.colorBrandStroke1),
+    ...macros.borderRadius('top', '5px'),
+    ...macros.borderRadius('left', '5px'),
+    ...macros.borderRadius('right', '5px'),
+    ...macros.borderRadius('bottom', '5px'),
+    ...macros.margin('5px'),
   }),
   text: {
-    padding: '5px',
+    ...macros.padding('5px'),
     fontSize: '18px',
   },
 });

@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Button } from '@fluentui/react-button';
-import { createDOMRenderer, makeStyles, RendererProvider } from '@fluentui/react-make-styles';
+import { createDOMRenderer, macros, makeStyles, RendererProvider } from '@fluentui/react-make-styles';
 import { FluentProvider } from '../FluentProvider'; // codesandbox-dependency: @fluentui/react-components ^9.0.0-beta
 
 const useExampleStyles = makeStyles({
@@ -14,17 +14,23 @@ const useExampleStyles = makeStyles({
     backgroundColor: theme.colorBrandBackground2,
     color: theme.colorBrandForeground2,
     fontSize: '20px',
-    border: '1px',
-    borderRadius: '5px',
-    padding: '5px',
+    ...macros.border('1px'),
+    ...macros.borderRadius('top', '5px'),
+    ...macros.borderRadius('left', '5px'),
+    ...macros.borderRadius('right', '5px'),
+    ...macros.borderRadius('bottom', '5px'),
+    ...macros.padding('5px'),
   }),
 });
 
 const useProviderStyles = makeStyles({
   provider: {
-    border: '1px',
-    borderRadius: '5px',
-    padding: '5px',
+    ...macros.border('1px'),
+    ...macros.borderRadius('top', '5px'),
+    ...macros.borderRadius('left', '5px'),
+    ...macros.borderRadius('right', '5px'),
+    ...macros.borderRadius('bottom', '5px'),
+    ...macros.padding('5px'),
   },
 });
 

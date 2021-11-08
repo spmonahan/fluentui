@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@fluentui/react-make-styles';
+import { macros, makeStyles, mergeClasses } from '@fluentui/react-make-styles';
 import { createCustomFocusIndicatorStyle } from '@fluentui/react-tabster';
 import type { LinkState } from './Link.types';
 
@@ -12,8 +12,11 @@ const useStyles = makeStyles({
   // Common styles.
   root: theme => ({
     backgroundColor: 'transparent',
-    border: 'none',
-    borderBottom: 'solid transparent',
+    borderTopStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomColor: 'transparent',
+    borderBottomStyle: 'solid',
     borderBottomWidth: theme.strokeWidthThin,
     boxSizing: 'border-box',
     color: theme.colorBrandForegroundLink,
@@ -22,9 +25,9 @@ const useStyles = makeStyles({
     fontFamily: theme.fontFamilyBase,
     fontSize: theme.fontSizeBase300,
     fontWeight: theme.fontWeightRegular,
-    margin: 0,
+    ...macros.margin(0),
+    ...macros.padding(0),
     overflow: 'inherit',
-    padding: 0,
     textAlign: 'left',
     textDecoration: 'none',
     textOverflow: 'inherit',

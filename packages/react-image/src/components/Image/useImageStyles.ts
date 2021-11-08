@@ -1,25 +1,34 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { macros, mergeClasses, makeStyles } from '@fluentui/react-make-styles';
 import type { ImageState } from './Image.types';
 
 export const imageClassName = 'fui-Image';
 
 const useStyles = makeStyles({
   root: theme => ({
-    borderColor: theme.colorNeutralStroke1,
-    borderRadius: theme.borderRadiusNone,
+    ...macros.borderColor(theme.colorNeutralStroke1),
+    ...macros.borderRadius('top', theme.borderRadiusNone),
+    ...macros.borderRadius('left', theme.borderRadiusNone),
+    ...macros.borderRadius('right', theme.borderRadiusNone),
+    ...macros.borderRadius('bottom', theme.borderRadiusNone),
 
     boxSizing: 'border-box',
     display: 'inline-block',
   }),
   rootBordered: theme => ({
-    borderStyle: 'solid',
-    borderWidth: theme.strokeWidthThin,
+    ...macros.borderStyle('solid'),
+    ...macros.borderWidth(theme.strokeWidthThin),
   }),
   rootCircular: theme => ({
-    borderRadius: theme.borderRadiusCircular,
+    ...macros.borderRadius('top', theme.borderRadiusCircular),
+    ...macros.borderRadius('left', theme.borderRadiusCircular),
+    ...macros.borderRadius('right', theme.borderRadiusCircular),
+    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
   }),
   rootRounded: theme => ({
-    borderRadius: theme.borderRadiusMedium,
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
   }),
   rootShadow: theme => ({
     boxShadow: theme.shadow4,

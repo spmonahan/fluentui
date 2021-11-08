@@ -1,60 +1,77 @@
 import * as CSS from 'csstype';
 
+type MakeStylesUnsupportedCSSProperties = {
+  // We don't support expansion of CSS shorthands
+  animation?: never;
+  background?: never;
+  border?: never;
+  borderColor?: never;
+  borderRadius?: never;
+  borderStyle?: never;
+  borderWidth?: never;
+  borderLeft?: never;
+  borderRight?: never;
+  borderTop?: never;
+  borderBottom?: never;
+  margin?: never;
+  padding?: never;
+  outline?: never;
+};
 type MakeStylesCSSProperties = Omit<
   CSS.Properties,
-  // We have custom defition for "animationName"
-  | 'animationName'
+  // We have custom definition for "animationName"
+  'animationName'
+> &
+  MakeStylesUnsupportedCSSProperties;
 
-  // We don't support expansion of CSS shorthands
-  | 'animation'
-  | 'background'
-  | 'border'
-  | 'borderLeft'
-  | 'borderRight'
-  | 'borderTop'
-  | 'borderBottom'
-  | 'margin'
-  | 'padding'
->;
+export type MakeStylesStrictCSSObject = MakeStylesCSSProperties &
+  MakeStylesCSSPseudos & { animationName?: MakeStylesAnimation | MakeStylesAnimation[] | CSS.AnimationProperty };
 
-type MakeStylesCSSObject = MakeStylesCSSProperties &
-  CSSPseudos & { animationName?: MakeStylesAnimation | MakeStylesAnimation[] | CSS.AnimationProperty };
+type MakeStylesCSSObjectCustom = {
+  [Property: string]: MakeStylesStyle | string | 0;
+} & MakeStylesUnsupportedCSSProperties;
+type MakeStylesCSSPseudos = { [Property in CSS.Pseudos]?: MakeStylesStrictCSSObject & { content?: string } };
 
-type CSSCustom = { [prop: string]: MakeStylesStyle | string | 0 };
-type CSSPseudos = { [K in CSS.Pseudos]?: MakeStylesCSSObject & { content?: string } };
-
-export type MakeStylesAnimation = Record<'from' | 'to' | string, CSSCustom>;
-export type MakeStylesStyle = MakeStylesCSSObject | CSSCustom;
+export type MakeStylesAnimation = Record<'from' | 'to' | string, MakeStylesCSSObjectCustom>;
+export type MakeStylesStyle = MakeStylesStrictCSSObject | MakeStylesCSSObjectCustom;
 
 export type MakeStylesStyleFunctionRule<Tokens> = (tokens: Tokens) => MakeStylesStyle;
 export type MakeStylesStyleRule<Tokens> = MakeStylesStyle | MakeStylesStyleFunctionRule<Tokens>;
+//
+// const a: MakeStylesStyle = {
+//   // padding: '10px',
+//   ':hover': {
+//     color: 'red',
+//     animation: 'alternate-reverse'
+//   },
+// };
+// console.log(a);
 
 export interface MakeStylesOptions {
   dir: 'ltr' | 'rtl';
   renderer: MakeStylesRenderer;
 }
 
-export type MakeStaticStyles =
-  | ({
-      [key: string]: CSS.Properties &
-        // TODO Questionable: how else would users target their own children?
-        Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
-    } & {
-      '@font-face'?: {
-        fontFamily: string;
-        src: string;
+export type MakeStaticStylesStyle = {
+  [key: string]: CSS.Properties &
+    // TODO Questionable: how else would users target their own children?
+    Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+} & {
+  '@font-face'?: {
+    fontFamily: string;
+    src: string;
 
-        fontFeatureSettings?: string;
-        fontStretch?: string;
-        fontStyle?: string;
-        fontVariant?: string;
-        fontVariationSettings?: string;
-        fontWeight?: number | string;
+    fontFeatureSettings?: string;
+    fontStretch?: string;
+    fontStyle?: string;
+    fontVariant?: string;
+    fontVariationSettings?: string;
+    fontWeight?: number | string;
 
-        unicodeRange?: string;
-      };
-    })
-  | string;
+    unicodeRange?: string;
+  };
+};
+export type MakeStaticStyles = MakeStaticStylesStyle | string;
 
 export interface MakeStaticStylesOptions {
   renderer: MakeStylesRenderer;
