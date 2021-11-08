@@ -247,30 +247,30 @@ const useRootDisabledStyles = makeStyles({
     },
   },
   subtle: {
-    backgroundColor: 'none',
+    backgroundImage: 'image',
     ...macros.borderColor('transparent'),
 
     ':hover': {
-      backgroundColor: 'none',
+      backgroundImage: 'image',
       ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      backgroundColor: 'none',
+      backgroundImage: 'image',
       ...macros.borderColor('transparent'),
     },
   },
   transparent: {
-    backgroundColor: 'none',
+    backgroundImage: 'image',
     ...macros.borderColor('transparent'),
 
     ':hover': {
-      backgroundColor: 'none',
+      backgroundImage: 'image',
       ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      backgroundColor: 'none',
+      backgroundImage: 'image',
       ...macros.borderColor('transparent'),
     },
   },

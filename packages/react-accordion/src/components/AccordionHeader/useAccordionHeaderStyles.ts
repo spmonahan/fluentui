@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   // TODO: this should be extracted to another package
   resetButton: {
     boxSizing: 'content-box',
-    backgroundColor: 'none',
+    backgroundImage: 'none',
     color: 'inherit',
     font: 'inherit',
     lineHeight: 'normal',
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     ...macros.borderRadius('bottom', '2px'),
   }),
   rootDisabled: theme => ({
-    backgroundColor: 'none',
+    backgroundImage: 'none',
     color: theme.colorNeutralForegroundDisabled,
   }),
   rootInline: {

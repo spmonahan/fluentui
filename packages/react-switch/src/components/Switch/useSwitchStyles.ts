@@ -114,7 +114,7 @@ const useTrackStyles = makeStyles({
   unchecked: theme => ({
     ':before': {
       ...macros.border('1px', 'solid', theme.colorNeutralStrokeAccessible),
-      backgroundColor: 'none',
+      backgroundImage: 'none',
     },
   }),
 

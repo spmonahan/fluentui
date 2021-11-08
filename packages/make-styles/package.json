@@ -29,6 +29,7 @@
   "dependencies": {
     "@emotion/hash": "^0.8.0",
     "csstype": "^2.6.7",
+    "polished": "^4.1.3",
     "rtl-css-js": "^1.14.1",
     "stylis": "^4.0.6",
     "tslib": "^2.1.0"
