@@ -1,4 +1,4 @@
-import { makeStyles, mergeClasses } from '@fluentui/react-make-styles';
+import { macros, makeStyles, mergeClasses } from '@fluentui/react-make-styles';
 import type { InputState } from './Input.types';
 import type { Theme } from '@fluentui/react-theme';
 
@@ -41,7 +41,11 @@ const useRootStyles = makeStyles({
     flexWrap: 'no-wrap',
     gap: horizontalSpacing.xxs,
     fontFamily: theme.fontFamilyBase,
-    borderRadius: theme.borderRadiusMedium, // used for all but underline
+    // used for all but underline
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
     boxSizing: 'border-box',
     '*, *:before, *:after': {
       boxSizing: 'border-box',
@@ -49,17 +53,17 @@ const useRootStyles = makeStyles({
   }),
   small: theme => ({
     minHeight: fieldHeights.small,
-    padding: `0 ${horizontalSpacing.sNudge}`,
+    ...macros.padding('0', horizontalSpacing.sNudge),
     ...contentSizes.caption1(theme),
   }),
   medium: theme => ({
     minHeight: fieldHeights.medium,
-    padding: `0 ${horizontalSpacing.mNudge}`,
+    ...macros.padding('0', horizontalSpacing.mNudge),
     ...contentSizes.body1(theme),
   }),
   large: theme => ({
     minHeight: fieldHeights.large,
-    padding: `0 ${horizontalSpacing.m}`,
+    ...macros.padding('0', horizontalSpacing.m),
     ...contentSizes[400](theme),
     gap: horizontalSpacing.sNudge,
   }),
@@ -67,46 +71,54 @@ const useRootStyles = makeStyles({
     display: 'inline-flex',
   },
   outline: theme => ({
-    background: theme.colorNeutralBackground1,
-    border: `1px solid ${theme.colorNeutralStroke1}`,
+    backgroundColor: theme.colorNeutralBackground1,
+    ...macros.border('1px', 'solid', theme.colorNeutralStroke1),
     borderBottomColor: theme.colorNeutralStrokeAccessible,
   }),
   underline: theme => ({
-    background: theme.colorTransparentBackground,
-    borderRadius: 0, // corners look strange if rounded
-    borderBottom: `1px solid ${theme.colorNeutralStrokeAccessible}`,
+    backgroundColor: theme.colorTransparentBackground,
+    // corners look strange if rounded
+    ...macros.borderRadius('top', 0),
+    ...macros.borderRadius('left', 0),
+    ...macros.borderRadius('right', 0),
+    ...macros.borderRadius('bottom', 0),
+    ...macros.border('bottom', '1px', 'solid', theme.colorNeutralStrokeAccessible),
   }),
   filled: theme => ({
     boxShadow: theme.shadow2, // optional shadow for filled appearances
   }),
   filledDarker: theme => ({
-    background: theme.colorNeutralBackground3,
+    backgroundColor: theme.colorNeutralBackground3,
   }),
   filledLighter: theme => ({
-    background: theme.colorNeutralBackground1,
+    backgroundColor: theme.colorNeutralBackground1,
   }),
   disabled: theme => ({
     cursor: 'not-allowed',
-    border: `1px solid ${theme.colorNeutralStrokeDisabled}`,
-    borderRadius: theme.borderRadiusMedium, // because underline doesn't usually have a radius
+    ...macros.border('1px', 'solid', 'theme.colorNeutralStrokeDisabled'),
+    // because underline doesn't usually have a radius
+    ...macros.borderRadius('top', theme.borderRadiusMedium),
+    ...macros.borderRadius('left', theme.borderRadiusMedium),
+    ...macros.borderRadius('right', theme.borderRadiusMedium),
+    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
   }),
 });
 
 const useInputElementStyles = makeStyles({
   base: theme => ({
     flexGrow: 1,
-    border: 'none', // input itself never has a border (this is handled by inputWrapper)
-    padding: `0 ${horizontalSpacing.xxs}`,
+    ...macros.borderStyle('none'), // input itself never has a border (this is handled by inputWrapper)
+    ...macros.padding('0', horizontalSpacing.xxs),
     color: theme.colorNeutralForeground1,
     // Use literal "transparent" (not from the theme) to always let the color from the root show through
-    background: 'transparent',
+    backgroundColor: 'transparent',
 
     '::placeholder': {
       color: theme.colorNeutralForeground4,
       opacity: 1, // browser style override
     },
     ':focus-visible': {
-      outline: 'none', // disable default browser outline
+      outlineStyle: 'none', // disable default browser outline
     },
   }),
   small: theme => ({
@@ -118,11 +130,11 @@ const useInputElementStyles = makeStyles({
   }),
   large: theme => ({
     ...contentSizes[400](theme),
-    padding: `0 ${horizontalSpacing.sNudge}`,
+    ...macros.padding('0', horizontalSpacing.sNudge),
   }),
   disabled: theme => ({
     color: theme.colorNeutralForegroundDisabled,
-    background: theme.colorTransparentBackground,
+    backgroundColor: theme.colorTransparentBackground,
     cursor: 'not-allowed',
     '::placeholder': {
       color: theme.colorNeutralForegroundDisabled,

@@ -1,4 +1,4 @@
-import { mergeClasses, makeStyles } from '@fluentui/react-make-styles';
+import { macros, mergeClasses, makeStyles } from '@fluentui/react-make-styles';
 import {
   useActiveRailStyles,
   useMarksWrapperStyles,
@@ -30,8 +30,8 @@ const useInputStyles = makeStyles({
   input: {
     opacity: 0,
     position: 'absolute',
-    padding: 0,
-    margin: 0,
+    ...macros.padding(0),
+    ...macros.margin(0),
     width: '0px',
     height: '0px',
     pointerEvents: 'none',
@@ -42,9 +42,9 @@ const useInputStyles = makeStyles({
       // TODO: Update this to [`& + .${lowerThumbClassName}`]
       '& + .fui-Slider-thumb-lower': {
         ':before': {
-          outline: 'none',
+          outlineStyle: 'none',
           boxSizing: 'border-box',
-          border: 'calc(var(--slider-thumb-size) * .05) solid black',
+          ...macros.border('calc(var(--slider-thumb-size) * .05)', 'solid', 'black'),
         },
       },
     }),
@@ -56,9 +56,9 @@ const useInputStyles = makeStyles({
       // TODO: Update this to [`& + .${upperThumbClassName}`]
       '& + .fui-Slider-thumb-upper': {
         ':before': {
-          outline: 'none',
+          outlineStyle: 'none',
           boxSizing: 'border-box',
-          border: 'calc(var(--slider-thumb-size) * .05) solid black',
+          ...macros.border('calc(var(--slider-thumb-size) * .05)', 'solid', 'black'),
         },
       },
     }),
