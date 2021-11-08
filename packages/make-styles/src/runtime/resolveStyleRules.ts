@@ -2,10 +2,9 @@ import hashString from '@emotion/hash';
 import { convert, convertProperty } from 'rtl-css-js/core';
 
 import { HASH_PREFIX } from '../constants';
-import { MakeStyles, CSSClassesMap, CSSRulesByBucket, StyleBucketName } from '../types';
+import { MakeStylesStyle, CSSClassesMap, CSSRulesByBucket, StyleBucketName, MakeStylesAnimation } from '../types';
 import { compileCSS, CompileCSSOptions } from './compileCSS';
 import { compileKeyframeRule, compileKeyframesCSS } from './compileKeyframeCSS';
-import { expandShorthand } from './expandShorthand';
 import { generateCombinedQuery } from './utils/generateCombinedMediaQuery';
 import { isMediaQuerySelector } from './utils/isMediaQuerySelector';
 import { isNestedSelector } from './utils/isNestedSelector';
@@ -41,7 +40,7 @@ function pushToCSSRules(
 }
 
 function resolveStyleRulesInner(
-  styles: MakeStyles,
+  styles: MakeStylesStyle,
   unstable_cssPriority: number = 0,
   pseudo = '',
   media = '',
@@ -52,7 +51,7 @@ function resolveStyleRulesInner(
 ): [CSSClassesMap, CSSRulesByBucket] {
   // eslint-disable-next-line guard-for-in
   for (const property in styles) {
-    const value = styles[property];
+    const value = styles[property as keyof MakeStylesStyle];
 
     // eslint-disable-next-line eqeqeq
     if (value == null) {
@@ -107,7 +106,9 @@ function resolveStyleRulesInner(
       pushToClassesMap(cssClassesMap, key, className, rtlClassName);
       pushToCSSRules(cssRulesByBucket, styleBucketName, ltrCSS, rtlCSS);
     } else if (property === 'animationName') {
-      const animationNameValue = Array.isArray(value) ? value : [value];
+      const animationNameValue = Array.isArray(value)
+        ? (value as MakeStylesAnimation[])
+        : [value as MakeStylesAnimation];
 
       const animationNames: string[] = [];
       const rtlAnimationNames: string[] = [];
@@ -157,7 +158,7 @@ function resolveStyleRulesInner(
     } else if (isObject(value)) {
       if (isNestedSelector(property)) {
         resolveStyleRulesInner(
-          value,
+          value as MakeStylesStyle,
           unstable_cssPriority,
           pseudo + normalizeNestedProperty(property),
           media,
@@ -169,7 +170,7 @@ function resolveStyleRulesInner(
         const combinedMediaQuery = generateCombinedQuery(media, property.slice(6).trim());
 
         resolveStyleRulesInner(
-          value,
+          value as MakeStylesStyle,
           unstable_cssPriority,
           pseudo,
           combinedMediaQuery,
@@ -181,7 +182,7 @@ function resolveStyleRulesInner(
         const combinedSupportQuery = generateCombinedQuery(support, property.slice(9).trim());
 
         resolveStyleRulesInner(
-          value,
+          value as MakeStylesStyle,
           unstable_cssPriority,
           pseudo,
           media,
@@ -202,11 +203,11 @@ function resolveStyleRulesInner(
  * @internal
  */
 export function resolveStyleRules(
-  styles: MakeStyles,
+  styles: MakeStylesStyle,
   unstable_cssPriority: number = 0,
 ): [CSSClassesMap, CSSRulesByBucket] {
-  // expandShorthand() and resolveProxyValues() are recursive functions and should be evaluated once for a style object
-  const expandedStyles: MakeStyles = expandShorthand(resolveProxyValues(styles));
+  // resolveProxyValues() is recursive function and should be evaluated once for a style object
+  const expandedStyles: MakeStylesStyle = resolveProxyValues(styles);
 
   return resolveStyleRulesInner(expandedStyles, unstable_cssPriority);
 }

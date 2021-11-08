@@ -1,14 +1,33 @@
-import { Properties as CSSProperties } from 'csstype';
+import * as CSS from 'csstype';
 
-export interface MakeStyles extends Omit<CSSProperties, 'animationName'> {
-  // TODO Questionable: how else would users target their own children?
-  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+type MakeStylesCSSProperties = Omit<
+  CSS.Properties,
+  // We have custom defition for "animationName"
+  | 'animationName'
 
-  animationName?: object | string;
-}
+  // We don't support expansion of CSS shorthands
+  | 'animation'
+  | 'background'
+  | 'border'
+  | 'borderLeft'
+  | 'borderRight'
+  | 'borderTop'
+  | 'borderBottom'
+  | 'margin'
+  | 'padding'
+>;
 
-export type MakeStylesStyleFunctionRule<Tokens> = (tokens: Tokens) => MakeStyles;
-export type MakeStylesStyleRule<Tokens> = MakeStyles | MakeStylesStyleFunctionRule<Tokens>;
+type MakeStylesCSSObject = MakeStylesCSSProperties &
+  CSSPseudos & { animationName?: MakeStylesAnimation | MakeStylesAnimation[] | CSS.AnimationProperty };
+
+type CSSCustom = { [prop: string]: MakeStylesStyle | string | 0 };
+type CSSPseudos = { [K in CSS.Pseudos]?: MakeStylesCSSObject & { content?: string } };
+
+export type MakeStylesAnimation = Record<'from' | 'to' | string, CSSCustom>;
+export type MakeStylesStyle = MakeStylesCSSObject | CSSCustom;
+
+export type MakeStylesStyleFunctionRule<Tokens> = (tokens: Tokens) => MakeStylesStyle;
+export type MakeStylesStyleRule<Tokens> = MakeStylesStyle | MakeStylesStyleFunctionRule<Tokens>;
 
 export interface MakeStylesOptions {
   dir: 'ltr' | 'rtl';
@@ -17,7 +36,7 @@ export interface MakeStylesOptions {
 
 export type MakeStaticStyles =
   | ({
-      [key: string]: CSSProperties &
+      [key: string]: CSS.Properties &
         // TODO Questionable: how else would users target their own children?
         Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
     } & {

@@ -4,7 +4,7 @@
 
 ```ts
 
-import { Properties } from 'csstype';
+import * as CSS_2 from 'csstype';
 
 // @internal
 export function __styles<Slots extends string>(classesMapBySlot: CSSClassesMapBySlot<Slots>, cssRules: CSSRulesByBucket): (options: Pick<MakeStylesOptions, 'dir' | 'renderer'>) => Record<Slots, string>;
@@ -54,7 +54,7 @@ export type LookupItem = [/* definitions */ CSSClassesMap, /* dir */ /* dir */ '
 
 // @public (undocumented)
 export type MakeStaticStyles = ({
-    [key: string]: Properties & Record<string, any>;
+    [key: string]: CSS_2.Properties & Record<string, any>;
 } & {
     '@font-face'?: {
         fontFamily: string;
@@ -79,15 +79,12 @@ export interface MakeStaticStylesOptions {
 }
 
 // @public (undocumented)
-export interface MakeStyles extends Omit<Properties, 'animationName'> {
-    // (undocumented)
-    [key: string]: any;
-    // (undocumented)
-    animationName?: object | string;
-}
-
-// @public (undocumented)
 export function makeStyles<Slots extends string | number, Tokens>(stylesBySlots: StylesBySlots<Slots, Tokens>, unstable_cssPriority?: number): (options: MakeStylesOptions) => Record<Slots, string>;
+
+// Warning: (ae-forgotten-export) The symbol "CSSCustom" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export type MakeStylesAnimation = Record<'from' | 'to' | string, CSSCustom>;
 
 // @public (undocumented)
 export interface MakeStylesOptions {
@@ -109,11 +106,16 @@ export interface MakeStylesRenderer {
     styleElements: Partial<Record<StyleBucketName, HTMLStyleElement>>;
 }
 
+// Warning: (ae-forgotten-export) The symbol "MakeStylesCSSObject" needs to be exported by the entry point index.d.ts
+//
 // @public (undocumented)
-export type MakeStylesStyleFunctionRule<Tokens> = (tokens: Tokens) => MakeStyles;
+export type MakeStylesStyle = MakeStylesCSSObject | CSSCustom;
 
 // @public (undocumented)
-export type MakeStylesStyleRule<Tokens> = MakeStyles | MakeStylesStyleFunctionRule<Tokens>;
+export type MakeStylesStyleFunctionRule<Tokens> = (tokens: Tokens) => MakeStylesStyle;
+
+// @public (undocumented)
+export type MakeStylesStyleRule<Tokens> = MakeStylesStyle | MakeStylesStyleFunctionRule<Tokens>;
 
 // @public
 export function mergeClasses(...classNames: (string | false | undefined)[]): string;
@@ -132,7 +134,7 @@ export function resolveProxyValues<T>(value: T): T;
 // Warning: (ae-internal-missing-underscore) The name "resolveStyleRules" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
-export function resolveStyleRules(styles: MakeStyles, unstable_cssPriority?: number): [CSSClassesMap, CSSRulesByBucket];
+export function resolveStyleRules(styles: MakeStylesStyle, unstable_cssPriority?: number): [CSSClassesMap, CSSRulesByBucket];
 
 // @public
 export function resolveStyleRulesForSlots<Slots extends string | number, Tokens>(stylesBySlots: StylesBySlots<Slots, Tokens>, unstable_cssPriority: number): [CSSClassesMapBySlot<Slots>, CSSRulesByBucket];
