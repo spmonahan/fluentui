@@ -78,7 +78,7 @@ const useRootStyles = makeStyles({
     backgroundColor: theme.colorTransparentBackground,
     // corners look strange if rounded
     ...macros.borderRadius(0),
-    ...macros.border('bottom', '1px', 'solid', theme.colorNeutralStrokeAccessible),
+    ...macros.borderBottom('1px', 'solid', theme.colorNeutralStrokeAccessible),
   }),
   filled: theme => ({
     boxShadow: theme.shadow2, // optional shadow for filled appearances

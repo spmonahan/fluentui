@@ -2,7 +2,7 @@ import { macros, mergeClasses, makeStyles } from '@fluentui/react-make-styles';
 import type { MenuDividerState } from './MenuDivider.types';
 
 export const menuDividerClassName = 'fui-MenuDivider';
-
+console.log(macros.margin('4px', '-5px', '4px', '-5px'));
 const useStyles = makeStyles({
   root: theme => ({
     height: '1px',

@@ -30,7 +30,7 @@ export function padding(...values: Value[]): MakeStylesStrictCSSObject {
 }
 
 export function margin(...values: Value[]): MakeStylesStrictCSSObject {
-  return generateStyles('padding', '', ...values);
+  return generateStyles('margin', '', ...values);
 }
 
 export function borderWidth(...values: Value[]): MakeStylesStrictCSSObject {

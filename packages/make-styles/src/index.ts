@@ -1,6 +1,30 @@
-import { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding } from './macros';
+import {
+  border,
+  borderLeft,
+  borderBottom,
+  borderRight,
+  borderTop,
+  borderColor,
+  borderStyle,
+  borderRadius,
+  borderWidth,
+  margin,
+  padding,
+} from './macros';
 
-export const macros = { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding };
+export const macros = {
+  border,
+  borderLeft,
+  borderBottom,
+  borderRight,
+  borderTop,
+  borderColor,
+  borderStyle,
+  borderRadius,
+  borderWidth,
+  margin,
+  padding,
+};
 
 export { createDOMRenderer } from './renderer/createDOMRenderer';
 export { styleBucketOrdering } from './renderer/getStyleSheetForBucket';

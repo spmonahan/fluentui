@@ -8,7 +8,7 @@ import Screener, { Steps } from 'screener-storybook/src/screener';
 const useStyles = makeStyles({
   box: theme => ({
     ...macros.border('5px', 'solid', theme.colorNeutralStroke1),
-    ...macros.border('left', '20px', 'solid', theme.colorPaletteBlueBorder2),
+    ...macros.borderLeft('20px', 'solid', theme.colorPaletteBlueBorder2),
 
     backgroundColor: theme.colorNeutralBackground1,
     color: theme.colorNeutralForeground1,
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
   container: theme => ({
     ...macros.border('5px', 'solid', theme.colorNeutralStroke1),
-    ...macros.border('left', '20px', 'solid', theme.colorPaletteBlueBorder2),
+    ...macros.borderLeft('20px', 'solid', theme.colorPaletteBlueBorder2),
 
     ...macros.margin('5px'),
     ...macros.padding('5px'),
