@@ -18,7 +18,7 @@ function generateStyles(
   for (let i = 0; i < valuesWithDefaults.length; i += 1) {
     if (valuesWithDefaults[i] || valuesWithDefaults[i] === 0) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      styles[(property + positionMap[i]) as keyof MakeStylesStrictCSSObject] = valuesWithDefaults[i] as any;
+      styles[(property + positionMap[i] + suffix) as keyof MakeStylesStrictCSSObject] = valuesWithDefaults[i] as any;
     }
   }
 
