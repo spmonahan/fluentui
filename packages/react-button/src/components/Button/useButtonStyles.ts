@@ -83,13 +83,13 @@ const useRootStyles = makeStyles({
     color: theme.colorNeutralForegroundOnBrand,
 
     ':hover': {
-      backgrounColor: theme.colorBrandBackgroundHover,
+      backgroundColor: theme.colorBrandBackgroundHover,
       ...macros.borderColor('transparent'),
       color: theme.colorNeutralForegroundOnBrand,
     },
 
     ':active': {
-      backgrounColor: theme.colorBrandBackgroundPressed,
+      backgroundColor: theme.colorBrandBackgroundPressed,
       ...macros.borderColor('transparent'),
       color: theme.colorNeutralForegroundOnBrand,
     },
