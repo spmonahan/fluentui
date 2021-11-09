@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   // TODO: this should be extracted to another package
   resetButton: {
     boxSizing: 'content-box',
-    backgroundImage: 'none',
+    backgroundColor: 'inherit',
     color: 'inherit',
     font: 'inherit',
     lineHeight: 'normal',
