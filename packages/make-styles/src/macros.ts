@@ -24,121 +24,26 @@ function generateStyles(
   return styles;
 }
 
-/**
- * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
- *
- * @example
- * const styles = {
- *   ...padding('12px', '24px', '36px', '48px')
- * }
- *
- * // CSS as JS Output
- *
- * div {
- *   'paddingTop': '12px',
- *   'paddingRight': '24px',
- *   'paddingBottom': '36px',
- *   'paddingLeft': '48px'
- * }
- */
 export function padding(...values: Value[]): MakeStylesStrictCSSObject {
   return generateStyles('padding', '', ...values);
 }
 
-/**
- * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
- *
- * @example
- * // Styles as object usage
- * const styles = {
- *   ...padding('12px', '24px', '36px', '48px')
- * }
- *
- * // CSS as JS Output
- *
- * div {
- *   'paddingTop': '12px',
- *   'paddingRight': '24px',
- *   'paddingBottom': '36px',
- *   'paddingLeft': '48px'
- * }
- */
 export function margin(...values: Value[]): MakeStylesStrictCSSObject {
   return generateStyles('padding', '', ...values);
 }
 
-/**
- * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
- * @example
- * // Styles as object usage
- * const styles = {
- *   ...borderWidth('12px', '24px', '36px', '48px')
- * }
- *
- * // CSS as JS Output
- *
- * div {
- *   'borderTopWidth': '12px',
- *   'borderRightWidth': '24px',
- *   'borderBottomWidth': '36px',
- *   'borderLeftWidth': '48px'
- * }
- */
 export function borderWidth(...values: Value[]): MakeStylesStrictCSSObject {
   return generateStyles('border', 'Width', ...values);
 }
 
-/**
- * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
- * @example
- * // Styles as object usage
- * const styles = {
- *   ...borderStyle('solid', 'dashed', 'dotted', 'double')
- * }
- *
- * // CSS as JS Output
- *
- * div {
- *   'borderTopStyle': 'solid',
- *   'borderRightStyle': 'dashed',
- *   'borderBottomStyle': 'dotted',
- *   'borderLeftStyle': 'double'
- * }
- */
 export function borderStyle(...values: Value[]): MakeStylesStrictCSSObject {
   return generateStyles('border', 'Style', ...values);
 }
 
-/**
- * Shorthand that accepts up to four values, including null to skip a value, and maps them to their respective directions.
- * @example
- * // Styles as object usage
- * const styles = {
- *   ...borderColor('red', 'green', 'blue', 'yellow')
- * }
- *
- * // CSS as JS Output
- *
- * div {
- *   'borderTopColor': 'red',
- *   'borderRightColor': 'green',
- *   'borderBottomColor': 'blue',
- *   'borderLeftColor': 'yellow'
- * }
- */
 export function borderColor(...values: Value[]): MakeStylesStrictCSSObject {
   return generateStyles('border', 'Color', ...values);
 }
 
-/**
- * Shorthand for the border property that splits out individual properties for use with tools like Fela and Styletron. A side keyword can optionally be passed to target only one side's border properties.
- *
- * @example
- * // Styles as object usage
- * const styles = {
- *   ...border('1px', 'solid', 'red')
- * }
- */
 export function border(...values: Value[]): MakeStylesStrictCSSObject {
   return {
     ...borderWidth(values[0]),
