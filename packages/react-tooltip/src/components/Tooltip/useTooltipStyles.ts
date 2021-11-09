@@ -17,10 +17,7 @@ const useStyles = makeStyles({
     lineHeight: theme.lineHeightBase200,
 
     // Update tooltipBorderRadius in useTooltip.tsx if this changes
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
 
     backgroundColor: theme.colorNeutralBackground1,
     color: theme.colorNeutralForeground1,

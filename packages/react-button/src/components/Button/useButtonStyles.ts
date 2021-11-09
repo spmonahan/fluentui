@@ -33,10 +33,7 @@ const useRootStyles = makeStyles({
 
     backgroundColor: theme.colorNeutralBackground1,
     color: theme.colorNeutralForeground1,
-
-    ...macros.borderColor(theme.colorNeutralStroke1),
-    ...macros.borderStyle('solid'),
-    ...macros.borderWidth(theme.strokeWidthThin),
+    ...macros.border(theme.strokeWidthThin, 'solid', theme.colorNeutralStroke1),
 
     fontFamily: theme.fontFamilyBase,
 
@@ -131,19 +128,13 @@ const useRootStyles = makeStyles({
 
   // Shape variations
   circular: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusCircular),
-    ...macros.borderRadius('left', theme.borderRadiusCircular),
-    ...macros.borderRadius('right', theme.borderRadiusCircular),
-    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+    ...macros.borderRadius(theme.borderRadiusCircular),
   }),
   rounded: {
     /* The borderRadius rounded styles are handled in the size variations */
   },
   square: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusNone),
-    ...macros.borderRadius('left', theme.borderRadiusNone),
-    ...macros.borderRadius('right', theme.borderRadiusNone),
-    ...macros.borderRadius('bottom', theme.borderRadiusNone),
+    ...macros.borderRadius(theme.borderRadiusNone),
   }),
 
   // Size variations
@@ -154,10 +145,7 @@ const useRootStyles = makeStyles({
     height: '24px',
     minWidth: '64px',
 
-    ...macros.borderRadius('top', theme.borderRadiusSmall),
-    ...macros.borderRadius('left', theme.borderRadiusSmall),
-    ...macros.borderRadius('right', theme.borderRadiusSmall),
-    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+    ...macros.borderRadius(theme.borderRadiusSmall),
 
     fontSize: theme.fontSizeBase200,
     fontWeight: theme.fontWeightRegular,
@@ -170,10 +158,7 @@ const useRootStyles = makeStyles({
     height: '32px',
     minWidth: '96px',
 
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
 
     fontSize: theme.fontSizeBase300,
     fontWeight: theme.fontWeightSemibold,
@@ -186,10 +171,7 @@ const useRootStyles = makeStyles({
     height: '40px',
     minWidth: '96px',
 
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
 
     fontSize: theme.fontSizeBase400,
     fontWeight: theme.fontWeightSemibold,
@@ -247,30 +229,30 @@ const useRootDisabledStyles = makeStyles({
     },
   },
   subtle: {
-    backgroundImage: 'image',
+    backgroundColor: 'transparent',
     ...macros.borderColor('transparent'),
 
     ':hover': {
-      backgroundImage: 'image',
+      backgroundColor: 'transparent',
       ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      backgroundImage: 'image',
+      backgroundColor: 'transparent',
       ...macros.borderColor('transparent'),
     },
   },
   transparent: {
-    backgroundImage: 'image',
+    backgroundColor: 'transparent',
     ...macros.borderColor('transparent'),
 
     ':hover': {
-      backgroundImage: 'image',
+      backgroundColor: 'transparent',
       ...macros.borderColor('transparent'),
     },
 
     ':active': {
-      backgroundImage: 'image',
+      backgroundColor: 'transparent',
       ...macros.borderColor('transparent'),
     },
   },
@@ -300,10 +282,7 @@ const useRootFocusStyles = makeStyles({
   })),
 
   circular: createCustomFocusIndicatorStyle(theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusCircular),
-    ...macros.borderRadius('left', theme.borderRadiusCircular),
-    ...macros.borderRadius('right', theme.borderRadiusCircular),
-    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+    ...macros.borderRadius(theme.borderRadiusCircular),
   })),
   rounded: {},
   // Primary styles
@@ -312,30 +291,18 @@ const useRootFocusStyles = makeStyles({
     boxShadow: `${theme.shadow2}, 0 0 0 2px ${theme.colorStrokeFocus2}`,
   })),
   square: createCustomFocusIndicatorStyle(theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusNone),
-    ...macros.borderRadius('left', theme.borderRadiusNone),
-    ...macros.borderRadius('right', theme.borderRadiusNone),
-    ...macros.borderRadius('bottom', theme.borderRadiusNone),
+    ...macros.borderRadius(theme.borderRadiusNone),
   })),
 
   // Size variations
   small: createCustomFocusIndicatorStyle(theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusSmall),
-    ...macros.borderRadius('left', theme.borderRadiusSmall),
-    ...macros.borderRadius('right', theme.borderRadiusSmall),
-    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+    ...macros.borderRadius(theme.borderRadiusSmall),
   })),
   medium: createCustomFocusIndicatorStyle(theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
   })),
   large: createCustomFocusIndicatorStyle(theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusLarge),
-    ...macros.borderRadius('left', theme.borderRadiusLarge),
-    ...macros.borderRadius('right', theme.borderRadiusLarge),
-    ...macros.borderRadius('bottom', theme.borderRadiusLarge),
+    ...macros.borderRadius(theme.borderRadiusLarge),
   })),
 });
 

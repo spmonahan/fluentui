@@ -4,14 +4,7 @@
 
 ```ts
 
-import { border } from 'polished';
-import { borderColor } from 'polished';
-import { borderRadius } from 'polished';
-import { borderStyle } from 'polished';
-import { borderWidth } from 'polished';
 import * as CSS_2 from 'csstype';
-import { margin } from 'polished';
-import { padding } from 'polished';
 
 // @internal
 export function __styles<Slots extends string>(classesMapBySlot: CSSClassesMapBySlot<Slots>, cssRules: CSSRulesByBucket): (options: Pick<MakeStylesOptions, 'dir' | 'renderer'>) => Record<Slots, string>;
@@ -172,6 +165,16 @@ export type StyleBucketName = 'd' | 'l' | 'v' | 'w' | 'f' | 'i' | 'h' | 'a' | 'k
 
 // @public
 export const styleBucketOrdering: StyleBucketName[];
+
+// Warnings were encountered during analysis:
+//
+// lib/index.d.ts:3:5 - (ae-forgotten-export) The symbol "border" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:4:5 - (ae-forgotten-export) The symbol "borderColor" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:5:5 - (ae-forgotten-export) The symbol "borderStyle" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:6:5 - (ae-forgotten-export) The symbol "borderRadius" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:7:5 - (ae-forgotten-export) The symbol "borderWidth" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:8:5 - (ae-forgotten-export) The symbol "margin" needs to be exported by the entry point index.d.ts
+// lib/index.d.ts:9:5 - (ae-forgotten-export) The symbol "padding" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

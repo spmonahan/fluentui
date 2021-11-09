@@ -22,10 +22,7 @@ const useStyles = makeStyles({
     // TODO: Explore alternate way of applying padding
     ...macros.padding('12px'),
     gap: '12px',
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
 
     [`> .${cardPreviewClassName}`]: {
       marginLeft: '-12px',

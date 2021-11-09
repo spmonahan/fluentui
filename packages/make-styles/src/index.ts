@@ -1,4 +1,4 @@
-import { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding } from 'polished';
+import { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding } from './macros';
 
 export const macros = { border, borderColor, borderStyle, borderRadius, borderWidth, margin, padding };
 
@@ -17,7 +17,7 @@ export { resolveStyleRules } from './runtime/resolveStyleRules';
 export { __styles } from './__styles';
 
 export * from './constants';
-export {
+export type {
   // Static styles
   MakeStaticStylesStyle,
   MakeStaticStyles,

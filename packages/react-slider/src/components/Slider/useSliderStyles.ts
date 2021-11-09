@@ -108,10 +108,7 @@ export const useSliderWrapper = makeStyles({
 export const useRailStyles = makeStyles({
   rail: theme => ({
     position: 'absolute',
-    ...macros.borderRadius('top', theme.borderRadiusXLarge),
-    ...macros.borderRadius('left', theme.borderRadiusXLarge),
-    ...macros.borderRadius('right', theme.borderRadiusXLarge),
-    ...macros.borderRadius('bottom', theme.borderRadiusXLarge),
+    ...macros.borderRadius(theme.borderRadiusXLarge),
     boxSizing: 'border-box',
     pointerEvents: 'none',
   }),
@@ -169,10 +166,7 @@ export const useTrackWrapperStyles = makeStyles({
 export const useTrackStyles = makeStyles({
   track: theme => ({
     position: 'absolute',
-    ...macros.borderRadius('top', theme.borderRadiusXLarge),
-    ...macros.borderRadius('left', theme.borderRadiusXLarge),
-    ...macros.borderRadius('right', theme.borderRadiusXLarge),
-    ...macros.borderRadius('bottom', theme.borderRadiusXLarge),
+    ...macros.borderRadius(theme.borderRadiusXLarge),
   }),
 
   horizontal: theme => ({
@@ -316,10 +310,7 @@ export const useThumbStyles = makeStyles({
     bottom: '0px',
     right: '0px',
     outlineStyle: 'none',
-    ...macros.borderRadius('top', theme.borderRadiusCircular),
-    ...macros.borderRadius('left', theme.borderRadiusCircular),
-    ...macros.borderRadius('right', theme.borderRadiusCircular),
-    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+    ...macros.borderRadius(theme.borderRadiusCircular),
     boxSizing: 'border-box',
     boxShadow: `0 0 0 calc(var(--slider-thumb-size) * .2) ${theme.colorNeutralBackground1} inset`,
     transform: 'translate(-50%, -50%)',
@@ -330,10 +321,7 @@ export const useThumbStyles = makeStyles({
       left: '0px',
       bottom: '0px',
       right: '0px',
-      ...macros.borderRadius('top', theme.borderRadiusCircular),
-      ...macros.borderRadius('left', theme.borderRadiusCircular),
-      ...macros.borderRadius('right', theme.borderRadiusCircular),
-      ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+      ...macros.borderRadius(theme.borderRadiusCircular),
       boxSizing: 'border-box',
       content: "''",
       ...macros.border('calc(var(--slider-thumb-size) * .05)', 'solid', theme.colorNeutralStroke1),

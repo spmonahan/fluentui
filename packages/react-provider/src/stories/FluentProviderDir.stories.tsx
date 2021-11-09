@@ -14,10 +14,7 @@ const useStyles = makeStyles({
     color: theme.colorBrandForeground2,
     fontSize: '18px',
     ...macros.border('1px'),
-    ...macros.borderRadius('top', '5px'),
-    ...macros.borderRadius('left', '5px'),
-    ...macros.borderRadius('right', '5px'),
-    ...macros.borderRadius('bottom', '5px'),
+    ...macros.borderRadius('5px'),
     ...macros.padding('5px'),
   }),
 });

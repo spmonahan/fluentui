@@ -42,10 +42,7 @@ const useRootStyles = makeStyles({
     gap: horizontalSpacing.xxs,
     fontFamily: theme.fontFamilyBase,
     // used for all but underline
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
     boxSizing: 'border-box',
     '*, *:before, *:after': {
       boxSizing: 'border-box',
@@ -78,10 +75,7 @@ const useRootStyles = makeStyles({
   underline: theme => ({
     backgroundColor: theme.colorTransparentBackground,
     // corners look strange if rounded
-    ...macros.borderRadius('top', 0),
-    ...macros.borderRadius('left', 0),
-    ...macros.borderRadius('right', 0),
-    ...macros.borderRadius('bottom', 0),
+    ...macros.borderRadius(0),
     ...macros.border('bottom', '1px', 'solid', theme.colorNeutralStrokeAccessible),
   }),
   filled: theme => ({
@@ -97,10 +91,7 @@ const useRootStyles = makeStyles({
     cursor: 'not-allowed',
     ...macros.border('1px', 'solid', 'theme.colorNeutralStrokeDisabled'),
     // because underline doesn't usually have a radius
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
   }),
 });
 

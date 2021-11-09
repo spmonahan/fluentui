@@ -17,10 +17,7 @@ const useStyles = makeStyles({
   root: theme => ({
     backgroundColor: theme.colorNeutralBackground1,
     boxShadow: theme.shadow16,
-    ...macros.borderRadius('top', '4px'),
-    ...macros.borderRadius('left', '4px'),
-    ...macros.borderRadius('right', '4px'),
-    ...macros.borderRadius('bottom', '4px'),
+    ...macros.borderRadius('4px'),
     ...macros.border('1px', 'solid', theme.colorTransparentStroke),
   }),
 
@@ -67,10 +64,7 @@ const useStyles = makeStyles({
 
     ':before': {
       content: '""',
-      ...macros.borderRadius('top', '4px'),
-      ...macros.borderRadius('left', '4px'),
-      ...macros.borderRadius('right', '4px'),
-      ...macros.borderRadius('bottom', '4px'),
+      ...macros.borderRadius('4px'),
       borderBottomRightRadius: theme.borderRadiusSmall,
       position: 'absolute',
       width: 'inherit',

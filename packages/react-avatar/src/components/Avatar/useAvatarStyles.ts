@@ -57,10 +57,7 @@ const useStyles = makeStyles({
     flexShrink: 0,
     position: 'relative',
     verticalAlign: 'middle',
-    ...macros.borderRadius('top', theme.borderRadiusCircular),
-    ...macros.borderRadius('left', theme.borderRadiusCircular),
-    ...macros.borderRadius('right', theme.borderRadiusCircular),
-    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+    ...macros.borderRadius(theme.borderRadiusCircular),
     fontFamily: theme.fontFamilyBase,
     fontWeight: theme.fontWeightSemibold,
     boxShadow: `0 0 0 ${theme.strokeWidthThin} ${theme.colorTransparentStroke} inset`,
@@ -77,28 +74,16 @@ const useStyles = makeStyles({
   textTitle: theme => ({ fontSize: theme.fontSizeBase600 }),
 
   squareSmall: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusSmall),
-    ...macros.borderRadius('left', theme.borderRadiusSmall),
-    ...macros.borderRadius('right', theme.borderRadiusSmall),
-    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+    ...macros.borderRadius(theme.borderRadiusSmall),
   }),
   squareMedium: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
   }),
   squareLarge: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusLarge),
-    ...macros.borderRadius('left', theme.borderRadiusLarge),
-    ...macros.borderRadius('right', theme.borderRadiusLarge),
-    ...macros.borderRadius('bottom', theme.borderRadiusLarge),
+    ...macros.borderRadius(theme.borderRadiusLarge),
   }),
   squareXLarge: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusXLarge),
-    ...macros.borderRadius('left', theme.borderRadiusXLarge),
-    ...macros.borderRadius('right', theme.borderRadiusXLarge),
-    ...macros.borderRadius('bottom', theme.borderRadiusXLarge),
+    ...macros.borderRadius(theme.borderRadiusXLarge),
   }),
 
   activeOrInactive: {
@@ -115,10 +100,7 @@ const useStyles = makeStyles({
       bottom: 0,
       right: 0,
 
-      ...macros.borderRadius('top', 'inherit'),
-      ...macros.borderRadius('left', 'inherit'),
-      ...macros.borderRadius('right', 'inherit'),
-      ...macros.borderRadius('bottom', 'inherit'),
+      ...macros.borderRadius('inherit'),
       transition:
         `margin ${animationTiming.ultraSlow} ${animations.fastEase}, ` +
         `opacity ${animationTiming.slower} ${animations.nullEasing}`,
@@ -194,10 +176,7 @@ const useStyles = makeStyles({
     width: '100%',
     height: '100%',
 
-    ...macros.borderRadius('top', 'inherit'),
-    ...macros.borderRadius('left', 'inherit'),
-    ...macros.borderRadius('right', 'inherit'),
-    ...macros.borderRadius('bottom', 'inherit'),
+    ...macros.borderRadius('inherit'),
     objectFit: 'cover',
     verticalAlign: 'top',
   },
@@ -215,10 +194,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     verticalAlign: 'center',
     textAlign: 'center',
-    ...macros.borderRadius('top', 'inherit'),
-    ...macros.borderRadius('left', 'inherit'),
-    ...macros.borderRadius('right', 'inherit'),
-    ...macros.borderRadius('bottom', 'inherit'),
+    ...macros.borderRadius('inherit'),
   },
 });
 

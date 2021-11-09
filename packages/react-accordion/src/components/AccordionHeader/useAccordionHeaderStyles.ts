@@ -22,10 +22,7 @@ const useStyles = makeStyles({
   root: theme => ({
     color: theme.colorNeutralForeground1,
     backgroundColor: theme.colorNeutralBackground1,
-    ...macros.borderRadius('top', '2px'),
-    ...macros.borderRadius('left', '2px'),
-    ...macros.borderRadius('right', '2px'),
-    ...macros.borderRadius('bottom', '2px'),
+    ...macros.borderRadius('2px'),
   }),
   rootDisabled: theme => ({
     backgroundImage: 'none',

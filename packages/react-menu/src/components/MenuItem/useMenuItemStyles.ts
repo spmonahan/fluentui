@@ -7,10 +7,7 @@ export const menuItemClassName = 'fui-MenuItem';
 const useStyles = makeStyles({
   focusIndicator: theme => createFocusOutlineStyle(theme),
   root: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
     position: 'relative',
     color: theme.colorNeutralForeground1,
     backgroundColor: theme.colorNeutralBackground1,

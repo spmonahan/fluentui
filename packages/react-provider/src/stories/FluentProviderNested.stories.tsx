@@ -8,10 +8,7 @@ const useStyles = makeStyles({
     backgroundColor: theme.colorBrandBackground2,
     color: theme.colorBrandForeground2,
     ...macros.border('5px', 'solid', theme.colorBrandStroke1),
-    ...macros.borderRadius('top', '5px'),
-    ...macros.borderRadius('left', '5px'),
-    ...macros.borderRadius('right', '5px'),
-    ...macros.borderRadius('bottom', '5px'),
+    ...macros.borderRadius('5px'),
     ...macros.margin('5px'),
   }),
   text: {

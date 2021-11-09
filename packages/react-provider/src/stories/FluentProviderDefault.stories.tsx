@@ -12,10 +12,7 @@ const useStyles = makeStyles({
   },
   provider: {
     ...macros.border('1px'),
-    ...macros.borderRadius('top', '5px'),
-    ...macros.borderRadius('left', '5px'),
-    ...macros.borderRadius('right', '5px'),
-    ...macros.borderRadius('bottom', '5px'),
+    ...macros.borderRadius('5px'),
     ...macros.padding('5px'),
   },
   text: theme => ({
@@ -23,10 +20,7 @@ const useStyles = makeStyles({
     color: theme.colorBrandForeground2,
     fontSize: '20px',
     ...macros.border('1px'),
-    ...macros.borderRadius('top', '5px'),
-    ...macros.borderRadius('left', '5px'),
-    ...macros.borderRadius('right', '5px'),
-    ...macros.borderRadius('bottom', '5px'),
+    ...macros.borderRadius('5px'),
     ...macros.padding('5px'),
   }),
 });

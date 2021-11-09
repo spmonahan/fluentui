@@ -47,7 +47,7 @@ export function normalizePseudoSelector(pseudoSelector: string): string {
 
 export function compileCSSRules(cssRules: string): string[] {
   const rules: string[] = [];
-
+  console.log('r', cssRules);
   serialize(
     compile(cssRules),
     middleware([

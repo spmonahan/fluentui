@@ -62,22 +62,13 @@ const useStyles = makeStyles({
     ...macros.borderWidth(theme.strokeWidthThick),
   }),
   rootRounded: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusMedium),
-    ...macros.borderRadius('left', theme.borderRadiusMedium),
-    ...macros.borderRadius('right', theme.borderRadiusMedium),
-    ...macros.borderRadius('bottom', theme.borderRadiusMedium),
+    ...macros.borderRadius(theme.borderRadiusMedium),
   }),
   rootRoundedSmallToTiny: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusSmall),
-    ...macros.borderRadius('left', theme.borderRadiusSmall),
-    ...macros.borderRadius('right', theme.borderRadiusSmall),
-    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+    ...macros.borderRadius(theme.borderRadiusSmall),
   }),
   rootCircular: {
-    ...macros.borderRadius('top', '99px'),
-    ...macros.borderRadius('left', '99px'),
-    ...macros.borderRadius('right', '99px'),
-    ...macros.borderRadius('bottom', '99px'),
+    ...macros.borderRadius('99px'),
   },
   rootGhost: theme => ({
     backgroundColor: 'transparent',

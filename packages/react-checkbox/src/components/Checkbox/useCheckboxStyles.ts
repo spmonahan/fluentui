@@ -178,17 +178,11 @@ const useIndicatorStyles = makeStyles({
     boxSizing: 'border-box',
     ...macros.borderStyle('solid'),
     ...macros.borderWidth(theme.strokeWidthThin),
-    ...macros.borderRadius('top', theme.borderRadiusSmall),
-    ...macros.borderRadius('left', theme.borderRadiusSmall),
-    ...macros.borderRadius('right', theme.borderRadiusSmall),
-    ...macros.borderRadius('bottom', theme.borderRadiusSmall),
+    ...macros.borderRadius(theme.borderRadiusSmall),
   }),
 
   circular: theme => ({
-    ...macros.borderRadius('top', theme.borderRadiusCircular),
-    ...macros.borderRadius('left', theme.borderRadiusCircular),
-    ...macros.borderRadius('right', theme.borderRadiusCircular),
-    ...macros.borderRadius('bottom', theme.borderRadiusCircular),
+    ...macros.borderRadius(theme.borderRadiusCircular),
   }),
 });
 
