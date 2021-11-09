@@ -40,7 +40,7 @@ const useRootStyles = makeStyles({
   base: theme => ({
     display: 'flex',
     alignItems: 'center',
-    flexWrap: 'no-wrap',
+    flexWrap: 'nowrap',
     gap: horizontalSpacing.xxs,
     fontFamily: theme.fontFamilyBase,
     // used for all but underline
