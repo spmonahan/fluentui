@@ -8,6 +8,11 @@ import type { SpinButtonState, SpinButtonSlots } from './SpinButton.types';
 export const renderSpinButton_unstable = (state: SpinButtonState) => {
   const { slots, slotProps } = getSlots<SpinButtonSlots>(state);
 
-  // TODO Add additional slots in the appropriate place
-  return <slots.root {...slotProps.root} />;
+  return (
+    <slots.root {...slotProps.root}>
+      <slots.input {...slotProps.input} />
+      <slots.incrementControl {...slotProps.incrementControl} />
+      <slots.decrementControl {...slotProps.decrementControl} />
+    </slots.root>
+  );
 };

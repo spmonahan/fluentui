@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { getNativeElementProps } from '@fluentui/react-utilities';
+import { getNativeElementProps, resolveShorthand } from '@fluentui/react-utilities';
 import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
+import { useSpinButtonState_unstable } from './useSpinButtonState';
 
 /**
  * Create the state required to render SpinButton.
@@ -12,17 +13,39 @@ import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
  * @param ref - reference to root HTMLElement of SpinButton
  */
 export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HTMLElement>): SpinButtonState => {
-  return {
-    // TODO add appropriate props/defaults
+  const { value, defaultValue, min, max, step, onChange, root, input, incrementControl, decrementControl } = props;
+
+  const state: SpinButtonState = {
+    value,
+    defaultValue,
+    min,
+    max,
+    step,
+    onChange,
     components: {
       // TODO add slot types here if needed (div is the default)
       root: 'div',
+      input: 'input',
+      incrementControl: 'button',
+      decrementControl: 'button',
     },
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
-    root: getNativeElementProps('div', {
-      ref,
-      ...props,
+    root: resolveShorthand(root, {
+      required: true,
+    }),
+    input: resolveShorthand(input, {
+      required: true,
+    }),
+    incrementControl: resolveShorthand(incrementControl, {
+      required: true,
+    }),
+    decrementControl: resolveShorthand(decrementControl, {
+      required: true,
     }),
   };
+
+  useSpinButtonState_unstable(state);
+
+  return state;
 };

@@ -23,17 +23,6 @@ export type SpinButtonSlots = {
   decrementControl: Slot<'button'>;
 };
 
-export type SpinButtonChangeData = {
-  /**
-   * New value after the change.
-   * E.g., `1`
-   */
-  value: number;
-};
-
-export type SpinButtonFormatter = (value: number) => string;
-export type SpinButtonParser = (formattedValue: string) => number;
-
 export type SpinButtonCommons = {
   /**
    * Initial value of the control (assumed to be valid). Updates to this prop will not be respected.
@@ -117,3 +106,10 @@ export type SpinButtonProps = ComponentProps<SpinButtonSlots, 'input'> & Partial
  * State used in rendering SpinButton
  */
 export type SpinButtonState = ComponentState<SpinButtonSlots> & Partial<SpinButtonCommons>;
+
+export type SpinButtonChangeData = {
+  value: number;
+};
+
+export type SpinButtonFormatter = (value: number) => string;
+export type SpinButtonParser = (formattedValue: string) => number;
