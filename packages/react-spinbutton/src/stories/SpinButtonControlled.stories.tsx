@@ -6,7 +6,10 @@ import { useId } from '@fluentui/react-utilities';
 export const Controlled = () => {
   const id = useId();
   const [spinButtonValue, setSpinButtonValue] = React.useState(10);
-  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => setSpinButtonValue(data.value);
+  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
+    console.log('onSpinButtonChange', data.value);
+    setSpinButtonValue(data.value);
+  };
   return (
     <>
       <Label htmlFor={id}>Controlled SpinButton</Label>
@@ -14,8 +17,8 @@ export const Controlled = () => {
         incrementControl="+"
         decrementControl="-"
         value={spinButtonValue}
-        min={0}
-        max={100}
+        min={5}
+        max={15}
         onChange={onSpinButtonChange}
         id={id}
       />

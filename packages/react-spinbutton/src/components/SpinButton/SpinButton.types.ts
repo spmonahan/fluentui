@@ -86,7 +86,7 @@ export type SpinButtonCommons = {
    * - User *commits* edits to the input text by focusing away (blurring) or pressing enter.
    *   Note that this is NOT called for every key press while the user is editing.
    */
-  onChange: (event: React.SyntheticEvent<HTMLElement>, data: SpinButtonChangeData) => void;
+  onChange: (event: SpinButtonChangeEvent, data: SpinButtonChangeData) => void;
 
   /**
    * How many decimal places the value should be rounded to.
@@ -107,9 +107,26 @@ export type SpinButtonProps = ComponentProps<SpinButtonSlots, 'input'> & Partial
  */
 export type SpinButtonState = ComponentState<SpinButtonSlots> & Partial<SpinButtonCommons>;
 
+export type SpinButtonChangeEvent =
+  | React.MouseEvent<HTMLButtonElement>
+  | React.ChangeEvent<HTMLElement>
+  | React.FocusEvent<HTMLInputElement>
+  | React.KeyboardEvent<HTMLInputElement>;
+
 export type SpinButtonChangeData = {
   value: number;
 };
 
+/**
+ * Formats the provided number into a string.
+ * E.g., a currency formatter could format `1` to "$1.00".
+ * Returns `null` if the value cannot be formatted.
+ */
 export type SpinButtonFormatter = (value: number) => string;
+
+/**
+ * Parses a formatted string value into a number.
+ * If the string cannot be parsed this function should
+ * return `NaN`.
+ */
 export type SpinButtonParser = (formattedValue: string) => number;

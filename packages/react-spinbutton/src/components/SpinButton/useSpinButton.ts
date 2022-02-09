@@ -13,7 +13,20 @@ import { useSpinButtonState_unstable } from './useSpinButtonState';
  * @param ref - reference to root HTMLElement of SpinButton
  */
 export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HTMLElement>): SpinButtonState => {
-  const { value, defaultValue, min, max, step, onChange, root, input, incrementControl, decrementControl } = props;
+  const {
+    value,
+    defaultValue,
+    min,
+    max,
+    step,
+    onChange,
+    parser,
+    formatter,
+    root,
+    input,
+    incrementControl,
+    decrementControl,
+  } = props;
 
   const state: SpinButtonState = {
     value,
@@ -22,6 +35,8 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     max,
     step,
     onChange,
+    parser,
+    formatter,
     components: {
       // TODO add slot types here if needed (div is the default)
       root: 'div',

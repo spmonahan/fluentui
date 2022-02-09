@@ -5,6 +5,9 @@ import bestPracticesMd from './SpinButtonBestPractices.md';
 
 export { Default } from './SpinButtonDefault.stories';
 export { Controlled } from './SpinButtonControlled.stories';
+export { Convert } from './SpinButtonConvert.stories';
+export { DatePicker } from './SpinButtonDatePicker.stories';
+export { Numeric } from './SpinButtonNumeric.stories';
 
 export default {
   title: 'Components/SpinButton',
