@@ -1,4 +1,5 @@
 import { clamp, useControllableState, useMergedEventCallbacks } from '@fluentui/react-utilities';
+import * as Keys from '@fluentui/keyboard-keys';
 import * as React from 'react';
 import { SpinButtonState, SpinButtonFormatter, SpinButtonParser, SpinButtonChangeEvent } from './SpinButton.types';
 
@@ -9,8 +10,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   const {
     value,
     defaultValue = 0,
-    min = 0,
-    max = 10,
+    min = Number.MIN_VALUE,
+    max = Number.MAX_VALUE,
     step = 1,
     parser = defaultParser,
     formatter = defaultFormatter,
@@ -60,11 +61,11 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const handleIncrementClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    increment(e, currentValue);
+    increment(e, getIntermediateValue());
   };
 
   const handleDecrementClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    decrement(e, currentValue);
+    decrement(e, getIntermediateValue());
   };
 
   const getIntermediateValue = () => {
@@ -78,13 +79,13 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     console.log(e.key);
-    if (e.key === 'ArrowUp') {
+    if (e.key === Keys.ArrowUp) {
       increment(e, getIntermediateValue());
-    } else if (e.key === 'ArrowDown') {
+    } else if (e.key === Keys.ArrowDown) {
       decrement(e, getIntermediateValue());
-    } else if (!e.shiftKey && e.key === 'Home') {
+    } else if (!e.shiftKey && e.key === Keys.Home) {
       commit(e, min);
-    } else if (!e.shiftKey && e.key === 'End') {
+    } else if (!e.shiftKey && e.key === Keys.End) {
       commit(e, max);
     }
   };

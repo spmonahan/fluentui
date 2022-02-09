@@ -2,7 +2,7 @@ import type { ComponentProps, ComponentState, Slot } from '@fluentui/react-utili
 import type * as React from 'react';
 
 export type SpinButtonSlots = {
-  root: Slot<'div'>;
+  root: NonNullable<Slot<'div'>>;
 
   /**
    * Input that displays the current value and accepts direct input from the user.
@@ -10,17 +10,17 @@ export type SpinButtonSlots = {
    *
    * This is the primary slot.
    */
-  input: Slot<'input'>;
+  input: NonNullable<Slot<'input'>>;
 
   /**
    * Renders the increment control.
    */
-  incrementControl: Slot<'button'>;
+  incrementControl: NonNullable<Slot<'button'>>;
 
   /**
    * Renders the decrement control.
    */
-  decrementControl: Slot<'button'>;
+  decrementControl: NonNullable<Slot<'button'>>;
 };
 
 export type SpinButtonCommons = {
@@ -100,7 +100,7 @@ export type SpinButtonCommons = {
 /**
  * SpinButton Props
  */
-export type SpinButtonProps = ComponentProps<SpinButtonSlots, 'input'> & Partial<SpinButtonCommons>;
+export type SpinButtonProps = ComponentProps<Partial<SpinButtonSlots>, 'input'> & Partial<SpinButtonCommons>;
 
 /**
  * State used in rendering SpinButton

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getNativeElementProps, resolveShorthand } from '@fluentui/react-utilities';
+import { getPartitionedNativeProps, resolveShorthand } from '@fluentui/react-utilities';
 import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
 import { useSpinButtonState_unstable } from './useSpinButtonState';
 
@@ -12,7 +12,12 @@ import { useSpinButtonState_unstable } from './useSpinButtonState';
  * @param props - props from this instance of SpinButton
  * @param ref - reference to root HTMLElement of SpinButton
  */
-export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HTMLElement>): SpinButtonState => {
+export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HTMLInputElement>): SpinButtonState => {
+  const nativeProps = getPartitionedNativeProps({
+    props,
+    primarySlotTagName: 'input',
+  });
+
   const {
     value,
     defaultValue,
@@ -48,9 +53,16 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     // mySlot: resolveShorthand(props.mySlot),
     root: resolveShorthand(root, {
       required: true,
+      defaultProps: {
+        ...nativeProps.root,
+      },
     }),
     input: resolveShorthand(input, {
       required: true,
+      defaultProps: {
+        ref,
+        ...nativeProps.primary,
+      },
     }),
     incrementControl: resolveShorthand(incrementControl, {
       required: true,

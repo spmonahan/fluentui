@@ -17,21 +17,48 @@ export const renderSpinButton_unstable: (state: SpinButtonState) => JSX.Element;
 export const SpinButton: ForwardRefComponent<SpinButtonProps>;
 
 // @public (undocumented)
+export type SpinButtonChangeData = {
+    value: number;
+};
+
+// @public (undocumented)
+export type SpinButtonChangeEvent = React_2.MouseEvent<HTMLButtonElement> | React_2.ChangeEvent<HTMLElement> | React_2.FocusEvent<HTMLInputElement> | React_2.KeyboardEvent<HTMLInputElement>;
+
+// @public (undocumented)
 export const spinButtonClassName = "fui-SpinButton";
 
 // @public (undocumented)
-export type SpinButtonCommons = {};
-
-// @public
-export type SpinButtonProps = ComponentProps<SpinButtonSlots> & SpinButtonCommons;
-
-// @public (undocumented)
-export type SpinButtonSlots = {
-    root: Slot<'div'>;
+export type SpinButtonCommons = {
+    defaultValue: number;
+    value: number;
+    min: number;
+    max: number;
+    step: number;
+    formatter: SpinButtonFormatter;
+    parser: SpinButtonParser;
+    onChange: (event: SpinButtonChangeEvent, data: SpinButtonChangeData) => void;
+    precision: number;
 };
 
 // @public
-export type SpinButtonState = ComponentState<SpinButtonSlots> & SpinButtonCommons;
+export type SpinButtonFormatter = (value: number) => string;
+
+// @public
+export type SpinButtonParser = (formattedValue: string) => number;
+
+// @public
+export type SpinButtonProps = ComponentProps<SpinButtonSlots, 'input'> & Partial<SpinButtonCommons>;
+
+// @public (undocumented)
+export type SpinButtonSlots = {
+    root: NonNullable<Slot<'div'>>;
+    input: NonNullable<Slot<'input'>>;
+    incrementControl: NonNullable<Slot<'button'>>;
+    decrementControl: NonNullable<Slot<'button'>>;
+};
+
+// @public
+export type SpinButtonState = ComponentState<SpinButtonSlots> & Partial<SpinButtonCommons>;
 
 // @public
 export const useSpinButton_unstable: (props: SpinButtonProps, ref: React_2.Ref<HTMLElement>) => SpinButtonState;
