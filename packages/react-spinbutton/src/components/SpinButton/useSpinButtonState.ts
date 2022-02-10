@@ -6,6 +6,17 @@ import { SpinButtonState, SpinButtonFormatter, SpinButtonParser, SpinButtonChang
 const defaultFormatter: SpinButtonFormatter = value => value.toString();
 const defaultParser: SpinButtonParser = parseFloat;
 
+/**
+ * A wrapper around `clamp` that propagates NaN `value`s.
+ */
+const clampNaN = (value: number, min: number, max: number): number => {
+  if (Number.isNaN(value)) {
+    return NaN;
+  }
+
+  return clamp(value, min, max);
+};
+
 export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   const {
     value,
@@ -50,39 +61,47 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     parsedValue.current = parser(newValue);
   };
 
-  const increment = (e: SpinButtonChangeEvent, from: number) => {
-    const newValue = clamp(from + step, min, max);
-    commit(e, newValue);
-  };
+  const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
+    const dir = direction === 'up' ? 1 : -1;
+    const val = getIntermediateValue();
+    let newValue;
+    if (e.type === 'keydown') {
+      if (direction === 'up' && val >= max) {
+        newValue = val;
+      } else if (direction === 'down' && val <= min) {
+        newValue = val;
+      } else {
+        newValue = val + step * dir;
+      }
+    } else {
+      newValue = clampNaN(val + step * dir, min, max);
+    }
 
-  const decrement = (e: SpinButtonChangeEvent, from: number) => {
-    const newValue = clamp(from - step, min, max);
     commit(e, newValue);
   };
 
   const handleIncrementClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    increment(e, getIntermediateValue());
+    stepper(e, 'up');
   };
 
   const handleDecrementClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    decrement(e, getIntermediateValue());
+    stepper(e, 'down');
   };
 
   const getIntermediateValue = () => {
-    return Number.isNaN(parsedValue.current) ? NaN : clamp(parsedValue.current, min, max);
+    return parsedValue.current;
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const newValue = getIntermediateValue();
+    const newValue = clampNaN(getIntermediateValue(), min, max);
     commit(e, newValue);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.key);
     if (e.key === Keys.ArrowUp) {
-      increment(e, getIntermediateValue());
+      stepper(e, 'up');
     } else if (e.key === Keys.ArrowDown) {
-      decrement(e, getIntermediateValue());
+      stepper(e, 'down');
     } else if (!e.shiftKey && e.key === Keys.Home) {
       commit(e, min);
     } else if (!e.shiftKey && e.key === Keys.End) {

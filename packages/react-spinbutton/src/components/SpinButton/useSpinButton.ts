@@ -16,6 +16,7 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
   const nativeProps = getPartitionedNativeProps({
     props,
     primarySlotTagName: 'input',
+    excludedPropNames: ['onChange'],
   });
 
   const {
