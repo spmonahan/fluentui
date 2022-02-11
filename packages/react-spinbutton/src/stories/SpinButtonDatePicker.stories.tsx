@@ -28,7 +28,7 @@ export const DatePicker = () => {
 
   const formatter: SpinButtonFormatter = value => {
     if (value < 1 || value > 12) {
-      return spinButtonValue;
+      return spinButtonValue.toString();
     }
 
     const month = months[value - 1];
@@ -64,6 +64,14 @@ export const DatePicker = () => {
         parser={parser}
         id={id}
       />
+      <p>
+        WAI-ARIA uses date pickers as an example use case for SpinButtons. This story demonstrates how to implement{' '}
+        <code>parser</code> and <code>formatter</code> functions to display months as string in a SpinButton.
+      </p>
+      <p>
+        Months can be typed in as strings ("March") or numbers (7). Increment and decrement functionality steps through
+        the months in order.
+      </p>
     </>
   );
 };

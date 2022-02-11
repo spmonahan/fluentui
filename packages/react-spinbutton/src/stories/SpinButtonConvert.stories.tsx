@@ -64,6 +64,15 @@ export const Convert = () => {
         parser={parser}
         id={id}
       />
+      <p>
+        This example demonstrates how the <code>parser</code> and <code>formatter</code> props can be used to implement
+        unit conversion for manual input.
+      </p>
+      <p>
+        The SpinButton will always display valid length values as centimeters but users can type in values with
+        different units and the user-implemented <code>parser</code> function will convert the value to centimeters. Try
+        typing "1mi" and then blur the input.
+      </p>
     </>
   );
 };

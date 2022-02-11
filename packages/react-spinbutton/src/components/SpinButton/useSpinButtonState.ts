@@ -96,9 +96,9 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
       stepper(e, 'up');
     } else if (e.key === Keys.ArrowDown) {
       stepper(e, 'down');
-    } else if (!e.shiftKey && e.key === Keys.Home && Number.isFinite(min)) {
+    } else if (!e.shiftKey && e.key === Keys.Home) {
       commit(e, min);
-    } else if (!e.shiftKey && e.key === Keys.End && Number.isFinite(max)) {
+    } else if (!e.shiftKey && e.key === Keys.End) {
       commit(e, max);
     }
   };

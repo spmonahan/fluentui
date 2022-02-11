@@ -22,6 +22,7 @@ export const Controlled = () => {
         onChange={onSpinButtonChange}
         id={id}
       />
+      <p>This is a basic controlled SpinButton example.</p>
     </>
   );
 };

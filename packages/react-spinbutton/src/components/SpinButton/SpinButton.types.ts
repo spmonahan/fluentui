@@ -100,7 +100,8 @@ export type SpinButtonCommons = {
 /**
  * SpinButton Props
  */
-export type SpinButtonProps = ComponentProps<Partial<SpinButtonSlots>, 'input'> & Partial<SpinButtonCommons>;
+export type SpinButtonProps = Omit<ComponentProps<Partial<SpinButtonSlots>, 'input'>, 'onChange'> &
+  Partial<SpinButtonCommons>;
 
 /**
  * State used in rendering SpinButton
