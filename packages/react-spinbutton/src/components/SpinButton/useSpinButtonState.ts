@@ -35,8 +35,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   });
 
   const [formattedValue, setFormattedValue] = React.useState(formatter(currentValue));
-  const parsedValue = React.useRef(0);
-  parsedValue.current = parser(formattedValue);
+  const parsedValue = React.useRef(parser(formattedValue));
 
   console.log(
     `[useSpinButtonState]`,
@@ -97,9 +96,9 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
       stepper(e, 'up');
     } else if (e.key === Keys.ArrowDown) {
       stepper(e, 'down');
-    } else if (!e.shiftKey && e.key === Keys.Home) {
+    } else if (!e.shiftKey && e.key === Keys.Home && Number.isFinite(min)) {
       commit(e, min);
-    } else if (!e.shiftKey && e.key === Keys.End) {
+    } else if (!e.shiftKey && e.key === Keys.End && Number.isFinite(max)) {
       commit(e, max);
     }
   };
@@ -108,6 +107,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     const newFormattedValue = formatter(newValue);
     if (currentValue !== newValue || formattedValue !== newFormattedValue) {
       setCurrentValue(newValue);
+      parsedValue.current = parser(newFormattedValue);
       if (!Number.isNaN(newValue)) {
         // Don't update the formatted value when the input is invalid.
         // This ensure we show the invalid input.
