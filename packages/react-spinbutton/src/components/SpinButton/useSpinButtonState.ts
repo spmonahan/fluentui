@@ -29,8 +29,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
-    state: value !== undefined ? clamp(value, min, max) : undefined,
-    defaultState: clamp(defaultValue, min, max),
+    state: value ?? undefined,
+    defaultState: defaultValue,
     initialState: 0,
   });
 
@@ -63,18 +63,18 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
     const dir = direction === 'up' ? 1 : -1;
-    const val = getIntermediateValue();
-    let newValue;
-    if (e.type === 'keydown') {
-      if (direction === 'up' && val >= max) {
-        newValue = val;
-      } else if (direction === 'down' && val <= min) {
-        newValue = val;
-      } else {
-        newValue = val + step * dir;
-      }
-    } else {
-      newValue = clampNaN(val + step * dir, min, max);
+    const val = parsedValue.current;
+
+    const valueInRange = val >= min && val <= max;
+    let newValue = val + step * dir;
+    if (valueInRange) {
+      // If the value is in the range of [min, max] clamp it.
+      // Don't clamp values outside this range so users get a
+      // more natural behavior. For example, if the range is [5, 15]
+      // and the user types 1 into the input we don't want to clamp
+      // the value when they next press the increment button because
+      // clamping would snap the value to 5 rather than increment to 2.
+      newValue = clampNaN(newValue, min, max);
     }
 
     commit(e, newValue);
@@ -88,13 +88,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     stepper(e, 'down');
   };
 
-  const getIntermediateValue = () => {
-    return parsedValue.current;
-  };
-
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const newValue = clampNaN(getIntermediateValue(), min, max);
-    commit(e, newValue);
+    commit(e, parsedValue.current);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -110,18 +105,15 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const commit = (e: SpinButtonChangeEvent, newValue: number) => {
-    if (Number.isNaN(newValue)) {
-      // New value is bad for some reason.
-      // Typically this is because a user entered a "bad"
-      // value in the <input>.
-      setFormattedValue(formatter(currentValue));
-    } else {
-      const newFormattedValue = formatter(newValue);
-      if (currentValue !== newValue || formattedValue !== newFormattedValue) {
-        setCurrentValue(newValue);
+    const newFormattedValue = formatter(newValue);
+    if (currentValue !== newValue || formattedValue !== newFormattedValue) {
+      setCurrentValue(newValue);
+      if (!Number.isNaN(newValue)) {
+        // Don't update the formatted value when the input is invalid.
+        // This ensure we show the invalid input.
         setFormattedValue(newFormattedValue);
-        onChange?.(e, { value: newValue });
       }
+      onChange?.(e, { value: newValue });
     }
   };
 

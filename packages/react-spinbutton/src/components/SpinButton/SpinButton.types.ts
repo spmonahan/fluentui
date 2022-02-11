@@ -120,7 +120,6 @@ export type SpinButtonChangeData = {
 /**
  * Formats the provided number into a string.
  * E.g., a currency formatter could format `1` to "$1.00".
- * Returns `null` if the value cannot be formatted.
  */
 export type SpinButtonFormatter = (value: number) => string;
 
