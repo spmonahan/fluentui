@@ -1,21 +1,7 @@
 import { clamp, useControllableState, useMergedEventCallbacks } from '@fluentui/react-utilities';
 import * as Keys from '@fluentui/keyboard-keys';
 import * as React from 'react';
-import { SpinButtonState, SpinButtonFormatter, SpinButtonParser, SpinButtonChangeEvent } from './SpinButton.types';
-
-const defaultFormatter: SpinButtonFormatter = value => {
-  if (Number.isNaN(value)) {
-    return null;
-  }
-  return value.toString();
-};
-const defaultParser: SpinButtonParser = formattedValue => {
-  if (formattedValue === null) {
-    return NaN;
-  }
-
-  return parseFloat(formattedValue);
-};
+import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
 
 /**
  * A wrapper around `clamp` that propagates NaN `value`s.
@@ -28,15 +14,15 @@ const clampNaN = (value: number, min: number, max: number): number => {
   return clamp(value, min, max);
 };
 
-export const useSpinButtonState_unstable = (state: SpinButtonState) => {
+export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) => {
   const {
     value,
     defaultValue = 0,
     min = Number.MIN_VALUE,
     max = Number.MAX_VALUE,
     step = 1,
-    parser = defaultParser,
-    formatter = defaultFormatter,
+    formattedValue,
+    defaultFormattedValue,
   } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
@@ -45,8 +31,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     initialState: 0,
   });
 
-  const [formattedValue, setFormattedValue] = React.useState(formatter(currentValue));
-  const parsedValue = React.useRef(parser(formattedValue));
+  const parsedValue = React.useRef(value);
 
   console.log(
     `[useSpinButtonState]`,
@@ -67,8 +52,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    setFormattedValue(newValue);
-    parsedValue.current = parser(newValue);
+    commit(e, newValue);
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
@@ -115,15 +99,9 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const commit = (e: SpinButtonChangeEvent, newValue: number) => {
-    const newFormattedValue = formatter(newValue);
-    if (currentValue !== newValue || formattedValue !== newFormattedValue) {
+    if (currentValue !== newValue) {
       setCurrentValue(newValue);
-      parsedValue.current = parser(newFormattedValue);
-      // if (!Number.isNaN(newValue)) {
-      // Don't update the formatted value when the input is invalid.
-      // This ensure we show the invalid input.
-      setFormattedValue(newFormattedValue ?? formattedValue);
-      // }
+      parsedValue.current = newValue;
       onChange?.(e, { value: newValue });
     }
   };

@@ -36,6 +36,9 @@ export const DatePicker = () => {
   };
 
   const parser: SpinButtonParser = formattedValue => {
+    if (formattedValue === null) {
+      return NaN;
+    }
     const lower = formattedValue.toLowerCase();
     let index = months.indexOf(lower);
     if (index < 0) {

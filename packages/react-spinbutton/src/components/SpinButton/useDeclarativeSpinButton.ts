@@ -1,0 +1,82 @@
+import * as React from 'react';
+import { getPartitionedNativeProps, resolveShorthand } from '@fluentui/react-utilities';
+import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
+import { useDeclarativeSpinButtonState_unstable } from './useDeclarativeSpinButtonState';
+
+/**
+ * Create the state required to render SpinButton.
+ *
+ * The returned state can be modified with hooks such as useSpinButtonStyles_unstable,
+ * before being passed to renderSpinButton_unstable.
+ *
+ * @param props - props from this instance of SpinButton
+ * @param ref - reference to root HTMLElement of SpinButton
+ */
+export const useDeclarativeSpinButton_unstable = (
+  props: SpinButtonProps,
+  ref: React.Ref<HTMLInputElement>,
+): SpinButtonState => {
+  const nativeProps = getPartitionedNativeProps({
+    props,
+    primarySlotTagName: 'input',
+    excludedPropNames: ['onChange'],
+  });
+
+  const {
+    value,
+    defaultValue,
+    formattedValue,
+    defaultFormattedValue,
+    min,
+    max,
+    step,
+    onChange,
+    root,
+    input,
+    incrementControl,
+    decrementControl,
+  } = props;
+
+  const state: SpinButtonState = {
+    value,
+    defaultValue,
+    formattedValue,
+    defaultFormattedValue,
+    min,
+    max,
+    step,
+    onChange,
+    components: {
+      // TODO add slot types here if needed (div is the default)
+      root: 'div',
+      input: 'input',
+      incrementControl: 'button',
+      decrementControl: 'button',
+    },
+    // TODO add appropriate slots, for example:
+    // mySlot: resolveShorthand(props.mySlot),
+    root: resolveShorthand(root, {
+      required: true,
+      defaultProps: {
+        ...nativeProps.root,
+      },
+    }),
+    input: resolveShorthand(input, {
+      required: true,
+      defaultProps: {
+        ref,
+        ...nativeProps.primary,
+      },
+    }),
+    incrementControl: resolveShorthand(incrementControl, {
+      required: true,
+    }),
+    decrementControl: resolveShorthand(decrementControl, {
+      required: true,
+    }),
+  };
+
+  useDeclarativeSpinButtonState_unstable(state);
+
+  return state;
+};

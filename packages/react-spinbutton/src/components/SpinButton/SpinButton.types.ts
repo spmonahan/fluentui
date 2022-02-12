@@ -122,11 +122,11 @@ export type SpinButtonChangeData = {
  * Formats the provided number into a string.
  * E.g., a currency formatter could format `1` to "$1.00".
  */
-export type SpinButtonFormatter = (value: number) => string;
+export type SpinButtonFormatter = (value: number) => string | null;
 
 /**
  * Parses a formatted string value into a number.
  * If the string cannot be parsed this function should
  * return `NaN`.
  */
-export type SpinButtonParser = (formattedValue: string) => number;
+export type SpinButtonParser = (formattedValue: string | null) => number;

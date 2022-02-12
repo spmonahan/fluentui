@@ -16,6 +16,9 @@ export const Convert = () => {
   };
 
   const parser: SpinButtonParser = formattedValue => {
+    if (formattedValue === null) {
+      return NaN;
+    }
     const result = /([\d\.\d]+)(\s?)+(in|ft|"|km|cm|mi|m)?/i.exec(formattedValue);
     if (!result) {
       return NaN;
