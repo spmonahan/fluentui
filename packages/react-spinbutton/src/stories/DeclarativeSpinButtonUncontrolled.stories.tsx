@@ -3,7 +3,7 @@ import { DeclarativeSpinButton } from '../components/SpinButton/DeclarativeSpinB
 import { Label } from '@fluentui/react-label';
 import { useId } from '@fluentui/react-utilities';
 
-export const DeclarativeControlled = () => {
+export const DeclarativeUncontrolled = () => {
   const id = useId();
   const [spinButtonValue, setSpinButtonValue] = React.useState<number>(10);
   const [formattedSpinButtonValue, setFormattedSpinButtonValue] = React.useState<string>('$10');
@@ -25,11 +25,10 @@ export const DeclarativeControlled = () => {
       <DeclarativeSpinButton
         incrementControl="+"
         decrementControl="-"
-        value={spinButtonValue}
-        formattedValue={formattedSpinButtonValue}
+        defaultValue={10}
+        defaultFormattedValue="$10"
         min={5}
         max={15}
-        onChange={onSpinButtonChange}
         id={id}
       />
       {/* <p>

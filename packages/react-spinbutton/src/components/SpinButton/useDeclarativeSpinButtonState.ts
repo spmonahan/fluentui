@@ -31,14 +31,20 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     initialState: 0,
   });
 
-  const parsedValue = React.useRef(value);
+  const [currentFormattedValue, setCurrentFormattedValue] = useControllableState({
+    state: formattedValue ?? undefined,
+    defaultState: defaultFormattedValue,
+    initialState: '0',
+  });
+
+  const parsedValue = React.useRef(currentValue);
 
   console.log(
     `[useSpinButtonState]`,
     'currentValue:',
     currentValue,
-    'formattedValue:',
-    formattedValue,
+    'currentFormattedValue:',
+    currentFormattedValue,
     'parsedValue:',
     parsedValue.current,
   );
@@ -101,12 +107,13 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
   const commit = (e: SpinButtonChangeEvent, newValue: number) => {
     if (currentValue !== newValue) {
       setCurrentValue(newValue);
+      setCurrentFormattedValue(newValue.toString()); // ?? Doesn't seem correct 🤔
       parsedValue.current = newValue;
       onChange?.(e, { value: newValue });
     }
   };
 
-  state.input.value = formattedValue;
+  state.input.value = currentFormattedValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
