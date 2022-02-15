@@ -1,43 +1,12 @@
 import { clamp, useControllableState, useMergedEventCallbacks } from '@fluentui/react-utilities';
 import * as Keys from '@fluentui/keyboard-keys';
 import * as React from 'react';
-import { SpinButtonState, SpinButtonFormatter, SpinButtonParser, SpinButtonChangeEvent } from './SpinButton.types';
-
-const defaultFormatter: SpinButtonFormatter = value => {
-  if (Number.isNaN(value)) {
-    return null;
-  }
-  return value.toString();
-};
-const defaultParser: SpinButtonParser = formattedValue => {
-  if (formattedValue === null) {
-    return NaN;
-  }
-
-  return parseFloat(formattedValue);
-};
-
-/**
- * A wrapper around `clamp` that propagates NaN `value`s.
- */
-const clampNaN = (value: number, min: number, max: number): number => {
-  if (Number.isNaN(value)) {
-    return NaN;
-  }
-
-  return clamp(value, min, max);
-};
+import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
 
 export const useSpinButtonState_unstable = (state: SpinButtonState) => {
-  const {
-    value,
-    defaultValue = 0,
-    min = Number.MIN_VALUE,
-    max = Number.MAX_VALUE,
-    step = 1,
-    parser = defaultParser,
-    formatter = defaultFormatter,
-  } = state;
+  const { value, textValue, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1 } = state;
+
+  const [renderVersion, setRenderVersion] = React.useState(0);
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,
@@ -45,35 +14,40 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     initialState: 0,
   });
 
-  const [formattedValue, setFormattedValue] = React.useState(formatter(currentValue));
-  const parsedValue = React.useRef(parser(formattedValue));
+  const [displayValue, setDisplayValue] = React.useState(textValue ?? String(currentValue));
+  React.useEffect(() => {
+    setDisplayValue(textValue ?? String(currentValue));
+  }, [currentValue, textValue, renderVersion]);
+  const previousDisplayValue = React.useRef(displayValue);
 
   console.log(
     `[useSpinButtonState]`,
     'currentValue:',
     currentValue,
-    'formattedValue:',
-    formattedValue,
-    'parsedValue:',
-    parsedValue.current,
+    'displayValue:',
+    displayValue,
+    'previousDisplayValue:',
+    previousDisplayValue.current,
+    'textValue:',
+    textValue,
   );
 
   const onChange = state.onChange;
   const onInputChange = state.input.onChange;
+  const onInputFocus = state.input.onFocus;
   const onInputBlur = state.input.onBlur;
   const onInputKeyDown = state.input.onKeyDown;
-  const onIncrementClick = state.incrementControl.onClick;
-  const onDecrementClick = state.decrementControl.onClick;
+  const onIncrementClick = state.incrementButton.onClick;
+  const onDecrementClick = state.decrementButton.onClick;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    setFormattedValue(newValue);
-    parsedValue.current = parser(newValue);
+    setDisplayValue(newValue);
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
     const dir = direction === 'up' ? 1 : -1;
-    const val = parsedValue.current;
+    const val = currentValue;
 
     const valueInRange = val >= min && val <= max;
     let newValue = val + step * dir;
@@ -84,7 +58,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
       // and the user types 1 into the input we don't want to clamp
       // the value when they next press the increment button because
       // clamping would snap the value to 5 rather than increment to 2.
-      newValue = clampNaN(newValue, min, max);
+      newValue = clamp(newValue, min, max);
     }
 
     commit(e, newValue);
@@ -98,8 +72,12 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     stepper(e, 'down');
   };
 
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    previousDisplayValue.current = displayValue;
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    commit(e, parsedValue.current);
+    commit(e, undefined, displayValue);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -114,24 +92,24 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     }
   };
 
-  const commit = (e: SpinButtonChangeEvent, newValue: number) => {
-    const newFormattedValue = formatter(newValue);
-    if (currentValue !== newValue || formattedValue !== newFormattedValue) {
-      setCurrentValue(newValue);
-      parsedValue.current = parser(newFormattedValue);
-      // if (!Number.isNaN(newValue)) {
-      // Don't update the formatted value when the input is invalid.
-      // This ensure we show the invalid input.
-      setFormattedValue(newFormattedValue ?? formattedValue);
-      // }
-      onChange?.(e, { value: newValue });
+  const commit = (e: SpinButtonChangeEvent, newValue?: number, newTextValue?: string) => {
+    if ((currentValue !== undefined && currentValue !== newValue) || newTextValue !== undefined) {
+      setCurrentValue(newValue ?? currentValue);
+
+      if (newTextValue !== undefined && previousDisplayValue.current !== newTextValue) {
+        setRenderVersion(renderVersion + 1);
+        previousDisplayValue.current = newTextValue;
+      }
+
+      onChange?.(e, { value: newValue, textValue: newTextValue });
     }
   };
 
-  state.input.value = formattedValue;
+  state.input.value = displayValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
+  state.input.onFocus = useMergedEventCallbacks(handleFocus, onInputFocus);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
-  state.incrementControl.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
-  state.decrementControl.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
+  state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
+  state.decrementButton.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
 };

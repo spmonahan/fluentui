@@ -1,55 +1,66 @@
 import * as React from 'react';
-import { SpinButton, SpinButtonProps, SpinButtonFormatter, SpinButtonParser } from '../index';
+import { SpinButton, SpinButtonProps } from '../index';
 import { Label } from '@fluentui/react-label';
 import { useId } from '@fluentui/react-utilities';
+
+type FormatterFn = (value: number) => string;
+type ParserFn = (formattedValue: string) => number;
+
+const formatter: FormatterFn = value => {
+  return `${value} cm`;
+};
+
+const parser: ParserFn = formattedValue => {
+  const result = /([\d\.\d]+)(\s?)+(in|ft|"|km|cm|mi|m)?/i.exec(formattedValue);
+  if (!result) {
+    return NaN;
+  }
+
+  const [, length, , unit = 'cm'] = result;
+
+  const lengthNum = parseFloat(length);
+  console.log(lengthNum, unit);
+  switch (unit.toLowerCase()) {
+    case 'in':
+    case '"':
+      return lengthNum * 2.54;
+
+    case 'ft':
+      return lengthNum * 12 * 2.54;
+
+    case 'km':
+      return lengthNum * 1000 * 100;
+
+    case 'mi':
+      return lengthNum * 5280 * 12 * 2.54;
+
+    case 'm':
+      return lengthNum * 100;
+
+    case 'cm':
+      return lengthNum;
+
+    default:
+      return NaN;
+  }
+};
 
 export const Convert = () => {
   const id = useId();
   const [spinButtonValue, setSpinButtonValue] = React.useState(10);
+  const [spinButtonDisplayValue, setSpinButtonDisplayValue] = React.useState(formatter(spinButtonValue));
   const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
-    console.log('onSpinButtonChange', data.value);
-    setSpinButtonValue(data.value);
-  };
-
-  const formatter: SpinButtonFormatter = value => {
-    return `${value} cm`;
-  };
-
-  const parser: SpinButtonParser = formattedValue => {
-    if (formattedValue === null) {
-      return NaN;
-    }
-    const result = /([\d\.\d]+)(\s?)+(in|ft|"|km|cm|mi|m)?/i.exec(formattedValue);
-    if (!result) {
-      return NaN;
-    }
-
-    const [, length, , unit = 'cm'] = result;
-
-    const lengthNum = parseFloat(length);
-    console.log(lengthNum, unit);
-    switch (unit.toLowerCase()) {
-      case 'in':
-      case '"':
-        return lengthNum * 2.54;
-
-      case 'ft':
-        return lengthNum * 12 * 2.54;
-
-      case 'km':
-        return lengthNum * 1000 * 100;
-
-      case 'mi':
-        return lengthNum * 5280 * 12 * 2.54;
-
-      case 'm':
-        return lengthNum * 100;
-
-      case 'cm':
-        return lengthNum;
-
-      default:
-        return NaN;
+    console.log('onSpinButtonChange', data.value, data.textValue);
+    if (data.value !== undefined) {
+      setSpinButtonValue(data.value);
+      setSpinButtonDisplayValue(formatter(data.value));
+    } else if (data.textValue !== undefined) {
+      const newValue = parser(data.textValue);
+      console.log('newValue:', newValue);
+      if (!Number.isNaN(newValue)) {
+        setSpinButtonValue(newValue);
+        setSpinButtonDisplayValue(formatter(newValue));
+      }
     }
   };
 
@@ -57,14 +68,13 @@ export const Convert = () => {
     <>
       <Label htmlFor={id}>Length (cm)</Label>
       <SpinButton
-        incrementControl="+"
-        decrementControl="-"
+        incrementButton="+"
+        decrementButton="-"
         value={spinButtonValue}
+        textValue={spinButtonDisplayValue}
         min={0}
         max={9999999}
         onChange={onSpinButtonChange}
-        formatter={formatter}
-        parser={parser}
         id={id}
       />
       <p>

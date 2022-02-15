@@ -1,7 +1,7 @@
 import { clamp, useControllableState, useMergedEventCallbacks } from '@fluentui/react-utilities';
 import * as Keys from '@fluentui/keyboard-keys';
 import * as React from 'react';
-import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
+import { SpinButtonState, SpinButtonChangeEvent, SpinButtonChangeData } from './SpinButton.types';
 
 /**
  * A wrapper around `clamp` that propagates NaN `value`s.
@@ -15,15 +15,7 @@ const clampNaN = (value: number, min: number, max: number): number => {
 };
 
 export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) => {
-  const {
-    value,
-    defaultValue = 0,
-    min = Number.MIN_VALUE,
-    max = Number.MAX_VALUE,
-    step = 1,
-    formattedValue,
-    defaultFormattedValue,
-  } = state;
+  const { value, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1, textValue } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,
@@ -31,13 +23,8 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     initialState: 0,
   });
 
-  const [currentFormattedValue, setCurrentFormattedValue] = useControllableState({
-    state: formattedValue ?? undefined,
-    defaultState: defaultFormattedValue,
-    initialState: '0',
-  });
-
   const parsedValue = React.useRef(currentValue);
+  const displayValue = value !== undefined ? textValue : currentValue;
 
   console.log(
     `[useSpinButtonState]`,
@@ -58,7 +45,7 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    commit(e, newValue);
+    commit(e, { value: currentValue, textValue: newValue });
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
@@ -104,19 +91,18 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     }
   };
 
-  const commit = (e: SpinButtonChangeEvent, newValue: number) => {
-    if (currentValue !== newValue) {
+  const commit = (e: SpinButtonChangeEvent, newData: SpinButtonChangeData) => {
+    if (currentValue !== newData.value) {
       setCurrentValue(newValue);
-      setCurrentFormattedValue(newValue.toString()); // ?? Doesn't seem correct 🤔
       parsedValue.current = newValue;
       onChange?.(e, { value: newValue });
     }
   };
 
-  state.input.value = currentFormattedValue;
+  state.input.value = displayValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
-  state.incrementControl.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
-  state.decrementControl.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
+  state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
+  state.decrementButton.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
 };

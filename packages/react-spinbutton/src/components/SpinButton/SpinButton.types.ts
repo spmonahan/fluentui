@@ -15,12 +15,12 @@ export type SpinButtonSlots = {
   /**
    * Renders the increment control.
    */
-  incrementControl: NonNullable<Slot<'button'>>;
+  incrementButton: NonNullable<Slot<'button'>>;
 
   /**
    * Renders the decrement control.
    */
-  decrementControl: NonNullable<Slot<'button'>>;
+  decrementButton: NonNullable<Slot<'button'>>;
 };
 
 export type SpinButtonCommons = {
@@ -31,7 +31,7 @@ export type SpinButtonCommons = {
    * own value. For a controlled component, use `value` instead. (Mutually exclusive with `value`.)
    * @defaultvalue 0
    */
-  defaultValue: number; // Initial value of the
+  defaultValue: number;
 
   /**
    * Current value of the control (assumed to be valid).
@@ -41,6 +41,18 @@ export type SpinButtonCommons = {
    * property. (Mutually exclusive with `defaultValue`.)
    */
   value: number;
+
+  /**
+   * String representation of `value`.
+   *
+   * Use this when displaying the value to users as something other than a plain number.
+   * For example, when displaying currency values this might be "$1.00" when value is `1`.
+   *
+   * Only provide this if the SpinButton is a controlled component where you are maintaining its
+   * current state and passing updates based on change events. When SpinButton is used as an
+   * uncontrolled component this prop is ignored.
+   */
+  textValue: string;
 
   /**
    * Min value of the control. If not provided, the control has no minimum value.
@@ -55,29 +67,10 @@ export type SpinButtonCommons = {
   /**
    * Difference between two adjacent values of the control.
    * This value is used to calculate the precision of the input if no `precision` is given.
-   * The precision calculated this way will always be \>= 0.
+   * The precision calculated this way will always be >= 0.
    * @defaultvalue 1
    */
   step: number;
-
-  /**
-   * Function used to format the displayed value in the component.
-   * This allows for things like:
-   * - Displaying the value as a monetary value: $1.00
-   * - Displaying the value with a suffix: 12pt
-   *
-   * If this function is not supplied the default converts `value` to a string.
-   */
-  formatter: SpinButtonFormatter;
-
-  /**
-   * Function used to parse a formatted value back into a number.
-   * This works in conjunction with `formatter` and is its inverse (i.e., `formatter` turns
-   * 1 to $1.00 and `parser` turns $1.00 to 1).
-   *
-   * If this function is not supplied the default calls `parseFloat()` on the formatted value.
-   */
-  parser: SpinButtonParser;
 
   /**
    * Callback for when the committed value changes.
@@ -115,18 +108,6 @@ export type SpinButtonChangeEvent =
   | React.KeyboardEvent<HTMLInputElement>;
 
 export type SpinButtonChangeData = {
-  value: number;
+  value?: number;
+  textValue?: string;
 };
-
-/**
- * Formats the provided number into a string.
- * E.g., a currency formatter could format `1` to "$1.00".
- */
-export type SpinButtonFormatter = (value: number) => string | null;
-
-/**
- * Parses a formatted string value into a number.
- * If the string cannot be parsed this function should
- * return `NaN`.
- */
-export type SpinButtonParser = (formattedValue: string | null) => number;

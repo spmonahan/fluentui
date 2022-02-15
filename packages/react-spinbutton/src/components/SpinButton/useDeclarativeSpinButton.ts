@@ -25,23 +25,21 @@ export const useDeclarativeSpinButton_unstable = (
   const {
     value,
     defaultValue,
-    formattedValue,
-    defaultFormattedValue,
+    textValue,
     min,
     max,
     step,
     onChange,
     root,
     input,
-    incrementControl,
-    decrementControl,
+    incrementButton,
+    decrementButton,
   } = props;
 
   const state: SpinButtonState = {
     value,
     defaultValue,
-    formattedValue,
-    defaultFormattedValue,
+    textValue,
     min,
     max,
     step,
@@ -50,8 +48,8 @@ export const useDeclarativeSpinButton_unstable = (
       // TODO add slot types here if needed (div is the default)
       root: 'div',
       input: 'input',
-      incrementControl: 'button',
-      decrementControl: 'button',
+      incrementButton: 'button',
+      decrementButton: 'button',
     },
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
@@ -68,10 +66,10 @@ export const useDeclarativeSpinButton_unstable = (
         ...nativeProps.primary,
       },
     }),
-    incrementControl: resolveShorthand(incrementControl, {
+    incrementButton: resolveShorthand(incrementButton, {
       required: true,
     }),
-    decrementControl: resolveShorthand(decrementControl, {
+    decrementButton: resolveShorthand(decrementButton, {
       required: true,
     }),
   };

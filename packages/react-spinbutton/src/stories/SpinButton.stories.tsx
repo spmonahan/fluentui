@@ -9,8 +9,8 @@ export { UncontrolledFormatting } from './SpinButtonUncontrolledFormatting.stori
 export { Controlled } from './SpinButtonControlled.stories';
 export { Convert } from './SpinButtonConvert.stories';
 export { DatePicker } from './SpinButtonDatePicker.stories';
-export { DeclarativeControlled } from './DeclarativeSpinButtonControlled.stories';
-export { DeclarativeUncontrolled } from './DeclarativeSpinButtonUncontrolled.stories';
+// export { DeclarativeControlled } from './DeclarativeSpinButtonControlled.stories';
+// export { DeclarativeUncontrolled } from './DeclarativeSpinButtonUncontrolled.stories';
 
 export default {
   title: 'Components/SpinButton',
