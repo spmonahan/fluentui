@@ -12,23 +12,17 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     initialState: 0,
   });
 
-  // const [textValue, setTextValue] = useControllableState({
-  //   state: value !== undefined && displayValue !== undefined ? displayValue : undefined,
-  //   defaultState: String(currentValue),
-  //   initialState: '0',
-  // });
-
   const [textValue, setTextValue] = React.useState(
     value !== undefined && displayValue !== undefined ? displayValue : String(currentValue),
   );
+
+  const [focused, setFocused] = React.useState(false);
+
   React.useEffect(() => {
-    console.log('textValue', textValue);
-    if (value !== undefined && displayValue !== undefined) {
-      setTextValue(displayValue);
-    } else if (textValue !== String(currentValue)) {
-      setTextValue(String(currentValue));
-    }
-  }, [currentValue, displayValue, value, textValue]);
+    const isControlled = value !== undefined && displayValue !== undefined;
+    setTextValue(isControlled ? displayValue : String(currentValue));
+    parsedValue.current = currentValue;
+  }, [value, displayValue, focused, currentValue]);
 
   const parsedValue = React.useRef(currentValue);
 
@@ -44,6 +38,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const onChange = state.onChange;
   const onInputChange = state.input.onChange;
+  const onInputFocus = state.input.onFocus;
   const onInputBlur = state.input.onBlur;
   const onInputKeyDown = state.input.onKeyDown;
   const onIncrementClick = state.incrementButton.onClick;
@@ -82,8 +77,13 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     stepper(e, 'down');
   };
 
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     commit(e, undefined, textValue);
+    setFocused(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -103,38 +103,19 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     const displayValueChanged = newDisplayValue !== undefined;
 
     if (valueChanged) {
-      console.log('value changed');
       const nextValue = newValue ?? currentValue;
       setCurrentValue(nextValue);
-      if (displayValue === undefined) {
-        setTextValue(String(nextValue));
-      }
       parsedValue.current = nextValue;
-    }
-
-    if (displayValueChanged) {
-      console.log('display value changed');
-      if (displayValue !== undefined) {
-        setTextValue(newDisplayValue);
-      }
     }
 
     if (valueChanged || displayValueChanged) {
       onChange?.(e, { value: newValue, displayValue: newDisplayValue });
     }
-
-    // if (currentValue !== newValue || newDisplayValue !== undefined) {
-    //   const nextValue = newValue ?? currentValue;
-    //   setCurrentValue(nextValue);
-    //   setTextValue(String(nextValue));
-    //   parsedValue.current = nextValue;
-
-    //   onChange?.(e, { value: newValue, displayValue: newDisplayValue });
-    // }
   };
 
   state.input.value = textValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
+  state.input.onFocus = useMergedEventCallbacks(handleFocus, onInputFocus);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
   state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);

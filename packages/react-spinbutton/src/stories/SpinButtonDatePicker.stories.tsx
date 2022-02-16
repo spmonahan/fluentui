@@ -1,32 +1,28 @@
 import * as React from 'react';
-import { SpinButton, SpinButtonProps, SpinButtonFormatter, SpinButtonParser } from '../index';
+import { SpinButton, SpinButtonProps } from '../index';
 import { Label } from '@fluentui/react-label';
 import { useId } from '@fluentui/react-utilities';
 
+type FormatterFn = (value: number) => string;
+type ParserFn = (formattedValue: string) => number;
+
+const months = [
+  'january',
+  'february',
+  'march',
+  'april',
+  'may',
+  'june',
+  'july',
+  'august',
+  'september',
+  'october',
+  'november',
+  'december',
+];
+
 export const DatePicker = () => {
-  const id = useId();
-  const [spinButtonValue, setSpinButtonValue] = React.useState(1);
-  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
-    console.log('onSpinButtonChange', data.value);
-    setSpinButtonValue(data.value);
-  };
-
-  const months = [
-    'january',
-    'february',
-    'march',
-    'april',
-    'may',
-    'june',
-    'july',
-    'august',
-    'september',
-    'october',
-    'november',
-    'december',
-  ];
-
-  const formatter: SpinButtonFormatter = value => {
+  const formatter: FormatterFn = value => {
     if (value < 1 || value > 12) {
       return spinButtonValue.toString();
     }
@@ -35,7 +31,7 @@ export const DatePicker = () => {
     return month.substr(0, 1).toUpperCase() + month.substr(1);
   };
 
-  const parser: SpinButtonParser = formattedValue => {
+  const parser: ParserFn = formattedValue => {
     if (formattedValue === null) {
       return NaN;
     }
@@ -53,18 +49,35 @@ export const DatePicker = () => {
     }
   };
 
+  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
+    console.log('onSpinButtonChange', data.value, data.displayValue);
+    if (data.value !== undefined) {
+      setSpinButtonValue(data.value);
+      setSpinButtonDisplayValue(formatter(data.value));
+    } else if (data.displayValue) {
+      const newValue = parser(data.displayValue);
+      if (!Number.isNaN(newValue)) {
+        setSpinButtonValue(newValue);
+        setSpinButtonDisplayValue(formatter(newValue));
+      }
+    }
+  };
+
+  const id = useId();
+  const [spinButtonValue, setSpinButtonValue] = React.useState(1);
+  const [spinButtonDisplayValue, setSpinButtonDisplayValue] = React.useState(formatter(1));
+
   return (
     <>
       <Label htmlFor={id}>Months</Label>
       <SpinButton
-        incrementControl="+"
-        decrementControl="-"
+        incrementButton="+"
+        decrementButton="-"
         value={spinButtonValue}
+        displayValue={spinButtonDisplayValue}
         min={1}
         max={12}
         onChange={onSpinButtonChange}
-        formatter={formatter}
-        parser={parser}
         id={id}
       />
       <p>

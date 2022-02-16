@@ -53,12 +53,13 @@ export const Convert = () => {
     (_ev, data) => {
       console.log('onSpinButtonChange', data.value, data.displayValue);
       if (data.value !== undefined) {
-        console.log('newValue:', data.value, formatter(data.value));
+        // Value was changed with hotkey or step button
         setSpinButtonValue(data.value);
         setSpinButtonDisplayValue(formatter(data.value));
       } else if (data.displayValue !== undefined) {
+        // Value was changed by typing
+        // Parse out the number and update the state
         const newValue = parser(data.displayValue);
-        console.log('newDisplayValue', newValue);
         if (!Number.isNaN(newValue)) {
           setSpinButtonValue(newValue);
           setSpinButtonDisplayValue(formatter(newValue));

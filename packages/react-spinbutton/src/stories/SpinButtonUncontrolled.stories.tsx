@@ -20,8 +20,8 @@ export const Uncontrolled = () => {
       <Label htmlFor={id}>Uncontrolled SpinButton</Label>
       <SpinButton
         ref={spinButtonRef}
-        incrementControl="+"
-        decrementControl="-"
+        incrementButton="+"
+        decrementButton="-"
         defaultValue={defaultValue}
         min={5}
         max={15}
