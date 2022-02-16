@@ -4,9 +4,7 @@ import * as React from 'react';
 import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
 
 export const useSpinButtonState_unstable = (state: SpinButtonState) => {
-  const { value, textValue, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1 } = state;
-
-  const [renderVersion, setRenderVersion] = React.useState(0);
+  const { value, displayValue, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1 } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,
@@ -14,11 +12,25 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     initialState: 0,
   });
 
-  const [displayValue, setDisplayValue] = React.useState(textValue ?? String(currentValue));
+  // const [textValue, setTextValue] = useControllableState({
+  //   state: value !== undefined && displayValue !== undefined ? displayValue : undefined,
+  //   defaultState: String(currentValue),
+  //   initialState: '0',
+  // });
+
+  const [textValue, setTextValue] = React.useState(
+    value !== undefined && displayValue !== undefined ? displayValue : String(currentValue),
+  );
   React.useEffect(() => {
-    setDisplayValue(textValue ?? String(currentValue));
-  }, [currentValue, textValue, renderVersion]);
-  const previousDisplayValue = React.useRef(displayValue);
+    console.log('textValue', textValue);
+    if (value !== undefined && displayValue !== undefined) {
+      setTextValue(displayValue);
+    } else if (textValue !== String(currentValue)) {
+      setTextValue(String(currentValue));
+    }
+  }, [currentValue, displayValue, value, textValue]);
+
+  const parsedValue = React.useRef(currentValue);
 
   console.log(
     `[useSpinButtonState]`,
@@ -26,15 +38,12 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     currentValue,
     'displayValue:',
     displayValue,
-    'previousDisplayValue:',
-    previousDisplayValue.current,
     'textValue:',
     textValue,
   );
 
   const onChange = state.onChange;
   const onInputChange = state.input.onChange;
-  const onInputFocus = state.input.onFocus;
   const onInputBlur = state.input.onBlur;
   const onInputKeyDown = state.input.onKeyDown;
   const onIncrementClick = state.incrementButton.onClick;
@@ -42,12 +51,13 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    setDisplayValue(newValue);
+    setTextValue(newValue);
+    parsedValue.current = parseFloat(newValue);
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
     const dir = direction === 'up' ? 1 : -1;
-    const val = currentValue;
+    const val = Number.isNaN(parsedValue.current) ? currentValue : parsedValue.current;
 
     const valueInRange = val >= min && val <= max;
     let newValue = val + step * dir;
@@ -72,12 +82,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     stepper(e, 'down');
   };
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    previousDisplayValue.current = displayValue;
-  };
-
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    commit(e, undefined, displayValue);
+    commit(e, undefined, textValue);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -92,22 +98,43 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     }
   };
 
-  const commit = (e: SpinButtonChangeEvent, newValue?: number, newTextValue?: string) => {
-    if ((currentValue !== undefined && currentValue !== newValue) || newTextValue !== undefined) {
-      setCurrentValue(newValue ?? currentValue);
+  const commit = (e: SpinButtonChangeEvent, newValue?: number, newDisplayValue?: string) => {
+    const valueChanged = newValue !== undefined && currentValue !== newValue;
+    const displayValueChanged = newDisplayValue !== undefined;
 
-      if (newTextValue !== undefined && previousDisplayValue.current !== newTextValue) {
-        setRenderVersion(renderVersion + 1);
-        previousDisplayValue.current = newTextValue;
+    if (valueChanged) {
+      console.log('value changed');
+      const nextValue = newValue ?? currentValue;
+      setCurrentValue(nextValue);
+      if (displayValue === undefined) {
+        setTextValue(String(nextValue));
       }
-
-      onChange?.(e, { value: newValue, textValue: newTextValue });
+      parsedValue.current = nextValue;
     }
+
+    if (displayValueChanged) {
+      console.log('display value changed');
+      if (displayValue !== undefined) {
+        setTextValue(newDisplayValue);
+      }
+    }
+
+    if (valueChanged || displayValueChanged) {
+      onChange?.(e, { value: newValue, displayValue: newDisplayValue });
+    }
+
+    // if (currentValue !== newValue || newDisplayValue !== undefined) {
+    //   const nextValue = newValue ?? currentValue;
+    //   setCurrentValue(nextValue);
+    //   setTextValue(String(nextValue));
+    //   parsedValue.current = nextValue;
+
+    //   onChange?.(e, { value: newValue, displayValue: newDisplayValue });
+    // }
   };
 
-  state.input.value = displayValue;
+  state.input.value = textValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
-  state.input.onFocus = useMergedEventCallbacks(handleFocus, onInputFocus);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
   state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);

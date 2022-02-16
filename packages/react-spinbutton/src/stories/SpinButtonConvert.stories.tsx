@@ -49,20 +49,24 @@ export const Convert = () => {
   const id = useId();
   const [spinButtonValue, setSpinButtonValue] = React.useState(10);
   const [spinButtonDisplayValue, setSpinButtonDisplayValue] = React.useState(formatter(spinButtonValue));
-  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
-    console.log('onSpinButtonChange', data.value, data.textValue);
-    if (data.value !== undefined) {
-      setSpinButtonValue(data.value);
-      setSpinButtonDisplayValue(formatter(data.value));
-    } else if (data.textValue !== undefined) {
-      const newValue = parser(data.textValue);
-      console.log('newValue:', newValue);
-      if (!Number.isNaN(newValue)) {
-        setSpinButtonValue(newValue);
-        setSpinButtonDisplayValue(formatter(newValue));
+  const onSpinButtonChange: SpinButtonProps['onChange'] = React.useCallback(
+    (_ev, data) => {
+      console.log('onSpinButtonChange', data.value, data.displayValue);
+      if (data.value !== undefined) {
+        console.log('newValue:', data.value, formatter(data.value));
+        setSpinButtonValue(data.value);
+        setSpinButtonDisplayValue(formatter(data.value));
+      } else if (data.displayValue !== undefined) {
+        const newValue = parser(data.displayValue);
+        console.log('newDisplayValue', newValue);
+        if (!Number.isNaN(newValue)) {
+          setSpinButtonValue(newValue);
+          setSpinButtonDisplayValue(formatter(newValue));
+        }
       }
-    }
-  };
+    },
+    [setSpinButtonValue, setSpinButtonDisplayValue],
+  );
 
   return (
     <>
@@ -71,7 +75,7 @@ export const Convert = () => {
         incrementButton="+"
         decrementButton="-"
         value={spinButtonValue}
-        textValue={spinButtonDisplayValue}
+        displayValue={spinButtonDisplayValue}
         min={0}
         max={9999999}
         onChange={onSpinButtonChange}

@@ -6,19 +6,22 @@ import { useId } from '@fluentui/react-utilities';
 export const Controlled = () => {
   const id = useId();
   const [spinButtonValue, setSpinButtonValue] = React.useState(10);
-  const onSpinButtonChange: SpinButtonProps['onChange'] = (_ev, data) => {
-    console.log('onSpinButtonChange', data.value, data.textValue);
-    if (data.value !== undefined) {
-      setSpinButtonValue(data.value);
-    } else if (data.textValue !== undefined) {
-      const newValue = parseFloat(data.textValue);
-      if (!Number.isNaN(newValue)) {
-        setSpinButtonValue(newValue);
-      } else {
-        console.error(`"${data.textValue}" is not a valid value.`);
-      }
-    } // else ... should not happen
-  };
+  const onSpinButtonChange: SpinButtonProps['onChange'] = React.useCallback(
+    (_ev, data) => {
+      console.log('onSpinButtonChange', data.value, data.displayValue);
+      if (data.value !== undefined) {
+        setSpinButtonValue(data.value);
+      } else if (data.displayValue !== undefined) {
+        const newValue = parseFloat(data.displayValue);
+        if (!Number.isNaN(newValue)) {
+          setSpinButtonValue(newValue);
+        } else {
+          console.error(`"${data.displayValue}" is not a valid value.`);
+        }
+      } // else ... should not happen
+    },
+    [setSpinButtonValue],
+  );
 
   return (
     <>

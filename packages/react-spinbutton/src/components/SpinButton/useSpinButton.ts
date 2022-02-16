@@ -21,7 +21,7 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
 
   const {
     value,
-    textValue,
+    displayValue,
     defaultValue,
     min,
     max,
@@ -35,7 +35,7 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
 
   const state: SpinButtonState = {
     value,
-    textValue,
+    displayValue,
     defaultValue,
     min,
     max,

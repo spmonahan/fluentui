@@ -52,7 +52,7 @@ export type SpinButtonCommons = {
    * current state and passing updates based on change events. When SpinButton is used as an
    * uncontrolled component this prop is ignored.
    */
-  textValue: string;
+  displayValue: string;
 
   /**
    * Min value of the control. If not provided, the control has no minimum value.
@@ -109,5 +109,5 @@ export type SpinButtonChangeEvent =
 
 export type SpinButtonChangeData = {
   value?: number;
-  textValue?: string;
+  displayValue?: string;
 };
