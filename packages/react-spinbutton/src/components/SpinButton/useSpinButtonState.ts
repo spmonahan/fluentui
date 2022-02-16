@@ -26,16 +26,6 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
 
   const parsedValue = React.useRef(currentValue);
 
-  console.log(
-    `[useSpinButtonState]`,
-    'currentValue:',
-    currentValue,
-    'displayValue:',
-    displayValue,
-    'textValue:',
-    textValue,
-  );
-
   const onChange = state.onChange;
   const onInputChange = state.input.onChange;
   const onInputFocus = state.input.onFocus;
@@ -82,7 +72,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    commit(e, undefined, textValue);
+    const isControlled = value === undefined;
+    commit(e, !isControlled ? parsedValue.current : undefined, textValue);
     setFocused(false);
   };
 
