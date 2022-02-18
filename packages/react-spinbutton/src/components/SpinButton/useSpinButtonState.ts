@@ -72,7 +72,7 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const isControlled = value === undefined;
+    const isControlled = value !== undefined;
     commit(e, !isControlled ? parsedValue.current : undefined, textValue);
     setFocused(false);
   };

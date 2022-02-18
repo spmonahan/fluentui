@@ -66,9 +66,15 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     }),
     incrementButton: resolveShorthand(incrementButton, {
       required: true,
+      defaultProps: {
+        tabIndex: -1,
+      },
     }),
     decrementButton: resolveShorthand(decrementButton, {
       required: true,
+      defaultProps: {
+        tabIndex: -1,
+      },
     }),
   };
 
