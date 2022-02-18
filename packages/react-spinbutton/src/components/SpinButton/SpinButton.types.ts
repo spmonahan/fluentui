@@ -2,6 +2,11 @@ import type { ComponentProps, ComponentState, Slot } from '@fluentui/react-utili
 import type * as React from 'react';
 
 export type SpinButtonSlots = {
+  /**
+   * The root element of SpinButton is a container `<div>`.
+   * The root slot receives the `className` and `style` specified on the `<SpinButton>`.
+   * All other native props are applied to the primary slot: `input`.
+   */
   root: NonNullable<Slot<'div'>>;
 
   /**
