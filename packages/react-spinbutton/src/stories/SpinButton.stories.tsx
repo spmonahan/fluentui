@@ -10,6 +10,8 @@ export { Controlled } from './SpinButtonControlled.stories';
 export { Convert } from './SpinButtonConvert.stories';
 export { DatePicker } from './SpinButtonDatePicker.stories';
 
+export { Custom } from './CustomSpinButton.stories';
+
 export default {
   title: 'Components/SpinButton',
   component: SpinButton,

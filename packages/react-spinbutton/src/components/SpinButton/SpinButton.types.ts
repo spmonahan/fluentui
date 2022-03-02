@@ -60,33 +60,33 @@ export type SpinButtonCommons = {
    */
   step: number;
 
-  /**
-   * Function used to format the displayed value in the component.
-   * This allows for things like:
-   * - Displaying the value as a monetary value: $1.00
-   * - Displaying the value with a suffix: 12pt
-   *
-   * If this function is not supplied the default converts `value` to a string.
-   */
-  formatter: SpinButtonFormatter;
+  // /**
+  //  * Function used to format the displayed value in the component.
+  //  * This allows for things like:
+  //  * - Displaying the value as a monetary value: $1.00
+  //  * - Displaying the value with a suffix: 12pt
+  //  *
+  //  * If this function is not supplied the default converts `value` to a string.
+  //  */
+  // formatter: SpinButtonFormatter;
 
-  /**
-   * Function used to parse a formatted value back into a number.
-   * This works in conjunction with `formatter` and is its inverse (i.e., `formatter` turns
-   * 1 to $1.00 and `parser` turns $1.00 to 1).
-   *
-   * If this function is not supplied the default calls `parseFloat()` on the formatted value.
-   */
-  parser: SpinButtonParser;
+  // /**
+  //  * Function used to parse a formatted value back into a number.
+  //  * This works in conjunction with `formatter` and is its inverse (i.e., `formatter` turns
+  //  * 1 to $1.00 and `parser` turns $1.00 to 1).
+  //  *
+  //  * If this function is not supplied the default calls `parseFloat()` on the formatted value.
+  //  */
+  // parser: SpinButtonParser;
 
   /**
    * Callback for when the committed value changes.
    * - User presses the up/down buttons (on single press or every spin)
    * - User presses the up/down arrow keys (on single press or every spin)
-   * - User *commits* edits to the input text by focusing away (blurring) or pressing enter.
+   * - User *commits* edits to the input text by focusing away (blurring).
    *   Note that this is NOT called for every key press while the user is editing.
    */
-  onChange: (event: SpinButtonChangeEvent, data: SpinButtonChangeData) => void;
+  onChange: (event: SpinButtonChangeEvent, data: SpinButtonOnChangeData) => void;
 
   /**
    * How many decimal places the value should be rounded to.
@@ -106,7 +106,28 @@ export type SpinButtonProps = Omit<ComponentProps<Partial<SpinButtonSlots>, 'inp
 /**
  * State used in rendering SpinButton
  */
-export type SpinButtonState = ComponentState<SpinButtonSlots> & Partial<SpinButtonCommons>;
+export type SpinButtonState = ComponentState<SpinButtonSlots> &
+  Partial<SpinButtonCommons> &
+  Partial<{
+    /**
+     * Function used to format the displayed value in the component.
+     * This allows for things like:
+     * - Displaying the value as a monetary value: $1.00
+     * - Displaying the value with a suffix: 12pt
+     *
+     * If this function is not supplied the default converts `value` to a string.
+     */
+    formatter: SpinButtonFormatter;
+
+    /**
+     * Function used to parse a formatted value back into a number.
+     * This works in conjunction with `formatter` and is its inverse (i.e., `formatter` turns
+     * 1 to $1.00 and `parser` turns $1.00 to 1).
+     *
+     * If this function is not supplied the default calls `parseFloat()` on the formatted value.
+     */
+    parser: SpinButtonParser;
+  }>;
 
 export type SpinButtonChangeEvent =
   | React.MouseEvent<HTMLButtonElement>
@@ -114,7 +135,7 @@ export type SpinButtonChangeEvent =
   | React.FocusEvent<HTMLInputElement>
   | React.KeyboardEvent<HTMLInputElement>;
 
-export type SpinButtonChangeData = {
+export type SpinButtonOnChangeData = {
   value: number;
 };
 
