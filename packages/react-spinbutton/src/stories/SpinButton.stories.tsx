@@ -12,6 +12,9 @@ export { DatePicker } from './SpinButtonDatePicker.stories';
 
 export { Custom } from './CustomSpinButton.stories';
 
+export { Context } from './ContextSpinButton.stories';
+export { ContextCustom } from './ContextCustomSpinButton.stories';
+
 export default {
   title: 'Components/SpinButton',
   component: SpinButton,
