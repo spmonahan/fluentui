@@ -1,21 +1,10 @@
 import { clamp, useControllableState, useMergedEventCallbacks } from '@fluentui/react-utilities';
 import * as Keys from '@fluentui/keyboard-keys';
 import * as React from 'react';
-import { SpinButtonState, SpinButtonChangeEvent, SpinButtonChangeData } from './SpinButton.types';
+import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
 
-/**
- * A wrapper around `clamp` that propagates NaN `value`s.
- */
-const clampNaN = (value: number, min: number, max: number): number => {
-  if (Number.isNaN(value)) {
-    return NaN;
-  }
-
-  return clamp(value, min, max);
-};
-
-export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) => {
-  const { value, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1, textValue } = state;
+export const useSpinButtonState_unstable = (state: SpinButtonState) => {
+  const { value, displayValue, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1 } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,
@@ -23,34 +12,37 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     initialState: 0,
   });
 
-  const parsedValue = React.useRef(currentValue);
-  const displayValue = value !== undefined ? textValue : currentValue;
-
-  console.log(
-    `[useSpinButtonState]`,
-    'currentValue:',
-    currentValue,
-    'currentFormattedValue:',
-    currentFormattedValue,
-    'parsedValue:',
-    parsedValue.current,
+  const [textValue, setTextValue] = React.useState(
+    value !== undefined && displayValue !== undefined ? displayValue : String(currentValue),
   );
+
+  const [focused, setFocused] = React.useState(false);
+
+  React.useEffect(() => {
+    const isControlled = value !== undefined && displayValue !== undefined;
+    setTextValue(isControlled ? displayValue : String(currentValue));
+    parsedValue.current = currentValue;
+  }, [value, displayValue, focused, currentValue]);
+
+  const parsedValue = React.useRef(currentValue);
 
   const onChange = state.onChange;
   const onInputChange = state.input.onChange;
+  const onInputFocus = state.input.onFocus;
   const onInputBlur = state.input.onBlur;
   const onInputKeyDown = state.input.onKeyDown;
-  const onIncrementClick = state.incrementControl.onClick;
-  const onDecrementClick = state.decrementControl.onClick;
+  const onIncrementClick = state.incrementButton.onClick;
+  const onDecrementClick = state.decrementButton.onClick;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
-    commit(e, { value: currentValue, textValue: newValue });
+    setTextValue(newValue);
+    parsedValue.current = parseFloat(newValue);
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
     const dir = direction === 'up' ? 1 : -1;
-    const val = parsedValue.current;
+    const val = Number.isNaN(parsedValue.current) ? currentValue : parsedValue.current;
 
     const valueInRange = val >= min && val <= max;
     let newValue = val + step * dir;
@@ -61,7 +53,7 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
       // and the user types 1 into the input we don't want to clamp
       // the value when they next press the increment button because
       // clamping would snap the value to 5 rather than increment to 2.
-      newValue = clampNaN(newValue, min, max);
+      newValue = clamp(newValue, min, max);
     }
 
     commit(e, newValue);
@@ -75,8 +67,14 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     stepper(e, 'down');
   };
 
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    commit(e, parsedValue.current);
+    const isControlled = value !== undefined;
+    commit(e, !isControlled ? parsedValue.current : undefined, textValue);
+    setFocused(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -91,16 +89,24 @@ export const useDeclarativeSpinButtonState_unstable = (state: SpinButtonState) =
     }
   };
 
-  const commit = (e: SpinButtonChangeEvent, newData: SpinButtonChangeData) => {
-    if (currentValue !== newData.value) {
+  const commit = (e: SpinButtonChangeEvent, newValue?: number, newDisplayValue?: string) => {
+    const valueChanged = newValue !== undefined && currentValue !== newValue;
+    const displayValueChanged = newDisplayValue !== undefined;
+
+    if (valueChanged) {
+      // const nextValue = newValue ?? currentValue;
       setCurrentValue(newValue);
       parsedValue.current = newValue;
-      onChange?.(e, { value: newValue });
+    }
+
+    if (valueChanged || displayValueChanged) {
+      onChange?.(e, { value: newValue, displayValue: newDisplayValue });
     }
   };
 
-  state.input.value = displayValue;
+  state.input.value = textValue;
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
+  state.input.onFocus = useMergedEventCallbacks(handleFocus, onInputFocus);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
   state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);

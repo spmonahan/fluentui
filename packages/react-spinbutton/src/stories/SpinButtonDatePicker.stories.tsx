@@ -54,8 +54,8 @@ export const DatePicker = () => {
     <>
       <Label htmlFor={id}>Months</Label>
       <SpinButton
-        incrementControl="+"
-        decrementControl="-"
+        incrementButton="+"
+        decrementButton="-"
         value={spinButtonValue}
         min={1}
         max={12}

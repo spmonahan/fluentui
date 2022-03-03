@@ -11,8 +11,8 @@ export const renderSpinButton_unstable = (state: SpinButtonState) => {
   return (
     <slots.root {...slotProps.root}>
       <slots.input {...slotProps.input} />
-      <slots.incrementControl {...slotProps.incrementControl} />
-      <slots.decrementControl {...slotProps.decrementControl} />
+      <slots.incrementButton {...slotProps.incrementButton} />
+      <slots.decrementButton {...slotProps.decrementButton} />
     </slots.root>
   );
 };

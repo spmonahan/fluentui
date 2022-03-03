@@ -14,8 +14,8 @@ export const Controlled = () => {
     <>
       <Label htmlFor={id}>Controlled SpinButton</Label>
       <SpinButton
-        incrementControl="+"
-        decrementControl="-"
+        incrementButton="+"
+        decrementButton="-"
         value={spinButtonValue}
         min={5}
         max={15}

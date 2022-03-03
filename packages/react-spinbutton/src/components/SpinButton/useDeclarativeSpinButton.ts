@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { getPartitionedNativeProps, resolveShorthand } from '@fluentui/react-utilities';
 import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
-import { useDeclarativeSpinButtonState_unstable } from './useDeclarativeSpinButtonState';
+import { useSpinButtonState_unstable } from './useSpinButtonState';
 
 /**
  * Create the state required to render SpinButton.
@@ -12,10 +12,7 @@ import { useDeclarativeSpinButtonState_unstable } from './useDeclarativeSpinButt
  * @param props - props from this instance of SpinButton
  * @param ref - reference to root HTMLElement of SpinButton
  */
-export const useDeclarativeSpinButton_unstable = (
-  props: SpinButtonProps,
-  ref: React.Ref<HTMLInputElement>,
-): SpinButtonState => {
+export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HTMLInputElement>): SpinButtonState => {
   const nativeProps = getPartitionedNativeProps({
     props,
     primarySlotTagName: 'input',
@@ -24,8 +21,8 @@ export const useDeclarativeSpinButton_unstable = (
 
   const {
     value,
+    displayValue,
     defaultValue,
-    textValue,
     min,
     max,
     step,
@@ -38,8 +35,8 @@ export const useDeclarativeSpinButton_unstable = (
 
   const state: SpinButtonState = {
     value,
+    displayValue,
     defaultValue,
-    textValue,
     min,
     max,
     step,
@@ -63,18 +60,25 @@ export const useDeclarativeSpinButton_unstable = (
       required: true,
       defaultProps: {
         ref,
+        autoComplete: 'off',
         ...nativeProps.primary,
       },
     }),
     incrementButton: resolveShorthand(incrementButton, {
       required: true,
+      defaultProps: {
+        tabIndex: -1,
+      },
     }),
     decrementButton: resolveShorthand(decrementButton, {
       required: true,
+      defaultProps: {
+        tabIndex: -1,
+      },
     }),
   };
 
-  useDeclarativeSpinButtonState_unstable(state);
+  useSpinButtonState_unstable(state);
 
   return state;
 };
