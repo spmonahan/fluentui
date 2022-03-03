@@ -7,10 +7,7 @@ const defaultFormatter: SpinButtonFormatter = value => value.toString();
 const defaultParser: SpinButtonParser = parseFloat;
 
 export const useSpinButtonState_unstable = (state: SpinButtonState) => {
-  const { value, defaultValue = 0, min, max, step = 1 } = state;
-
-  const formatter = React.useRef(state.formatter ?? defaultFormatter);
-  const parser = React.useRef(state.parser ?? defaultParser);
+  const { value, formatter = defaultFormatter, parser = defaultParser, defaultValue = 0, min, max, step = 1 } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,
@@ -18,16 +15,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
     initialState: 0,
   });
 
-  const [formattedValue, setFormattedValue] = React.useState(formatter.current(currentValue));
-  const parsedValue = React.useRef(parser.current(formattedValue));
-
-  React.useEffect(() => {
-    formatter.current = state.formatter ?? defaultFormatter;
-    parser.current = state.parser ?? defaultParser;
-    const newFormattedValue = formatter.current(currentValue);
-    setFormattedValue(newFormattedValue);
-    parsedValue.current = parser.current(newFormattedValue);
-  }, [state.formatter, state.parser]);
+  const [formattedValue, setFormattedValue] = React.useState(formatter(currentValue));
+  const parsedValue = React.useRef(parser(formattedValue));
 
   console.log(
     `[useSpinButtonState]`,
@@ -43,13 +32,13 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   const onInputChange = state.input.onChange;
   const onInputBlur = state.input.onBlur;
   const onInputKeyDown = state.input.onKeyDown;
-  const onIncrementClick = state.incrementControl.onClick;
-  const onDecrementClick = state.decrementControl.onClick;
+  const onIncrementClick = state.incrementButton.onClick;
+  const onDecrementClick = state.decrementButton.onClick;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setFormattedValue(newValue);
-    parsedValue.current = parser.current(newValue);
+    parsedValue.current = parser(newValue);
   };
 
   const stepper = (e: SpinButtonChangeEvent, direction: 'up' | 'down') => {
@@ -101,10 +90,10 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   };
 
   const commit = (e: SpinButtonChangeEvent, newValue: number) => {
-    const newFormattedValue = formatter.current(newValue);
+    const newFormattedValue = formatter(newValue);
     if (currentValue !== newValue || formattedValue !== newFormattedValue) {
       setCurrentValue(newValue);
-      parsedValue.current = parser.current(newFormattedValue);
+      parsedValue.current = parser(newFormattedValue);
       if (!Number.isNaN(newValue)) {
         // Don't update the formatted value when the input is invalid.
         // This ensure we show the invalid input.
@@ -118,8 +107,8 @@ export const useSpinButtonState_unstable = (state: SpinButtonState) => {
   state.input.onChange = useMergedEventCallbacks(handleInputChange, onInputChange);
   state.input.onBlur = useMergedEventCallbacks(handleBlur, onInputBlur);
   state.input.onKeyDown = useMergedEventCallbacks(handleKeyDown, onInputKeyDown);
-  state.incrementControl.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
-  state.decrementControl.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
+  state.incrementButton.onClick = useMergedEventCallbacks(handleIncrementClick, onIncrementClick);
+  state.decrementButton.onClick = useMergedEventCallbacks(handleDecrementClick, onDecrementClick);
 
   return state;
 };

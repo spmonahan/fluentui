@@ -15,12 +15,12 @@ export type SpinButtonSlots = {
   /**
    * Renders the increment control.
    */
-  incrementControl: NonNullable<Slot<'button'>>;
+  incrementButton: NonNullable<Slot<'button'>>;
 
   /**
    * Renders the decrement control.
    */
-  decrementControl: NonNullable<Slot<'button'>>;
+  decrementButton: NonNullable<Slot<'button'>>;
 };
 
 export type SpinButtonCommons = {

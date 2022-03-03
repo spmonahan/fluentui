@@ -30,8 +30,8 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     // formatter,
     root,
     input,
-    incrementControl,
-    decrementControl,
+    incrementButton,
+    decrementButton,
   } = props;
 
   const state: SpinButtonState = {
@@ -45,8 +45,8 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
       // TODO add slot types here if needed (div is the default)
       root: 'div',
       input: 'input',
-      incrementControl: 'button',
-      decrementControl: 'button',
+      incrementButton: 'button',
+      decrementButton: 'button',
     },
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
@@ -63,10 +63,10 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
         ...nativeProps.primary,
       },
     }),
-    incrementControl: resolveShorthand(incrementControl, {
+    incrementButton: resolveShorthand(incrementButton, {
       required: true,
     }),
-    decrementControl: resolveShorthand(decrementControl, {
+    decrementButton: resolveShorthand(decrementButton, {
       required: true,
     }),
   };

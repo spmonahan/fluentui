@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { getPartitionedNativeProps, resolveShorthand } from '@fluentui/react-utilities';
 import type { SpinButtonProps, SpinButtonState } from './SpinButton.types';
-import { useSpinButtonContextState_unstable } from './useSpinButtonContextState';
+import { useDeclarativeSpinButtonState_unstable } from './useDeclarativeSpinButtonState';
 
 /**
  * Create the state required to render SpinButton.
@@ -12,7 +12,7 @@ import { useSpinButtonContextState_unstable } from './useSpinButtonContextState'
  * @param props - props from this instance of SpinButton
  * @param ref - reference to root HTMLElement of SpinButton
  */
-export const useSpinButtonContext_unstable = (
+export const useDeclarativeSpinButton_unstable = (
   props: SpinButtonProps,
   ref: React.Ref<HTMLInputElement>,
 ): SpinButtonState => {
@@ -25,21 +25,21 @@ export const useSpinButtonContext_unstable = (
   const {
     value,
     defaultValue,
+    textValue,
     min,
     max,
     step,
     onChange,
-    // parser,
-    // formatter,
     root,
     input,
-    incrementControl,
-    decrementControl,
+    incrementButton,
+    decrementButton,
   } = props;
 
   const state: SpinButtonState = {
     value,
     defaultValue,
+    textValue,
     min,
     max,
     step,
@@ -48,8 +48,8 @@ export const useSpinButtonContext_unstable = (
       // TODO add slot types here if needed (div is the default)
       root: 'div',
       input: 'input',
-      incrementControl: 'button',
-      decrementControl: 'button',
+      incrementButton: 'button',
+      decrementButton: 'button',
     },
     // TODO add appropriate slots, for example:
     // mySlot: resolveShorthand(props.mySlot),
@@ -66,15 +66,15 @@ export const useSpinButtonContext_unstable = (
         ...nativeProps.primary,
       },
     }),
-    incrementControl: resolveShorthand(incrementControl, {
+    incrementButton: resolveShorthand(incrementButton, {
       required: true,
     }),
-    decrementControl: resolveShorthand(decrementControl, {
+    decrementButton: resolveShorthand(decrementButton, {
       required: true,
     }),
   };
 
-  useSpinButtonContextState_unstable(state);
+  useDeclarativeSpinButtonState_unstable(state);
 
   return state;
 };
