@@ -18,7 +18,7 @@ export const Controlled = () => {
         } else {
           console.error(`"${data.displayValue}" is not a valid value.`);
         }
-      } // else ... should not happen
+      }
     },
     [setSpinButtonValue],
   );
@@ -32,6 +32,7 @@ export const Controlled = () => {
         value={spinButtonValue}
         min={5}
         max={15}
+        step={0.1}
         onChange={onSpinButtonChange}
         id={id}
       />

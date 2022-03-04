@@ -26,6 +26,7 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     min,
     max,
     step,
+    precision,
     onChange,
     root,
     input,
@@ -40,6 +41,7 @@ export const useSpinButton_unstable = (props: SpinButtonProps, ref: React.Ref<HT
     min,
     max,
     step,
+    precision,
     onChange,
     components: {
       // TODO add slot types here if needed (div is the default)
