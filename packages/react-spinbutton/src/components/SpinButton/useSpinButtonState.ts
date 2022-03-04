@@ -4,7 +4,7 @@ import * as React from 'react';
 import { SpinButtonState, SpinButtonChangeEvent } from './SpinButton.types';
 
 export const useSpinButtonState_unstable = (state: SpinButtonState) => {
-  const { value, displayValue, defaultValue = 0, min = Number.MIN_VALUE, max = Number.MAX_VALUE, step = 1 } = state;
+  const { value, displayValue, defaultValue = 0, min, max, step = 1 } = state;
 
   const [currentValue, setCurrentValue] = useControllableState({
     state: value ?? undefined,

@@ -84,7 +84,7 @@ export type SpinButtonCommons = {
    * - User *commits* edits to the input text by focusing away (blurring) or pressing enter.
    *   Note that this is NOT called for every key press while the user is editing.
    */
-  onChange: (event: SpinButtonChangeEvent, data: SpinButtonChangeData) => void;
+  onChange: (event: SpinButtonChangeEvent, data: SpinButtonOnChangeData) => void;
 
   /**
    * How many decimal places the value should be rounded to.
@@ -112,7 +112,7 @@ export type SpinButtonChangeEvent =
   | React.FocusEvent<HTMLInputElement>
   | React.KeyboardEvent<HTMLInputElement>;
 
-export type SpinButtonChangeData = {
+export type SpinButtonOnChangeData = {
   value?: number;
   displayValue?: string;
 };
