@@ -36,6 +36,33 @@ const DEFAULT_RENDERED_WINDOWS_AHEAD = 2;
 const PAGE_KEY_PREFIX = 'page-';
 const SPACER_KEY_PREFIX = 'spacer-';
 
+const getScrollPosition = (el?: HTMLElement | Window): number => {
+  if (el === undefined) {
+    return 0;
+  }
+
+  let scrollPos = 0;
+  if ('scrollTop' in el) {
+    scrollPos = el.scrollTop;
+  } else if ('scrollY' in el) {
+    scrollPos = el.scrollY;
+  } else {
+    console.error('Unable to read scrollTop or scrollY on', el);
+  }
+
+  return Math.ceil(scrollPos);
+};
+
+const setScrollPosition = (el: HTMLElement | Window, pos: number): void => {
+  if ('scrollTop' in el) {
+    el.scrollTop = pos;
+  } else if ('scrollY' in el) {
+    el.scrollTo(el.scrollX, pos);
+  } else {
+    console.error('Unable to set scroll position on ', el);
+  }
+};
+
 export interface IListState<T = any> {
   pages?: IPage<T>[];
 
@@ -65,8 +92,22 @@ const EMPTY_RECT = {
   height: 0,
 };
 
+const getRoundedBoundingClientRect = (element: HTMLElement) => {
+  const boundingRect = element.getBoundingClientRect();
+  return new DOMRect(
+    Math.ceil(boundingRect.x),
+    Math.ceil(boundingRect.y),
+    Math.ceil(boundingRect.width),
+    Math.ceil(boundingRect.height),
+  );
+};
+
 // Naming expensive measures so that they're named in profiles.
-const _measurePageRect = (element: HTMLElement) => element.getBoundingClientRect();
+// const _measurePageRect = (element: HTMLElement) => element.getBoundingClientRect();
+// const _measureSurfaceRect = _measurePageRect;
+// const _measureScrollRect = _measurePageRect;
+
+const _measurePageRect = getRoundedBoundingClientRect;
 const _measureSurfaceRect = _measurePageRect;
 const _measureScrollRect = _measurePageRect;
 
@@ -235,8 +276,10 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
         if (measureItem && this._scrollElement) {
           const scrollRect = _measureScrollRect(this._scrollElement);
           const scrollWindow = {
-            top: this._scrollElement.scrollTop,
-            bottom: this._scrollElement.scrollTop + scrollRect.height,
+            top: getScrollPosition(this._scrollElement),
+            bottom: getScrollPosition(this._scrollElement) + scrollRect.height,
+            // top: this._scrollElement.scrollTop,
+            // bottom: this._scrollElement.scrollTop + scrollRect.height,
           };
 
           // Adjust for actual item position within page
@@ -250,13 +293,16 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
           // scroll the item into a specific position on the page.
           switch (scrollToMode) {
             case ScrollToMode.top:
-              this._scrollElement.scrollTop = scrollTop;
+              // this._scrollElement.scrollTop = scrollTop;
+              setScrollPosition(this._scrollElement, scrollTop);
               return;
             case ScrollToMode.bottom:
-              this._scrollElement.scrollTop = scrollBottom - scrollRect.height;
+              // this._scrollElement.scrollTop = scrollBottom - scrollRect.height;
+              setScrollPosition(this._scrollElement, scrollBottom - scrollRect.height);
               return;
             case ScrollToMode.center:
-              this._scrollElement.scrollTop = (scrollTop + scrollBottom - scrollRect.height) / 2;
+              // this._scrollElement.scrollTop = (scrollTop + scrollBottom - scrollRect.height) / 2;
+              setScrollPosition(this._scrollElement, (scrollTop + scrollBottom - scrollRect.height) / 2);
               return;
             case ScrollToMode.auto:
             default:
@@ -293,7 +339,8 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
         }
 
         if (this._scrollElement) {
-          this._scrollElement.scrollTop = scrollTop;
+          // this._scrollElement.scrollTop = scrollTop;
+          setScrollPosition(this._scrollElement, scrollTop);
         }
         return;
       }
@@ -331,9 +378,10 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
   }
 
   public componentDidMount(): void {
+    this._scrollElement = findScrollableParent(this._root.current) as HTMLElement;
     this.setState(this._updatePages(this.props, this.state));
     this._measureVersion++;
-    this._scrollElement = findScrollableParent(this._root.current) as HTMLElement;
+    // this._scrollElement = findScrollableParent(this._root.current) as HTMLElement;
 
     this._events.on(window, 'resize', this._onAsyncResize);
     if (this._root.current) {
@@ -667,7 +715,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     if (!this._materializedRect || !_isContainedWithin(this._requiredRect as IRectangle, this._materializedRect)) {
       this.setState(this._updatePages(this.props, this.state));
     } else {
-      // console.log('requiredRect contained in materialized', this._requiredRect, this._materializedRect);
+      console.log('requiredRect contained in materialized', this._requiredRect, this._materializedRect);
     }
   }
 
@@ -682,7 +730,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     const windowsBehind = Math.min(renderedWindowsBehind as number, requiredWindowsBehind + 1);
 
     if (windowsAhead !== requiredWindowsAhead || windowsBehind !== requiredWindowsBehind) {
-      // console.log('idling', windowsBehind, windowsAhead);
+      console.log('idling', windowsBehind, windowsAhead);
 
       this._requiredWindowsAhead = windowsAhead;
       this._requiredWindowsBehind = windowsBehind;
@@ -692,6 +740,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
 
     if (renderedWindowsAhead! > windowsAhead || renderedWindowsBehind! > windowsBehind) {
       // Async increment on next tick.
+      console.log('idling, increment on next tick');
       this._onAsyncIdle();
     }
   }
@@ -711,9 +760,10 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
   }
 
   private _updatePages(nextProps: IListProps<T>, previousState: IListState<T>): IListState<T> {
-    // console.log('updating pages');
+    console.log('updating pages', this);
 
     if (!this._requiredRect) {
+      console.log('  updating render rects');
       this._updateRenderRects(nextProps, previousState);
     }
 
@@ -1075,7 +1125,9 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
 
     let surfaceRect = this._surfaceRect || { ...EMPTY_RECT };
     const scrollHeight = this._scrollElement && this._scrollElement.scrollHeight;
-    const scrollTop = this._scrollElement ? this._scrollElement.scrollTop : 0;
+    // const scrollTop = this._scrollElement ? this._scrollElement.scrollTop : 0;
+    const scrollTop = getScrollPosition(this._scrollElement);
+    console.log('SCROLL TOP', scrollTop); //, 'scrollelement', this._scrollElement, 'this', this);
 
     // WARNING: EXPENSIVE CALL! We need to know the surface top relative to the window.
     // This needs to be called to recalculate when new pages should be loaded.
