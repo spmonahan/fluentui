@@ -70,6 +70,7 @@ export const GroupedListBasicExample: React.FunctionComponent = () => {
           selectionMode={SelectionMode.multiple}
           groups={groups}
           compact={isCompactMode}
+          rootListProps={{ id: 'THE_ROOT_OF_ALL_EVIL' }}
         />
       </SelectionZone>
     </div>

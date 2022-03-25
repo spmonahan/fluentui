@@ -258,7 +258,7 @@ export class GroupedListSection extends React.Component<IGroupedListSectionProps
             getItemCountForPage={this._returnOne}
             onShouldVirtualize={onShouldVirtualize}
             version={version}
-            id={this._id}
+            id={`${this._id}--CHILD_GROUP`}
           />
         ) : (
           this._onRenderGroup(renderCount)
@@ -350,7 +350,7 @@ export class GroupedListSection extends React.Component<IGroupedListSectionProps
         renderCount={Math.min(count, renderCount)}
         startIndex={startIndex}
         onShouldVirtualize={onShouldVirtualize}
-        id={this._id}
+        id={`${this._id}--END_OF_THE_LINE`}
         {...listProps}
       />
     );

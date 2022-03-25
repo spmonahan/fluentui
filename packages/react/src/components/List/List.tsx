@@ -36,6 +36,24 @@ const DEFAULT_RENDERED_WINDOWS_AHEAD = 2;
 const PAGE_KEY_PREFIX = 'page-';
 const SPACER_KEY_PREFIX = 'spacer-';
 
+const getScrollHeight = (el?: HTMLElement | Window): number => {
+  if (el === undefined) {
+    return 0;
+  }
+
+  let scrollHeight = 0;
+  if ('scrollHeight' in el) {
+    scrollHeight = el.scrollHeight;
+  } else if ('document' in el) {
+    scrollHeight = el.document.documentElement.scrollHeight;
+  } else {
+    console.error('Unable to read scroll height on', el);
+  }
+
+  // No need to round as scrollHeight is already rounded for us.
+  return scrollHeight;
+};
+
 const getScrollPosition = (el?: HTMLElement | Window): number => {
   if (el === undefined) {
     return 0;
@@ -379,6 +397,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
 
   public componentDidMount(): void {
     this._scrollElement = findScrollableParent(this._root.current) as HTMLElement;
+    this._scrollTop = 0;
     this.setState(this._updatePages(this.props, this.state));
     this._measureVersion++;
     // this._scrollElement = findScrollableParent(this._root.current) as HTMLElement;
@@ -623,7 +642,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
   private _getPageStyle(page: IPage<T>): React.StyleHTMLAttributes<HTMLDivElement> {
     const { getPageStyle } = this.props;
 
-    return {
+    let style = {
       ...(getPageStyle ? getPageStyle(page) : {}),
       ...(!page.items
         ? {
@@ -631,6 +650,8 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
           }
         : {}),
     };
+
+    return style;
   }
 
   private _onRenderPage = (pageProps: IPageProps<T>, defaultRender?: IRenderFunction<IPageProps<T>>): any => {
@@ -760,10 +781,7 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
   }
 
   private _updatePages(nextProps: IListProps<T>, previousState: IListState<T>): IListState<T> {
-    console.log('updating pages', this);
-
     if (!this._requiredRect) {
-      console.log('  updating render rects');
       this._updateRenderRects(nextProps, previousState);
     }
 
@@ -869,9 +887,22 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
           measureVersion: this._measureVersion,
         };
 
+        const prevEstimatedHeight = this._estimatedPageHeight;
         this._estimatedPageHeight = Math.round(
           (this._estimatedPageHeight * this._totalEstimates + newClientRect.height) / (this._totalEstimates + 1),
         );
+        // console.log(
+        //   'CALCULATING ESTIMATED PAGE HEIGHT:',
+        //   this.props.id,
+        //   'prev estimate:',
+        //   prevEstimatedHeight,
+        //   'totalEstimates:',
+        //   this._totalEstimates,
+        //   'newClientRect.height:',
+        //   newClientRect.height,
+        //   'new estimate:',
+        //   this._estimatedPageHeight,
+        // );
 
         this._totalEstimates++;
       }
@@ -997,10 +1028,12 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
             true /*isSpacer*/,
           );
         }
-        currentSpacer.height = (currentSpacer.height || 0) + (pageBottom - pageTop) + 1;
+        // currentSpacer.height = (currentSpacer.height || 0) + (pageBottom - pageTop) + 1;
+        currentSpacer.height = (currentSpacer.height || 0) + pageHeight + 1;
         currentSpacer.itemCount += itemsPerPage;
       }
-      pageTop += pageBottom - pageTop + 1;
+      // pageTop += pageBottom - pageTop + 1;
+      pageTop += pageHeight + 1;
 
       // in virtualized mode, we render need to render first page then break and measure,
       // otherwise, we render all items without measurement to make rendering fast
@@ -1042,6 +1075,8 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
 
       const { height = this._getPageHeight(itemIndex, visibleRect, itemCount) } = pageData;
 
+      console.log('[hmmm] ID', this.props.id, 'itemCount', itemCount, 'height', height);
+      console.log('[hmmm] ------');
       return {
         itemCount: itemCount,
         height: height,
@@ -1051,9 +1086,12 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     } else {
       const itemCount = this._getItemCountForPage(itemIndex, visibleRect);
 
+      const h = this._getPageHeight(itemIndex, visibleRect, itemCount);
+      console.log('[hmmm] ID', this.props.id, 'itemCount', itemCount, 'height', h);
+      console.log('[hmmm] ------');
       return {
         itemCount: itemCount,
-        height: this._getPageHeight(itemIndex, visibleRect, itemCount),
+        height: h, //: this._getPageHeight(itemIndex, visibleRect, itemCount),
       };
     }
   }
@@ -1068,7 +1106,17 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     } else {
       const cachedHeight = this._cachedPageHeights[itemIndex];
 
-      return cachedHeight ? cachedHeight.height : this._estimatedPageHeight || DEFAULT_PAGE_HEIGHT;
+      // return cachedHeight ? cachedHeight.height : this._estimatedPageHeight || DEFAULT_PAGE_HEIGHT;
+      if (cachedHeight) {
+        console.log('[hmmm] cachedHeight');
+        return cachedHeight.height;
+      } else if (this._estimatedPageHeight) {
+        console.log('[hmmm] estimatedHeight');
+        return this._estimatedPageHeight;
+      } else {
+        console.log('[hmmm] defaultHeight');
+        return DEFAULT_PAGE_HEIGHT;
+      }
     }
   }
 
@@ -1124,10 +1172,11 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     }
 
     let surfaceRect = this._surfaceRect || { ...EMPTY_RECT };
-    const scrollHeight = this._scrollElement && this._scrollElement.scrollHeight;
+    // const scrollHeight = this._scrollElement && this._scrollElement.scrollHeight;
+    const scrollHeight = getScrollHeight(this._scrollElement);
     // const scrollTop = this._scrollElement ? this._scrollElement.scrollTop : 0;
     const scrollTop = getScrollPosition(this._scrollElement);
-    console.log('SCROLL TOP', scrollTop); //, 'scrollelement', this._scrollElement, 'this', this);
+    // console.log('SCROLL TOP', scrollTop, 'scrollHeight', scrollHeight); //, 'scrollelement', this._scrollElement, 'this', this);
 
     // WARNING: EXPENSIVE CALL! We need to know the surface top relative to the window.
     // This needs to be called to recalculate when new pages should be loaded.
@@ -1141,6 +1190,17 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
         scrollHeight !== this._scrollHeight ||
         Math.abs(this._scrollTop - scrollTop) > this._estimatedPageHeight / 3)
     ) {
+      // console.log(
+      //   'measuring surface rect',
+      //   this.props.id,
+      //   Math.abs(this._scrollTop - scrollTop) > this._estimatedPageHeight / 3,
+      //   'this._scrollTop',
+      //   this._scrollTop,
+      //   'scrollTop',
+      //   scrollTop,
+      //   'this._estimatedPageHeight',
+      //   this._estimatedPageHeight,
+      // );
       surfaceRect = this._surfaceRect = _measureSurfaceRect(this._surface.current);
       this._scrollTop = scrollTop;
     }
