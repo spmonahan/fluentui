@@ -254,6 +254,7 @@ export class GroupedListBase extends React.Component<IGroupedListProps, IGrouped
 
     return (
       <GroupedListSection
+        id="FIRST"
         key={this._getGroupKey(group, groupIndex)}
         dragDropEvents={dragDropEvents}
         dragDropHelper={dragDropHelper}

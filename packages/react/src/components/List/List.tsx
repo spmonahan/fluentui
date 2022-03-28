@@ -864,12 +864,19 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
     const cachedHeight = this._cachedPageHeights[page.startIndex];
 
     // console.log('   * measure attempt', page.startIndex, cachedHeight);
+    // console.log('[measure]', this.props.id);
+    if (this.props.id?.includes('-FIRST-')) {
+      console.log('[measure] pageElement', pageElement.clientHeight, pageElement);
+      console.log('[measure] cachedHeight', cachedHeight);
+      console.log('[measure] page.startIndex', page.startIndex);
+    }
 
     if (
       pageElement &&
       this._shouldVirtualize() &&
       (!cachedHeight || cachedHeight.measureVersion !== this._measureVersion)
     ) {
+      console.log('[measure] UPDATING');
       const newClientRect = {
         width: pageElement.clientWidth,
         height: pageElement.clientHeight,
@@ -962,6 +969,10 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
       const pageHeight = pageSpecification.height;
       const pageData = pageSpecification.data;
       const key = pageSpecification.key;
+
+      if (itemIndex === 3 && this.props.id?.endsWith('OF_THE_LINE')) {
+        console.log('[test] CATS', pageHeight);
+      }
 
       itemsPerPage = pageSpecification.itemCount;
 
@@ -1087,8 +1098,8 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
       const itemCount = this._getItemCountForPage(itemIndex, visibleRect);
 
       const h = this._getPageHeight(itemIndex, visibleRect, itemCount);
-      console.log('[hmmm] ID', this.props.id, 'itemCount', itemCount, 'height', h);
-      console.log('[hmmm] ------');
+      console.log('[hmmm2] ID', this.props.id, 'itemIndex', itemIndex, 'itemCount', itemCount, 'height', h);
+      console.log('[hmmm2] ------');
       return {
         itemCount: itemCount,
         height: h, //: this._getPageHeight(itemIndex, visibleRect, itemCount),
@@ -1108,13 +1119,13 @@ export class List<T = any> extends React.Component<IListProps<T>, IListState<T>>
 
       // return cachedHeight ? cachedHeight.height : this._estimatedPageHeight || DEFAULT_PAGE_HEIGHT;
       if (cachedHeight) {
-        console.log('[hmmm] cachedHeight');
+        console.log('[test] cachedHeight');
         return cachedHeight.height;
       } else if (this._estimatedPageHeight) {
-        console.log('[hmmm] estimatedHeight');
+        console.log('[test] estimatedHeight');
         return this._estimatedPageHeight;
       } else {
-        console.log('[hmmm] defaultHeight');
+        console.log('[test] defaultHeight');
         return DEFAULT_PAGE_HEIGHT;
       }
     }

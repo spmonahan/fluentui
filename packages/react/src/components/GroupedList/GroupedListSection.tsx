@@ -128,7 +128,8 @@ export class GroupedListSection extends React.Component<IGroupedListSectionProps
 
     initializeComponentRef(this);
 
-    this._id = getId('GroupedListSection');
+    const baseId = this.props.id ? `-${this.props.id}-` : '';
+    this._id = getId('GroupedListSection' + baseId);
 
     this.state = {
       isDropping: false,
