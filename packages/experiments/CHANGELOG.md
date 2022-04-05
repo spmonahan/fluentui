@@ -1,8 +1,35 @@
 # Change Log - @uifabric/experiments
 
-This log was last generated on Wed, 30 Mar 2022 12:25:54 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Apr 2022 12:26:01 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## [7.42.16](https://github.com/microsoft/fluentui/tree/@uifabric/experiments_v7.42.16)
+
+Tue, 05 Apr 2022 12:26:01 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@uifabric/experiments_v7.42.15..@uifabric/experiments_v7.42.16)
+
+### Patches
+
+- Update tests in experiments ([PR #22278](https://github.com/microsoft/fluentui/pull/22278) by seanmonahan@microsoft.com)
+
+## [7.42.15](https://github.com/microsoft/fluentui/tree/@uifabric/experiments_v7.42.15)
+
+Mon, 04 Apr 2022 12:25:50 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@uifabric/experiments_v7.42.14..@uifabric/experiments_v7.42.15)
+
+### Patches
+
+- Bump @uifabric/azure-themes to v7.9.21 ([PR #22281](https://github.com/microsoft/fluentui/pull/22281) by sarah.higley@microsoft.com)
+
+## [7.42.14](https://github.com/microsoft/fluentui/tree/@uifabric/experiments_v7.42.14)
+
+Fri, 01 Apr 2022 12:26:13 GMT 
+[Compare changes](https://github.com/microsoft/fluentui/compare/@uifabric/experiments_v7.42.13..@uifabric/experiments_v7.42.14)
+
+### Patches
+
+- Bump @uifabric/azure-themes to v7.9.20 ([PR #22258](https://github.com/microsoft/fluentui/pull/22258) by mgodbolt@microsoft.com)
 
 ## [7.42.13](https://github.com/microsoft/fluentui/tree/@uifabric/experiments_v7.42.13)
 
