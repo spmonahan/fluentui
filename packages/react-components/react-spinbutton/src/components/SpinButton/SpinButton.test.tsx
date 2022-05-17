@@ -245,6 +245,22 @@ describe('SpinButton', () => {
     expect(getSpinButtonInput().value).toEqual('2');
   });
 
+  it('changes values by fractional `step` when uncontrolled', () => {
+    const onChange = jest.fn();
+    const { getAllByRole } = render(<SpinButton defaultValue={2} step={0.5} onChange={onChange} />);
+
+    const [incrementButton, decrementButton] = getAllByRole('button');
+    userEvent.click(incrementButton);
+
+    expect(onChange.mock.calls[0][1]).toEqual({ value: 2.5, displayValue: undefined });
+    expect(getSpinButtonInput().value).toEqual('2.5');
+
+    userEvent.click(decrementButton);
+
+    expect(onChange.mock.calls[1][1]).toEqual({ value: 2, displayValue: undefined });
+    expect(getSpinButtonInput().value).toEqual('2');
+  });
+
   it('changes values by `step` via spinner buttons when controlled', () => {
     const onChange = jest.fn();
     const { getAllByRole, rerender } = render(<SpinButton value={2} step={2} onChange={onChange} />);
@@ -254,10 +270,10 @@ describe('SpinButton', () => {
 
     expect(onChange.mock.calls[0][1]).toEqual({ value: 4, displayValue: undefined });
 
-    rerender(<SpinButton value={4} step={2} onChange={onChange} />);
+    rerender(<SpinButton value={4} step={1.5} onChange={onChange} />);
     userEvent.click(decrementButton);
 
-    expect(onChange.mock.calls[1][1]).toEqual({ value: 2, displayValue: undefined });
+    expect(onChange.mock.calls[1][1]).toEqual({ value: 2.5, displayValue: undefined });
   });
 
   it('changes value by `step` via hotkeys when uncontrolled', () => {
