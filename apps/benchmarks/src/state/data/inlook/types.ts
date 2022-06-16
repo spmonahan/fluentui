@@ -1,3 +1,8 @@
+export type InlookFolder = {
+  label: string;
+  icon: string;
+};
+
 export type InlookMessage = {
   from: string;
   to: string[];

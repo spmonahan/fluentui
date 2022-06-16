@@ -1,31 +1,36 @@
 import { testPeople, testSubjectLines, testMessageBodies, testTimestamps, testFolders } from './rawData';
-import type { InlookDataGenerator, InlookMessage } from './types';
+import type { InlookDataGenerator, InlookFolder, InlookMessage } from './types';
 
 const getValue = <T>(index: number, values: T[]): T => {
   return values[index % values.length] as T;
 };
 
-export const generateFolders: (size?: number, folders?: string[]) => string[] = (size = 200, folders = testFolders) => {
-  const data = [] as string[];
-  // const dataCounts = new Map<string, number>();
+const folderIcons: Record<string, string> = {
+  Inbox: 'Inbox',
+  'Sent Items': 'Send',
+  'Deleted Items': 'Delete',
+};
+
+export const generateFolders: (size?: number, folders?: string[]) => InlookFolder[] = (
+  size = 200,
+  folders = testFolders,
+) => {
+  const data = [] as InlookFolder[];
 
   for (let i = 0; i < size; i++) {
-    let name = getValue(i, folders);
+    const name = getValue(i, folders);
     const count = Math.floor(i / folders.length);
-    if (count > 0) {
-      data.push(`${name} ${count + 1}`);
-    } else {
-      data.push(name);
-    }
-    // const count = dataCounts.get(name);
-    // if (count !== undefined) {
-    //   name = `${name} ${count}`;
-    //   dataCounts.set(name, count + 1);
-    // } else {
-    //   dataCounts.set(name, 2);
-    // }
 
-    // data.push(name);
+    const item = {} as InlookFolder;
+
+    if (count > 0) {
+      item.label = `${name} ${count + 1}`;
+    } else {
+      item.label = name;
+    }
+
+    item.icon = folderIcons[item.label] ?? 'FabricFolder';
+    data.push(item);
   }
 
   return data;

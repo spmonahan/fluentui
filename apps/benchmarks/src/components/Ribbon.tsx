@@ -4,14 +4,11 @@ import { Pivot, PivotItem } from '@fluentui/react/lib/Pivot';
 import { DefaultPalette, DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { Text } from '@fluentui/react/lib/Text';
 import { Stack } from '@fluentui/react/lib/Stack';
-import { Icon } from '@fluentui/react/lib/Icon';
 import { Separator } from '@fluentui/react/lib/Separator';
 import { DefaultButton, IconButton } from '@fluentui/react/lib/Button';
 
 const ribbonStyles = mergeStyleSets({
-  root: {
-    padding: DefaultSpacing.s1,
-  },
+  root: {},
 
   pivotItem: {
     marginLeft: DefaultSpacing.s1,
