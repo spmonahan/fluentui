@@ -57,6 +57,6 @@ export const testMessageBodies: string[] = [
   `a pellentesque sit amet porttitor eget dolor morbi non arcu risus quis`,
 ];
 
-export const testTimestamps: number[] = [1655363918000, 1655450318000, 1652771918];
+export const testTimestamps: number[] = [1655363918000, 1655450318000, 1652771918000];
 
 export const testFolders: string[] = ['Inbox', 'Sent Items', 'Deleted Items'];

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { mergeStyleSets } from '@fluentui/react/lib/Styling';
+import { hiddenContentStyle, mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import { Ribbon } from './components/Ribbon';
 import { NavHeader } from './components/NavHeader';
+import { NavPane } from './components/NavPane';
 import store from './state/store';
 import { Provider } from 'react-redux';
 
@@ -11,6 +12,10 @@ import './App.css';
 const appStyles = mergeStyleSets({
   root: {
     backgroundColor: DefaultPalette.neutralLighter,
+    display: 'grid',
+    gridTemplateRows: '48px 162px 1fr',
+    height: '100vh',
+    overflow: 'hidden',
   },
   main: {
     display: 'grid',
@@ -25,9 +30,9 @@ function App() {
         <NavHeader />
         <Ribbon />
         <main className={`app-main ${appStyles.main}`}>
-          <div style={{ background: 'red', height: 100 }}></div>
-          <div style={{ background: 'green', height: 100 }}></div>
-          <div style={{ background: 'blue', height: 100 }}></div>
+          <NavPane />
+          <div style={{ background: 'green', height: '100%' }}></div>
+          <div style={{ background: 'blue', height: '100%' }}></div>
         </main>
       </div>
     </Provider>
