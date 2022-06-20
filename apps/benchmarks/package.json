@@ -24,7 +24,8 @@
     "react-dom": ">=16.8.0 <18.0.0",
     "react-redux": "^8.0.2",
     "react-virtualized-auto-sizer": "^1.0.6",
-    "react-window": "^1.8.7"
+    "react-window": "^1.8.7",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@fluentui/eslint-plugin": "*",

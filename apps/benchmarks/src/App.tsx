@@ -4,6 +4,7 @@ import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import { Ribbon } from './components/Ribbon';
 import { NavHeader } from './components/NavHeader';
 import { NavPane } from './components/NavPane';
+import { MessageList } from './components/MessageList';
 import store from './state/store';
 import { Provider } from 'react-redux';
 
@@ -31,7 +32,7 @@ function App() {
         <Ribbon />
         <main className={`app-main ${appStyles.main}`}>
           <NavPane />
-          <div style={{ background: 'green', height: '100%' }}></div>
+          <MessageList />
           <div style={{ background: 'blue', height: '100%' }}></div>
         </main>
       </div>

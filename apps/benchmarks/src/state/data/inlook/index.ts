@@ -1,11 +1,11 @@
-import type { InlookState } from './types';
+import type { InlookMessage, InlookState } from './types';
 import { generateFolders, generateMessages } from './generateData';
 
 const folders = generateFolders();
-const messages = {};
+const messages = {} as Record<string, InlookMessage[]>;
 
 for (const folder of folders) {
-  messages[folder] = generateMessages();
+  messages[folder.id] = generateMessages();
 }
 
 export const state = {

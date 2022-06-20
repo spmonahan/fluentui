@@ -1,5 +1,6 @@
 import { testPeople, testSubjectLines, testMessageBodies, testTimestamps, testFolders } from './rawData';
 import type { InlookDataGenerator, InlookFolder, InlookMessage } from './types';
+import { v4 as uuid } from 'uuid';
 
 const getValue = <T>(index: number, values: T[]): T => {
   return values[index % values.length] as T;
@@ -30,6 +31,7 @@ export const generateFolders: (size?: number, folders?: string[]) => InlookFolde
     }
 
     item.icon = folderIcons[item.label] ?? 'FabricFolder';
+    item.id = uuid();
     data.push(item);
   }
 
@@ -44,14 +46,21 @@ export const generateMessages: InlookDataGenerator = (
   messageTimestamps = testTimestamps,
 ) => {
   const data = [] as InlookMessage[];
+  const offset = Math.floor(Math.random() * 10);
 
   for (let i = 0; i < size; i++) {
+    const j = offset + i;
+    const from = getValue(j, people);
+    const to = [getValue(j + 1, people)];
     data.push({
-      from: getValue(i, people),
-      to: [getValue(i + 1, people)],
-      subject: getValue(i, subjectLines),
-      message: getValue(i, messageBodies),
-      timestamp: getValue(i, messageTimestamps),
+      id: uuid(),
+      from,
+      fromEmail: `${from.replace(' ', '.')}@example.com`,
+      to,
+      toEmail: to.map(name => `${name.replace(' ', '.')}@example.com`),
+      subject: getValue(j, subjectLines),
+      message: getValue(j, messageBodies),
+      timestamp: getValue(j, messageTimestamps),
     });
   }
 
