@@ -1,5 +1,5 @@
 {
-  "name": "@fluentui/benchmarks",
+  "name": "@fluentui/stress-test",
   "version": "8.0.0",
   "description": "Benchmarks for Fluent UI v8",
   "private": true,
