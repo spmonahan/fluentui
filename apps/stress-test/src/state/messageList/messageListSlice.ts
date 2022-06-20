@@ -1,19 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { state } from '../data/inlook/index';
+import { state as defaultState } from '../data/inlook/index';
+import { InlookMessage } from '../data/inlook/types';
 
-export const messageListSlice = createSlice({
+export type MessageListSliceState = {
+  messages: Record<string, InlookMessage[]>;
+  selectedMessage: string | null;
+  messageFilter: string | null;
+};
+
+export type MessageListSliceCaseReducers = {
+  selectMessage: (state: MessageListSliceState, action: { payload: string | null }) => void;
+  setMessageFilter: (state: MessageListSliceState, action: { payload: string | null }) => void;
+};
+
+export const messageListSlice = createSlice<MessageListSliceState, MessageListSliceCaseReducers>({
   name: 'messageList',
   initialState: {
-    messages: state.messages,
+    messages: defaultState.messages,
     selectedMessage: null,
+    messageFilter: null,
   },
 
   reducers: {
     selectMessage: (state, action) => {
       state.selectedMessage = action.payload;
     },
+
+    setMessageFilter: (state, action) => {
+      state.messageFilter = action.payload;
+    },
   },
 });
 
-export const { selectMessage } = messageListSlice.actions;
+export const { selectMessage, setMessageFilter } = messageListSlice.actions;
 export default messageListSlice.reducer;
