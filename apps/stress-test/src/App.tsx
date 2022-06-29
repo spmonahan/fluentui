@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { hiddenContentStyle, mergeStyleSets } from '@fluentui/react/lib/Styling';
+import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import { Ribbon } from './components/Ribbon';
 import { NavHeader } from './components/NavHeader';

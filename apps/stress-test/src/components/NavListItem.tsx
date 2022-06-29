@@ -6,6 +6,7 @@ import type { IButtonStyles } from '@fluentui/react/lib/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFolder } from '../state/navPane/navPaneSlice';
 import type { AppDispatch, RootState } from '../state/store';
+import { observer } from 'mobx-react';
 
 const buttonStyles: IButtonStyles = {
   root: {
@@ -48,3 +49,7 @@ export const NavListItem = ({ index, style, data }) => {
     </div>
   );
 };
+
+export const NavListItemView = observer(({ index, style, data }) => {
+  return <NavListItem index={index} style={style} data={data} />;
+});
