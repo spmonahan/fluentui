@@ -15,6 +15,8 @@ export type InlookMessage = {
   timestamp: number;
 };
 
+export type InlookMessageList = Record<string, InlookMessage[]>;
+
 export type InlookDataGenerator = (
   size?: number,
   people?: string[],
@@ -25,5 +27,5 @@ export type InlookDataGenerator = (
 
 export type InlookState = {
   folders: InlookFolder[];
-  messages: Record<string, InlookMessage[]>;
+  messages: InlookMessageList;
 };
