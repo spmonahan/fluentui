@@ -3,10 +3,8 @@ import { ActionButton } from '@fluentui/react/lib/Button';
 import { InlookFolder } from '../state/data/inlook/types';
 import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import type { IButtonStyles } from '@fluentui/react/lib/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFolder } from '../state/navPane/navPaneSlice';
-import type { AppDispatch, RootState } from '../state/store';
 import { observer } from 'mobx-react';
+import { useStoreContext } from '../state/context/StoreContext';
 
 const buttonStyles: IButtonStyles = {
   root: {
@@ -27,19 +25,9 @@ const buttonSelectedStyles: IButtonStyles = {
   },
 };
 
-export const NavListItem = ({ index, style, data }) => {
+export const NavListItem = ({ index, style, data, onClick, isSelected }) => {
   const item = data[index] as InlookFolder;
-
-  const dispatch: AppDispatch = useDispatch();
-  const onClick = React.useCallback(
-    e => {
-      dispatch(selectFolder(item));
-    },
-    [dispatch, selectFolder, item],
-  );
-
-  const selectedFolderId = useSelector((state: RootState) => state.navPane.selectedFolder);
-  const styles = selectedFolderId === item.id ? buttonSelectedStyles : buttonStyles;
+  const styles = isSelected ? buttonSelectedStyles : buttonStyles;
 
   return (
     <div style={style}>
@@ -51,5 +39,16 @@ export const NavListItem = ({ index, style, data }) => {
 };
 
 export const NavListItemView = observer(({ index, style, data }) => {
-  return <NavListItem index={index} style={style} data={data} />;
+  const { folderStore } = useStoreContext();
+
+  const onClick = React.useCallback(
+    e => {
+      folderStore.setSelectedFolderId(data[index].id);
+    },
+    [data, index, folderStore],
+  );
+
+  const isSelected = folderStore.selectedFolderId === data[index].id ? true : false;
+
+  return <NavListItem index={index} style={style} data={data} onClick={onClick} isSelected={isSelected} />;
 });

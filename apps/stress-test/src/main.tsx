@@ -5,7 +5,7 @@ import App from './App';
 import { StoreProvider } from './state/context/StoreContext';
 
 import { initializeIcons, ThemeProvider } from '@fluentui/react';
-import { RootStore } from './state/stores/rootStores';
+import { RootStore } from './state/stores/rootStore';
 initializeIcons();
 
 ReactDOM.render(

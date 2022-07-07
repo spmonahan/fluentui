@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { useSelector } from 'react-redux';
 import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { NavListItem, NavListItemView } from './NavListItem';
 import { observer } from 'mobx-react';
+import { useStoreContext } from '../state/context/StoreContext';
 
 const navPaneStyles = mergeStyleSets({
   root: {
@@ -14,7 +14,6 @@ const navPaneStyles = mergeStyleSets({
 });
 
 export const NavPane = ({ folders, itemRenderer = NavListItem }) => {
-  // const folders = useSelector(state => state.navPane.folders);
   return (
     <AutoSizer>
       {({ height }) => (
@@ -33,6 +32,7 @@ export const NavPane = ({ folders, itemRenderer = NavListItem }) => {
   );
 };
 
-export const NavPaneView = observer(({ folders }) => {
-  return <NavPane folders={folders} itemRenderer={NavListItemView} />;
+export const NavPaneView = observer(({ itemRenderer = NavListItemView }) => {
+  const { folderStore } = useStoreContext();
+  return <NavPane folders={folderStore.folders} itemRenderer={itemRenderer} />;
 });
