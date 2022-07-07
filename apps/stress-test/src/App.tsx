@@ -7,6 +7,7 @@ import { NavPaneView } from './components/NavPane';
 import { MesssagePaneView } from './components/MessagePane';
 
 import './App.css';
+import { Element } from './shared/Element';
 
 const appStyles = mergeStyleSets({
   root: {
@@ -24,7 +25,7 @@ const appStyles = mergeStyleSets({
 
 function App() {
   return (
-    <div className={`App ${appStyles.root}`}>
+    <Element as="div" className={`App ${appStyles.root}`}>
       <NavHeader />
       <Ribbon />
       <main className={`app-main ${appStyles.main}`}>
@@ -32,7 +33,7 @@ function App() {
         <MesssagePaneView />
         <div style={{ background: 'blue', height: '100%' }}></div>
       </main>
-    </div>
+    </Element>
   );
 }
 
