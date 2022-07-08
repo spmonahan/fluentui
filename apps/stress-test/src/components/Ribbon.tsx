@@ -6,6 +6,7 @@ import { Text } from '@fluentui/react/lib/Text';
 import { Stack } from '@fluentui/react/lib/Stack';
 import { Separator } from '@fluentui/react/lib/Separator';
 import { DefaultButton, IconButton } from '@fluentui/react/lib/Button';
+import { Element } from '../shared/Element';
 
 const ribbonStyles = mergeStyleSets({
   root: {},
@@ -58,10 +59,10 @@ const newMailMenuProps = {
 
 const RibbonGroup = ({ children, label, ...props }) => {
   return (
-    <div {...props} className={ribbonStyles.pivotGroup}>
+    <Element as="div" depth={10} classPrefix="ribbon-group" {...props} className={ribbonStyles.pivotGroup}>
       {children}
       <Text variant="xSmall">{label}</Text>
-    </div>
+    </Element>
   );
 };
 
@@ -69,49 +70,69 @@ const Home = () => {
   return (
     <>
       <RibbonGroup label="New">
-        <DefaultButton
-          text="New mail"
-          iconProps={{ iconName: 'Mail', className: ribbonStyles.iconBig }}
-          menuProps={newMailMenuProps}
-        />
+        <Element as="div" depth={20} classPrefix="new">
+          <DefaultButton
+            text="New mail"
+            iconProps={{ iconName: 'Mail', className: ribbonStyles.iconBig }}
+            menuProps={newMailMenuProps}
+          />
+        </Element>
       </RibbonGroup>
       <Separator vertical />
       <RibbonGroup label="Delete">
         <Stack horizontal>
           <Stack>
-            <IconButton iconProps={{ iconName: 'MailAlert' }} title="Ignore Mail" />
-            <IconButton iconProps={{ iconName: 'Delete' }} title="Delete Mail" />
+            <Element as="div" depth={20} classPrefix="delete-1">
+              <IconButton iconProps={{ iconName: 'MailAlert' }} title="Ignore Mail" />
+              <IconButton iconProps={{ iconName: 'Delete' }} title="Delete Mail" />
+            </Element>
           </Stack>
           <Stack>
-            <DefaultButton text="Delete" iconProps={{ iconName: 'Delete', className: ribbonStyles.iconBig }} />
-            <DefaultButton text="Archive" iconProps={{ iconName: 'Archive', className: ribbonStyles.iconBig }} />
+            <Element as="div" depth={20} classPrefix="delete-2">
+              <DefaultButton text="Delete" iconProps={{ iconName: 'Delete', className: ribbonStyles.iconBig }} />
+              <DefaultButton text="Archive" iconProps={{ iconName: 'Archive', className: ribbonStyles.iconBig }} />
+            </Element>
           </Stack>
         </Stack>
       </RibbonGroup>
       <Separator vertical />
       <RibbonGroup label="Tags">
-        <DefaultButton text="Read / Unread" iconProps={{ iconName: 'Read', className: ribbonStyles.iconBig }} />
+        <Element as="div" depth={20} classPrefix="tags">
+          <DefaultButton text="Read / Unread" iconProps={{ iconName: 'Read', className: ribbonStyles.iconBig }} />
+        </Element>
       </RibbonGroup>
       <Separator vertical />
       <RibbonGroup label="Filler 1">
         <Stack horizontal>
           <Stack>
-            <DefaultButton text="Feature A" iconProps={{ iconName: 'ReadOutLoud', className: ribbonStyles.iconBig }} />
-            <DefaultButton text="Feature B" iconProps={{ iconName: 'ReadingMode', className: ribbonStyles.iconBig }} />
+            <Element as="div" depth={20} classPrefix="filler-1">
+              <DefaultButton
+                text="Feature A"
+                iconProps={{ iconName: 'ReadOutLoud', className: ribbonStyles.iconBig }}
+              />
+              <DefaultButton
+                text="Feature B"
+                iconProps={{ iconName: 'ReadingMode', className: ribbonStyles.iconBig }}
+              />
+            </Element>
           </Stack>
           <Stack>
-            <IconButton iconProps={{ iconName: 'DependencyAdd' }} title="Feature C" />
-            <IconButton iconProps={{ iconName: 'DependencyRemove' }} title="Feature D" />
+            <Element as="div" depth={20} classPrefix="filler-2">
+              <IconButton iconProps={{ iconName: 'DependencyAdd' }} title="Feature C" />
+              <IconButton iconProps={{ iconName: 'DependencyRemove' }} title="Feature D" />
+            </Element>
           </Stack>
           <Stack>
-            <DefaultButton
-              text="Feature E"
-              iconProps={{ iconName: 'EntitlementPolicy', className: ribbonStyles.iconBig }}
-            />
-            <DefaultButton
-              text="Feature G"
-              iconProps={{ iconName: 'EntitlementRedemption', className: ribbonStyles.iconBig }}
-            />
+            <Element as="div" depth={20} classPrefix="filler-3">
+              <DefaultButton
+                text="Feature E"
+                iconProps={{ iconName: 'EntitlementPolicy', className: ribbonStyles.iconBig }}
+              />
+              <DefaultButton
+                text="Feature G"
+                iconProps={{ iconName: 'EntitlementRedemption', className: ribbonStyles.iconBig }}
+              />
+            </Element>
           </Stack>
         </Stack>
       </RibbonGroup>

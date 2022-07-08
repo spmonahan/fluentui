@@ -5,6 +5,7 @@ import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import type { IButtonStyles } from '@fluentui/react/lib/Button';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../state/context/StoreContext';
+import { Element } from '../shared/Element';
 
 const buttonStyles: IButtonStyles = {
   root: {
@@ -30,11 +31,11 @@ export const NavListItem = ({ index, style, data, onClick, isSelected }) => {
   const styles = isSelected ? buttonSelectedStyles : buttonStyles;
 
   return (
-    <div style={style}>
+    <Element as="div" classPrefx="nav-list-item" depth={10} style={style}>
       <ActionButton styles={styles} iconProps={{ iconName: item.icon }} onClick={onClick}>
         {item.label}
       </ActionButton>
-    </div>
+    </Element>
   );
 };
 

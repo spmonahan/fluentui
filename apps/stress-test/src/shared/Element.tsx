@@ -7,20 +7,22 @@ export type ElementProps = {
   as?: React.ReactNode;
   depth?: number;
   start?: number;
+  classPrefix?: string;
   className?: string;
 };
 
 export const Element: React.FC<ElementProps> = props => {
-  const { as = 'div', depth = 1, children, start = 0, className, ...rest } = props;
+  const { as = 'div', depth = 1, children, start = 0, classPrefix = '', className, ...rest } = props;
 
   const El = as;
-  const depthClassName = alphabet[start % alphabetLength];
+  let depthClassName = alphabet[start % alphabetLength];
+  depthClassName = classPrefix ? `${classPrefix}-${depthClassName}` : depthClassName;
 
   const cn = className ? `${className} ${depthClassName}` : depthClassName;
 
   return depth > 1 ? (
     <El {...rest} className={cn}>
-      <Element {...rest} as={as} depth={depth - 1} start={start + 1} children={children} />
+      <Element as={as} depth={depth - 1} start={start + 1} classPrefix={classPrefix} children={children} />
     </El>
   ) : (
     <El {...rest} className={cn}>

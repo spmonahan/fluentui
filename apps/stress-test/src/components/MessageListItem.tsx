@@ -6,6 +6,7 @@ import { Stack } from '@fluentui/react/lib/Stack';
 import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../state/context/StoreContext';
+import { Element } from '../shared/Element';
 
 const itemStyles = mergeStyleSets({
   root: {
@@ -16,28 +17,34 @@ const itemStyles = mergeStyleSets({
 
 export const MessageListItem = ({ index, style, data, onClick }) => {
   const item = data[index] as InlookMessage;
-  // const dispatch = useDispatch();
-  // const onClick = React.useCallback(
-  //   e => {
-  //     dispatch(selectMessage(data.id));
-  //   },
-  //   [dispatch, selectMessage, data],
-  // );
 
   return (
-    <div style={style} className={itemStyles.root} onClick={onClick}>
+    <Element
+      as="div"
+      classPrefix="message-list-item"
+      depth={10}
+      style={style}
+      className={itemStyles.root}
+      onClick={onClick}
+    >
       <Stack>
-        <Text variant="medium" nowrap>
-          {item.from}
-        </Text>
-        <Text variant="smallPlus" nowrap>
-          {item.subject}
-        </Text>
-        <Text variant="small" nowrap>
-          {item.message}
-        </Text>
+        <Element as="div" classPrefix="message-list-item-from" depth={5}>
+          <Text variant="medium" nowrap>
+            {item.from}
+          </Text>
+        </Element>
+        <Element as="div" classPrefix="message-list-item-subject" depth={5}>
+          <Text variant="smallPlus" nowrap>
+            {item.subject}
+          </Text>
+        </Element>
+        <Element as="div" classPrefix="message-list-item-message" depth={5}>
+          <Text variant="small" nowrap>
+            {item.message}
+          </Text>
+        </Element>
       </Stack>
-    </div>
+    </Element>
   );
 };
 

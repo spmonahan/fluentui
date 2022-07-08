@@ -2,16 +2,19 @@ import * as React from 'react';
 import { TextField } from '@fluentui/react/lib/TextField';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../state/context/StoreContext';
+import { Element } from '../shared/Element';
 
 export const MessageFilter = ({ filter, onChange }) => {
   return (
-    <TextField
-      className="app-MessageFilter"
-      id="filterField"
-      placeholder="Filter Messages"
-      value={filter ?? ''}
-      onChange={onChange}
-    />
+    <Element depth={26}>
+      <TextField
+        className="app-MessageFilter"
+        id="filterField"
+        placeholder="Filter Messages"
+        value={filter ?? ''}
+        onChange={onChange}
+      />
+    </Element>
   );
 };
 

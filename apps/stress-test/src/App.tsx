@@ -25,7 +25,7 @@ const appStyles = mergeStyleSets({
 
 function App() {
   return (
-    <Element as="div" className={`App ${appStyles.root}`}>
+    <Element as="div" classPrefix="app-root" className={`App ${appStyles.root}`}>
       <NavHeader />
       <Ribbon />
       <main className={`app-main ${appStyles.main}`}>
