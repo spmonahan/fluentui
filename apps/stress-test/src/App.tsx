@@ -8,30 +8,65 @@ import { MesssagePaneView } from './components/MessagePane';
 
 import './App.css';
 import { Element } from './shared/Element';
+import { MailReadComposeView } from './components/MailReadCompose';
+import clsx from 'clsx';
+
+const navHeaderHeight = '43px';
+const ribbonHeight = '162px';
 
 const appStyles = mergeStyleSets({
   root: {
     backgroundColor: DefaultPalette.neutralLighter,
-    display: 'grid',
+    display: 'flex',
+    flexDirection: 'column',
     gridTemplateRows: '48px 162px 1fr',
     height: '100vh',
     overflow: 'hidden',
+    selectors: {
+      '*': {
+        boxSizing: 'border-box',
+      },
+    },
   },
+
+  navHeader: {
+    height: navHeaderHeight,
+  },
+
+  ribbon: {
+    height: ribbonHeight,
+  },
+
   main: {
-    display: 'grid',
-    gridTemplateColumns: '220px 320px 1fr',
+    display: 'flex',
+    alignItems: 'stretch',
+    height: `calc(100% - ${navHeaderHeight} - ${ribbonHeight})`,
+  },
+
+  navView: {
+    flexShrink: 0,
+    width: 220,
+  },
+
+  messagePaneView: {
+    flexShrink: 0,
+    width: 320,
+  },
+
+  mailReadComposeView: {
+    // flex: '1 1 auto',
   },
 });
 
 function App() {
   return (
     <Element as="div" classPrefix="app-root" className={`App ${appStyles.root}`}>
-      <NavHeader />
-      <Ribbon />
-      <main className={`app-main ${appStyles.main}`}>
-        <NavPaneView />
-        <MesssagePaneView />
-        <div style={{ background: 'blue', height: '100%' }}></div>
+      <NavHeader className={appStyles.navHeader} />
+      <Ribbon className={appStyles.ribbon} />
+      <main className={clsx('app-main', appStyles.main, appStyles.main)}>
+        <NavPaneView className={appStyles.navView} />
+        <MesssagePaneView className={appStyles.messagePaneView} />
+        <MailReadComposeView className={appStyles.mailReadComposeView} />
       </main>
     </Element>
   );

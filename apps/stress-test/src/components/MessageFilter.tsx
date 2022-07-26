@@ -3,10 +3,18 @@ import { TextField } from '@fluentui/react/lib/TextField';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../state/context/StoreContext';
 import { Element } from '../shared/Element';
+import clsx from 'clsx';
+import { mergeStyleSets } from '@fluentui/react';
+
+const styles = mergeStyleSets({
+  root: {
+    boxSizing: 'border-box',
+  },
+});
 
 export const MessageFilter = ({ filter, onChange }) => {
   return (
-    <Element depth={26}>
+    <Element depth={26} className={clsx('app-MessageFilter-wrapper', styles.root)}>
       <TextField
         className="app-MessageFilter"
         id="filterField"

@@ -10,8 +10,10 @@ import { Element } from '../shared/Element';
 
 const itemStyles = mergeStyleSets({
   root: {
+    boxSizing: 'border-box',
     padding: DefaultSpacing.s1,
     cursor: 'pointer',
+    overflow: 'hidden',
   },
 });
 
@@ -35,7 +37,7 @@ export const MessageListItem = ({ index, style, data, onClick }) => {
         </Element>
         <Element as="div" classPrefix="message-list-item-subject" depth={5}>
           <Text variant="smallPlus" nowrap>
-            {item.subject}
+            {item.subject.substring(0, 40)}
           </Text>
         </Element>
         <Element as="div" classPrefix="message-list-item-message" depth={5}>

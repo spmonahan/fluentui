@@ -3,6 +3,7 @@ import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { Icon } from '@fluentui/react/lib/Icon';
 import { DefaultPalette, DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { Text, ITextStyles } from '@fluentui/react/lib/Text';
+import clsx from 'clsx';
 
 const navHeaderStyles = mergeStyleSets({
   root: {
@@ -21,9 +22,9 @@ const headerTextStyles: ITextStyles = {
   },
 };
 
-export const NavHeader = () => {
+export const NavHeader = ({ className, ...rest }) => {
   return (
-    <div className={`app-NavHeader ${navHeaderStyles.root}`}>
+    <div className={clsx('app-NavHeader', navHeaderStyles.root, className)} {...rest}>
       <Icon iconName="WaffleOffice365" />
       <Text variant="xLarge" nowrap block styles={headerTextStyles}>
         Inlook

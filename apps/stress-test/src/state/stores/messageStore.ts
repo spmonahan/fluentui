@@ -39,4 +39,8 @@ export class MessageStore {
       return msg.from.toLowerCase().startsWith(msgFilter);
     });
   }
+
+  public get currentSelectedMessage() {
+    return this.currentFolderMesssages.find(msg => msg.id === this.selectedMessageId);
+  }
 }

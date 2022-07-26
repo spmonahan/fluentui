@@ -10,29 +10,32 @@ import { useStoreContext } from '../state/context/StoreContext';
 const navPaneStyles = mergeStyleSets({
   root: {
     padding: DefaultSpacing.s1,
+    boxSizing: 'border-box',
   },
 });
 
-export const NavPane = ({ folders, itemRenderer = NavListItem }) => {
+export const NavPane = ({ folders, itemRenderer = NavListItem, className }) => {
   return (
-    <AutoSizer>
-      {({ height }) => (
-        <List
-          className={`app-NavPane ${navPaneStyles.root}`}
-          height={height}
-          width={204}
-          itemData={folders}
-          itemCount={folders.length}
-          itemSize={35}
-        >
-          {itemRenderer}
-        </List>
-      )}
-    </AutoSizer>
+    <div className={className}>
+      <AutoSizer>
+        {({ height }) => (
+          <List
+            className={`app-NavPane ${navPaneStyles.root}`}
+            height={height}
+            width={204}
+            itemData={folders}
+            itemCount={folders.length}
+            itemSize={35}
+          >
+            {itemRenderer}
+          </List>
+        )}
+      </AutoSizer>
+    </div>
   );
 };
 
-export const NavPaneView = observer(({ itemRenderer = NavListItemView }) => {
+export const NavPaneView = observer(({ itemRenderer = NavListItemView, className }) => {
   const { folderStore } = useStoreContext();
-  return <NavPane folders={folderStore.folders} itemRenderer={itemRenderer} />;
+  return <NavPane folders={folderStore.folders} itemRenderer={itemRenderer} className={className} />;
 });

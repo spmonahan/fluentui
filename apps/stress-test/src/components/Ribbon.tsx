@@ -7,6 +7,7 @@ import { Stack } from '@fluentui/react/lib/Stack';
 import { Separator } from '@fluentui/react/lib/Separator';
 import { DefaultButton, IconButton } from '@fluentui/react/lib/Button';
 import { Element } from '../shared/Element';
+import clsx from 'clsx';
 
 const ribbonStyles = mergeStyleSets({
   root: {},
@@ -140,9 +141,9 @@ const Home = () => {
   );
 };
 
-export const Ribbon = () => {
+export const Ribbon = ({ className, ...props }) => {
   return (
-    <div className={`app-Ribbon ${ribbonStyles.root}`}>
+    <div className={clsx('app-Ribbon', ribbonStyles.root, className)} {...props}>
       <Pivot>
         <PivotItem headerText="Home" className={ribbonStyles.pivotItem}>
           <Home />
