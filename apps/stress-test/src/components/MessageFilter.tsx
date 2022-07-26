@@ -14,7 +14,7 @@ const styles = mergeStyleSets({
 
 export const MessageFilter = ({ filter, onChange }) => {
   return (
-    <Element depth={26} className={clsx('app-MessageFilter-wrapper', styles.root)}>
+    <Element className={clsx('app-MessageFilter-wrapper', styles.root)}>
       <TextField
         className="app-MessageFilter"
         id="filterField"

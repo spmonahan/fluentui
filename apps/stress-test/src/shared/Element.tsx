@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useElementContext } from './ElementContext';
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const alphabetLength = alphabet.length;
@@ -12,7 +13,8 @@ export type ElementProps = {
 };
 
 export const Element: React.FC<ElementProps> = props => {
-  const { as = 'div', depth = 1, children, start = 0, classPrefix = '', className, ...rest } = props;
+  const { depth: contextDepth } = useElementContext();
+  const { as = 'div', children, depth = contextDepth, start = 0, classPrefix = '', className, ...rest } = props;
 
   const El = as;
   let depthClassName = alphabet[start % alphabetLength];

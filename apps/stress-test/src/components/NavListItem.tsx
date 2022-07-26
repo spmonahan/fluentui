@@ -31,7 +31,7 @@ export const NavListItem = ({ index, style, data, onClick, isSelected }) => {
   const styles = isSelected ? buttonSelectedStyles : buttonStyles;
 
   return (
-    <Element as="div" classPrefx="nav-list-item" depth={10} style={style}>
+    <Element as="div" classPrefx="nav-list-item" style={style}>
       <ActionButton styles={styles} iconProps={{ iconName: item.icon }} onClick={onClick}>
         {item.label}
       </ActionButton>

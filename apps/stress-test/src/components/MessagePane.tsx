@@ -9,21 +9,15 @@ const messageListStyles = mergeStyleSets({
   root: {
     height: 'calc(100% - 32px)',
   },
-  wrapper: {
-    selectors: {
-      ' .message-pane-b': {
-        height: '100%',
-      },
-    },
-  },
+  wrapper: {},
 });
 
 export const MesssagePaneView = props => {
   return (
     <Element
       as="div"
+      depth={1}
       classPrefix="message-pane"
-      depth={2}
       className={clsx('app-MessagePane', messageListStyles.wrapper, props.className)}
     >
       <div className={messageListStyles.root}>

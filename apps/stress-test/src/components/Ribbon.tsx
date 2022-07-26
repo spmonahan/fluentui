@@ -60,7 +60,7 @@ const newMailMenuProps = {
 
 const RibbonGroup = ({ children, label, ...props }) => {
   return (
-    <Element as="div" depth={10} classPrefix="ribbon-group" {...props} className={ribbonStyles.pivotGroup}>
+    <Element as="div" classPrefix="ribbon-group" {...props} className={ribbonStyles.pivotGroup}>
       {children}
       <Text variant="xSmall">{label}</Text>
     </Element>
@@ -71,7 +71,7 @@ const Home = () => {
   return (
     <>
       <RibbonGroup label="New">
-        <Element as="div" depth={20} classPrefix="new">
+        <Element as="div" classPrefix="new">
           <DefaultButton
             text="New mail"
             iconProps={{ iconName: 'Mail', className: ribbonStyles.iconBig }}
@@ -83,13 +83,13 @@ const Home = () => {
       <RibbonGroup label="Delete">
         <Stack horizontal>
           <Stack>
-            <Element as="div" depth={20} classPrefix="delete-1">
+            <Element as="div" classPrefix="delete-1">
               <IconButton iconProps={{ iconName: 'MailAlert' }} title="Ignore Mail" />
               <IconButton iconProps={{ iconName: 'Delete' }} title="Delete Mail" />
             </Element>
           </Stack>
           <Stack>
-            <Element as="div" depth={20} classPrefix="delete-2">
+            <Element as="div" classPrefix="delete-2">
               <DefaultButton text="Delete" iconProps={{ iconName: 'Delete', className: ribbonStyles.iconBig }} />
               <DefaultButton text="Archive" iconProps={{ iconName: 'Archive', className: ribbonStyles.iconBig }} />
             </Element>
@@ -98,7 +98,7 @@ const Home = () => {
       </RibbonGroup>
       <Separator vertical />
       <RibbonGroup label="Tags">
-        <Element as="div" depth={20} classPrefix="tags">
+        <Element as="div" classPrefix="tags">
           <DefaultButton text="Read / Unread" iconProps={{ iconName: 'Read', className: ribbonStyles.iconBig }} />
         </Element>
       </RibbonGroup>
@@ -106,7 +106,7 @@ const Home = () => {
       <RibbonGroup label="Filler 1">
         <Stack horizontal>
           <Stack>
-            <Element as="div" depth={20} classPrefix="filler-1">
+            <Element as="div" classPrefix="filler-1">
               <DefaultButton
                 text="Feature A"
                 iconProps={{ iconName: 'ReadOutLoud', className: ribbonStyles.iconBig }}
@@ -118,13 +118,13 @@ const Home = () => {
             </Element>
           </Stack>
           <Stack>
-            <Element as="div" depth={20} classPrefix="filler-2">
+            <Element as="div" classPrefix="filler-2">
               <IconButton iconProps={{ iconName: 'DependencyAdd' }} title="Feature C" />
               <IconButton iconProps={{ iconName: 'DependencyRemove' }} title="Feature D" />
             </Element>
           </Stack>
           <Stack>
-            <Element as="div" depth={20} classPrefix="filler-3">
+            <Element as="div" classPrefix="filler-3">
               <DefaultButton
                 text="Feature E"
                 iconProps={{ iconName: 'EntitlementPolicy', className: ribbonStyles.iconBig }}

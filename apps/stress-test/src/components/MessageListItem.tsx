@@ -21,26 +21,19 @@ export const MessageListItem = ({ index, style, data, onClick }) => {
   const item = data[index] as InlookMessage;
 
   return (
-    <Element
-      as="div"
-      classPrefix="message-list-item"
-      depth={10}
-      style={style}
-      className={itemStyles.root}
-      onClick={onClick}
-    >
+    <Element as="div" classPrefix="message-list-item" style={style} className={itemStyles.root} onClick={onClick}>
       <Stack>
-        <Element as="div" classPrefix="message-list-item-from" depth={5}>
+        <Element as="div" classPrefix="message-list-item-from">
           <Text variant="medium" nowrap>
             {item.from}
           </Text>
         </Element>
-        <Element as="div" classPrefix="message-list-item-subject" depth={5}>
+        <Element as="div" classPrefix="message-list-item-subject">
           <Text variant="smallPlus" nowrap>
             {item.subject.substring(0, 40)}
           </Text>
         </Element>
-        <Element as="div" classPrefix="message-list-item-message" depth={5}>
+        <Element as="div" classPrefix="message-list-item-message">
           <Text variant="small" nowrap>
             {item.message}
           </Text>

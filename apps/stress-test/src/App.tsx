@@ -60,7 +60,7 @@ const appStyles = mergeStyleSets({
 
 function App() {
   return (
-    <Element as="div" classPrefix="app-root" className={`App ${appStyles.root}`}>
+    <div className={clsx('App', appStyles.root)}>
       <NavHeader className={appStyles.navHeader} />
       <Ribbon className={appStyles.ribbon} />
       <main className={clsx('app-main', appStyles.main, appStyles.main)}>
@@ -68,7 +68,7 @@ function App() {
         <MesssagePaneView className={appStyles.messagePaneView} />
         <MailReadComposeView className={appStyles.mailReadComposeView} />
       </main>
-    </Element>
+    </div>
   );
 }
 
