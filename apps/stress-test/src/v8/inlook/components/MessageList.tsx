@@ -4,7 +4,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList as List } from 'react-window';
 import { MessageListItem, MessageListItemView } from './MessageListItem';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
+import { useStoreContext } from '../../../state/context/StoreContext';
 
 export const MessageList = ({ messages, itemRenderer = MessageListItem }) => {
   return (

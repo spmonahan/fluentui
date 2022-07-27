@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { TextField } from '@fluentui/react/lib/TextField';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
-import { Element } from '../shared/Element';
+import { useStoreContext } from '../../../state/context/StoreContext';
+import { Element } from '../../../shared/Element';
 import clsx from 'clsx';
 import { mergeStyleSets } from '@fluentui/react';
 

@@ -1,9 +1,9 @@
 import { DefaultSpacing, mergeStyleSets, Persona, Text } from '@fluentui/react';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Element } from '../shared/Element';
-import { useStoreContext } from '../state/context/StoreContext';
-import { InlookMessage } from '../state/data/inlook/types';
+import { Element } from '../../../shared/Element';
+import { useStoreContext } from '../../../state/context/StoreContext';
+import { InlookMessage } from '../../../state/data/inlook/types';
 import clsx from 'clsx';
 import { ComposeMailView } from './ComposeMail';
 

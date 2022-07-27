@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ActionButton } from '@fluentui/react/lib/Button';
-import { InlookFolder } from '../state/data/inlook/types';
+import { InlookFolder } from '../../../state/data/inlook/types';
 import { DefaultPalette } from '@fluentui/react/lib/Theme';
 import type { IButtonStyles } from '@fluentui/react/lib/Button';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
-import { Element } from '../shared/Element';
+import { useStoreContext } from '../../../state/context/StoreContext';
+import { Element } from '../../../shared/Element';
 
 const buttonStyles: IButtonStyles = {
   root: {

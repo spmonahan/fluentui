@@ -15,6 +15,7 @@
     "lint": "just-scripts lint",
     "test": "jest --passWithNoTests",
     "start": "vite",
+    "start:v8stress": "vite src/v8/inlook",
     "type-check": "tsc -b tsconfig.json"
   },
   "dependencies": {

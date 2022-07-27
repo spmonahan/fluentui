@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Element } from '../shared/Element';
+import { Element } from '../../../shared/Element';
 import {
   IconButton,
   mergeStyleSets,
@@ -12,7 +12,7 @@ import {
 } from '@fluentui/react';
 import clsx from 'clsx';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
+import { useStoreContext } from '../../../state/context/StoreContext';
 
 const cancelIcon: IIconProps = { iconName: 'Cancel' };
 

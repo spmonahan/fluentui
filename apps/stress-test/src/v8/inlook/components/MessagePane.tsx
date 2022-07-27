@@ -2,7 +2,7 @@ import * as React from 'react';
 import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { MessageFilterView } from './MessageFilter';
 import { MessageListView } from './MessageList';
-import { Element } from '../shared/Element';
+import { Element } from '../../../shared/Element';
 import clsx from 'clsx';
 
 const messageListStyles = mergeStyleSets({

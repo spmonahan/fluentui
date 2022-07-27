@@ -5,7 +5,7 @@ import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { NavListItem, NavListItemView } from './NavListItem';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
+import { useStoreContext } from '../../../state/context/StoreContext';
 
 const navPaneStyles = mergeStyleSets({
   root: {

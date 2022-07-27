@@ -6,10 +6,10 @@ import { Text } from '@fluentui/react/lib/Text';
 import { Stack } from '@fluentui/react/lib/Stack';
 import { Separator } from '@fluentui/react/lib/Separator';
 import { DefaultButton, IconButton } from '@fluentui/react/lib/Button';
-import { Element } from '../shared/Element';
+import { Element } from '../../../shared/Element';
 import clsx from 'clsx';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
+import { useStoreContext } from '../../../state/context/StoreContext';
 import { IContextualMenuProps } from '@fluentui/react';
 
 const ribbonStyles = mergeStyleSets({

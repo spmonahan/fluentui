@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { InlookMessage } from '../state/data/inlook/types';
+import { InlookMessage } from '../../../state/data/inlook/types';
 import { DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { Text } from '@fluentui/react/lib/Text';
 import { Stack } from '@fluentui/react/lib/Stack';
 import { mergeStyleSets } from '@fluentui/react/lib/Styling';
 import { observer } from 'mobx-react';
-import { useStoreContext } from '../state/context/StoreContext';
-import { Element } from '../shared/Element';
+import { useStoreContext } from '../../../state/context/StoreContext';
+import { Element } from '../../../shared/Element';
 
 const itemStyles = mergeStyleSets({
   root: {
