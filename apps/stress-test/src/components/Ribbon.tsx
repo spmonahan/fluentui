@@ -21,6 +21,7 @@ const ribbonStyles = mergeStyleSets({
     backgroundColor: DefaultPalette.white,
 
     display: 'flex',
+    overflow: 'scroll hidden',
   },
 
   pivotGroup: {
@@ -64,6 +65,62 @@ const RibbonGroup = ({ children, label, ...props }) => {
       {children}
       <Text variant="xSmall">{label}</Text>
     </Element>
+  );
+};
+
+const Filler = ({ numGroups }) => {
+  const groups = [];
+
+  for (let i = 0; i < numGroups; i++) {
+    groups.push(
+      <RibbonGroup label="Filler 1">
+        <Stack horizontal>
+          <Stack>
+            <Element as="div" classPrefix="filler-1">
+              <DefaultButton
+                text="Feature A"
+                iconProps={{ iconName: 'ReadOutLoud', className: ribbonStyles.iconBig }}
+              />
+              <DefaultButton
+                text="Feature B"
+                iconProps={{ iconName: 'ReadingMode', className: ribbonStyles.iconBig }}
+              />
+            </Element>
+          </Stack>
+          <Stack>
+            <Element as="div" classPrefix="filler-2">
+              <IconButton iconProps={{ iconName: 'DependencyAdd' }} title="Feature C" />
+              <IconButton iconProps={{ iconName: 'DependencyRemove' }} title="Feature D" />
+            </Element>
+          </Stack>
+          <Stack>
+            <Element as="div" classPrefix="filler-3">
+              <DefaultButton
+                text="Feature E"
+                iconProps={{ iconName: 'EntitlementPolicy', className: ribbonStyles.iconBig }}
+              />
+              <DefaultButton
+                text="Feature G"
+                iconProps={{ iconName: 'EntitlementRedemption', className: ribbonStyles.iconBig }}
+              />
+            </Element>
+          </Stack>
+        </Stack>
+      </RibbonGroup>,
+    );
+  }
+
+  return (
+    <>
+      {groups.map(group => {
+        return (
+          <>
+            <Separator vertical />
+            {group}
+          </>
+        );
+      })}
+    </>
   );
 };
 
@@ -137,6 +194,7 @@ const Home = () => {
           </Stack>
         </Stack>
       </RibbonGroup>
+      <Filler numGroups={10} />
     </>
   );
 };
