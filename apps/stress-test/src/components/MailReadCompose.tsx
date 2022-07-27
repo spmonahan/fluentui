@@ -5,6 +5,7 @@ import { Element } from '../shared/Element';
 import { useStoreContext } from '../state/context/StoreContext';
 import { InlookMessage } from '../state/data/inlook/types';
 import clsx from 'clsx';
+import { ComposeMailView } from './ComposeMail';
 
 type MailReadComposeProps = {
   message?: InlookMessage;
@@ -35,12 +36,18 @@ const messageStyles = mergeStyleSets({
   },
 });
 
-export const MailReadCompose: React.FC<MailReadComposeProps> = ({ message, className }) => {
+export const MailReadCompose: React.FC<MailReadComposeProps> = ({ message, isComposingMessage, className }) => {
+  if (isComposingMessage) {
+    return <ComposeMailView />;
+  }
+
   if (!message) {
     return (
-      <Element as="div" className={clsx('mailreadcompose-root', messageStyles.root, className)}>
-        <Text variant="mega">No message selected</Text>
-      </Element>
+      <>
+        <Element as="div" className={clsx('mailreadcompose-root', messageStyles.root, className)}>
+          <Text variant="mega">No message selected</Text>
+        </Element>
+      </>
     );
   }
 
@@ -78,5 +85,11 @@ export const MailReadCompose: React.FC<MailReadComposeProps> = ({ message, class
 
 export const MailReadComposeView = observer(props => {
   const { messageStore } = useStoreContext();
-  return <MailReadCompose message={messageStore.currentSelectedMessage} {...props} />;
+  return (
+    <MailReadCompose
+      message={messageStore.currentSelectedMessage}
+      isComposingMessage={messageStore.isComposingMessage}
+      {...props}
+    />
+  );
 });

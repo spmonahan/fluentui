@@ -8,6 +8,9 @@ import { Separator } from '@fluentui/react/lib/Separator';
 import { DefaultButton, IconButton } from '@fluentui/react/lib/Button';
 import { Element } from '../shared/Element';
 import clsx from 'clsx';
+import { observer } from 'mobx-react';
+import { useStoreContext } from '../state/context/StoreContext';
+import { IContextualMenuProps } from '@fluentui/react';
 
 const ribbonStyles = mergeStyleSets({
   root: {},
@@ -39,7 +42,7 @@ const ribbonStyles = mergeStyleSets({
   },
 });
 
-const newMailMenuProps = {
+const newMailMenuProps: IContextualMenuProps = {
   items: [
     {
       key: 'newEmail',
@@ -73,10 +76,10 @@ const Filler = ({ numGroups }) => {
 
   for (let i = 0; i < numGroups; i++) {
     groups.push(
-      <RibbonGroup label="Filler 1">
+      <RibbonGroup label={`Filler ${i + 1}`} key={i}>
         <Stack horizontal>
           <Stack>
-            <Element as="div" classPrefix="filler-1">
+            <Element as="div" classPrefix={`filler-${i + 1}-a`}>
               <DefaultButton
                 text="Feature A"
                 iconProps={{ iconName: 'ReadOutLoud', className: ribbonStyles.iconBig }}
@@ -88,13 +91,13 @@ const Filler = ({ numGroups }) => {
             </Element>
           </Stack>
           <Stack>
-            <Element as="div" classPrefix="filler-2">
+            <Element as="div" classPrefix={`filler-${i + 1}-b`}>
               <IconButton iconProps={{ iconName: 'DependencyAdd' }} title="Feature C" />
               <IconButton iconProps={{ iconName: 'DependencyRemove' }} title="Feature D" />
             </Element>
           </Stack>
           <Stack>
-            <Element as="div" classPrefix="filler-3">
+            <Element as="div" classPrefix={`filler-${i + 1}-c`}>
               <DefaultButton
                 text="Feature E"
                 iconProps={{ iconName: 'EntitlementPolicy', className: ribbonStyles.iconBig }}
@@ -124,16 +127,40 @@ const Filler = ({ numGroups }) => {
   );
 };
 
+export const NewMailButton = ({ onClick }) => {
+  const onMenuClick = React.useCallback(
+    (e, item) => {
+      if (item.key === 'newEmail') {
+        onClick(true);
+      }
+    },
+    [onClick],
+  );
+
+  React.useEffect(() => {
+    newMailMenuProps.items.forEach(item => (item.onClick = onMenuClick));
+  }, [onMenuClick]);
+
+  return (
+    <DefaultButton
+      text="New mail"
+      iconProps={{ iconName: 'Mail', className: ribbonStyles.iconBig }}
+      menuProps={newMailMenuProps}
+    />
+  );
+};
+
+export const NewMailButtonView = observer(() => {
+  const { messageStore } = useStoreContext();
+  return <NewMailButton onClick={messageStore.setIsComposingMessage} />;
+});
+
 const Home = () => {
   return (
     <>
       <RibbonGroup label="New">
         <Element as="div" classPrefix="new">
-          <DefaultButton
-            text="New mail"
-            iconProps={{ iconName: 'Mail', className: ribbonStyles.iconBig }}
-            menuProps={newMailMenuProps}
-          />
+          <NewMailButtonView />
         </Element>
       </RibbonGroup>
       <Separator vertical />
@@ -194,7 +221,7 @@ const Home = () => {
           </Stack>
         </Stack>
       </RibbonGroup>
-      <Filler numGroups={10} />
+      <Filler numGroups={20} />
     </>
   );
 };

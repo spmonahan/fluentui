@@ -5,11 +5,10 @@ import { Ribbon } from './components/Ribbon';
 import { NavHeader } from './components/NavHeader';
 import { NavPaneView } from './components/NavPane';
 import { MesssagePaneView } from './components/MessagePane';
-
-import './App.css';
-import { Element } from './shared/Element';
 import { MailReadComposeView } from './components/MailReadCompose';
 import clsx from 'clsx';
+
+import './App.css';
 
 const navHeaderHeight = '43px';
 const ribbonHeight = '162px';
@@ -19,14 +18,9 @@ const appStyles = mergeStyleSets({
     backgroundColor: DefaultPalette.neutralLighter,
     display: 'flex',
     flexDirection: 'column',
-    gridTemplateRows: '48px 162px 1fr',
+    rowGap: 10,
     height: '100vh',
     overflow: 'hidden',
-    selectors: {
-      '*': {
-        boxSizing: 'border-box',
-      },
-    },
   },
 
   navHeader: {

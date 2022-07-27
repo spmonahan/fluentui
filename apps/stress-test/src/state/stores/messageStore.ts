@@ -7,12 +7,14 @@ export class MessageStore {
   public messages: InlookMessageList;
   public selectedMessageId: string | null;
   public messageFilter: string | null;
+  public composingMessage: boolean;
 
   constructor(rootStore: RootStore, messages: InlookMessageList) {
     this.rootStore = rootStore;
     this.messages = messages;
     this.selectedMessageId = null;
     this.messageFilter = null;
+    this.composingMessage = false;
 
     makeAutoObservable(this, { rootStore: false });
   }
@@ -23,6 +25,11 @@ export class MessageStore {
 
   public setMessageFilter = (filter: string | null) => {
     this.messageFilter = filter;
+  };
+
+  public setIsComposingMessage = (isComposingMessage: boolean) => {
+    console.log('???', isComposingMessage);
+    this.composingMessage = isComposingMessage;
   };
 
   public get currentFolderMesssages() {
@@ -42,5 +49,10 @@ export class MessageStore {
 
   public get currentSelectedMessage() {
     return this.currentFolderMesssages.find(msg => msg.id === this.selectedMessageId);
+  }
+
+  public get isComposingMessage() {
+    console.log('gety', this.composingMessage);
+    return this.composingMessage;
   }
 }
