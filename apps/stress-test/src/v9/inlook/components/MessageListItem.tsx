@@ -32,7 +32,7 @@ export const MessageListItem = ({ index, style, data, onClick }) => {
   const itemStyles = useItemStyles();
 
   return (
-    <Element as="div" classPrefix="message-list-item" className={itemStyles.root} onClick={onClick}>
+    <Element as="div" style={style} classPrefix="message-list-item" className={itemStyles.root} onClick={onClick}>
       <FlexColumn>
         <Element as="div" classPrefix="message-list-item-from">
           <Body1>{item.from}</Body1>

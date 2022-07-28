@@ -15,7 +15,7 @@ const useMessageStyles = makeStyles({
   root: {
     ...shorthands.padding(tokens.spacingVerticalM, tokens.spacingHorizontalM),
     paddingTop: '0px',
-    overflowY: 'scroll',
+    overflowY: 'auto',
   },
 
   meta: {

@@ -1,27 +1,18 @@
 import * as React from 'react';
 
-import { ToggleButton, makeStyles, mergeClasses, tokens } from '@fluentui/react-components';
+import { ToggleButton, makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
 import { MailInbox24Regular, Send24Regular, Delete24Regular, Folder24Regular } from '@fluentui/react-icons';
 import { InlookFolder } from '../../../state/data/inlook/types';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../../../state/context/StoreContext';
 import { Element } from '../../../shared/Element';
+import clsx from 'clsx';
 
 const useButtonStyles = makeStyles({
   root: {
     width: '100%',
     maxWidth: '100%',
-
-    ':hover': {
-      backgroundColor: tokens.colorSubtleBackgroundHover,
-    },
-  },
-
-  rootSelected: {
-    backgroundColor: tokens.colorBrandBackgroundInvertedHover,
-    ':hover': {
-      backgroundColor: tokens.colorBrandBackgroundInvertedHover,
-    },
+    backgroundColor: 'blue',
   },
 });
 
@@ -40,25 +31,32 @@ const getIcon: IconMapFn = iconName => {
   }
 };
 
-export const NavListItem = ({ index, data, onClick, isSelected }) => {
+export const NavListItem = ({ index, style, data, onClick, isSelected }) => {
   const item = data[index] as InlookFolder;
 
   const buttonStyles = useButtonStyles();
 
-  const classNames = mergeClasses(buttonStyles.root, isSelected ? buttonStyles.rootSelected : undefined);
+  // const classNames = mergeClasses(buttonStyles.root);
 
   const Icon = getIcon(item.icon);
 
   return (
-    <Element as="div" classPrefix="nav-list-item">
-      <ToggleButton className={classNames} icon={<Icon />} onClick={onClick} checked={isSelected} appearance="subtle">
+    <Element as="div" style={style} depth={1} classPrefix="nav-list-item">
+      <ToggleButton
+        className={buttonStyles.root}
+        style={{ maxWidth: '100%', width: '100%', justifyContent: 'flex-start' }}
+        icon={<Icon />}
+        onClick={onClick}
+        checked={isSelected}
+        appearance="subtle"
+      >
         {item.label}
       </ToggleButton>
     </Element>
   );
 };
 
-export const NavListItemView = observer(({ index, data }) => {
+export const NavListItemView = observer(({ index, style, data }) => {
   const { folderStore } = useStoreContext();
 
   const onClick = React.useCallback(
@@ -70,5 +68,5 @@ export const NavListItemView = observer(({ index, data }) => {
 
   const isSelected = folderStore.selectedFolderId === data[index].id ? true : false;
 
-  return <NavListItem index={index} data={data} onClick={onClick} isSelected={isSelected} />;
+  return <NavListItem index={index} style={style} data={data} onClick={onClick} isSelected={isSelected} />;
 });
