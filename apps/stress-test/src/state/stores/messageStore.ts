@@ -28,7 +28,6 @@ export class MessageStore {
   };
 
   public setIsComposingMessage = (isComposingMessage: boolean) => {
-    console.log('???', isComposingMessage);
     this.composingMessage = isComposingMessage;
   };
 
@@ -52,7 +51,6 @@ export class MessageStore {
   }
 
   public get isComposingMessage() {
-    console.log('gety', this.composingMessage);
     return this.composingMessage;
   }
 }

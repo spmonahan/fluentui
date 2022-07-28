@@ -15,11 +15,12 @@
     "lint": "just-scripts lint",
     "test": "jest --passWithNoTests",
     "start": "vite",
-    "start:v8stress": "vite src/v8/inlook",
     "type-check": "tsc -b tsconfig.json"
   },
   "dependencies": {
     "@fluentui/react": "^8.72.3",
+    "@fluentui/react-components": "^9.1.0",
+    "@fluentui/react-icons": "^2.0.177",
     "clsx": "^1.2.1",
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.1",

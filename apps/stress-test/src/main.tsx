@@ -15,6 +15,9 @@ const RootApp = () => {
         <li>
           <a href="/v8/inlook/">Fluent v8 Stress Test</a>
         </li>
+        <li>
+          <a href="/v9/inlook/">Fluent v9 Stress Test</a>
+        </li>
       </ul>
     </>
   );

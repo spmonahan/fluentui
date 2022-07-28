@@ -27,7 +27,7 @@ export const NavHeader = ({ className, ...rest }) => {
     <div className={clsx('app-NavHeader', navHeaderStyles.root, className)} {...rest}>
       <Icon iconName="WaffleOffice365" />
       <Text variant="xLarge" nowrap block styles={headerTextStyles}>
-        Inlook
+        Inlook v8
       </Text>
     </div>
   );

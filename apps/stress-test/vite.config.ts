@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'),
         v8inlook: resolve(root, 'v8', 'inlook', 'index.html'),
+        v9inlook: resolve(root, 'v9', 'inlook', 'index.html'),
       },
     },
   },
