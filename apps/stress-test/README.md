@@ -1,7 +1,24 @@
-# @fluentui/benchmarks
+# @fluentui/stress-tests
 
-**Benchmarks for client-side rendering in [Fluent UI React v8](https://developer.microsoft.com/en-us/fluentui#/controls/web).**
+This package is a collection of stress test applications for Fluent UI. Stress test applications are simplified versions
+of real applications that are designed to stress Fluent UI in a different. Stresses include things like bundle size;
+DOM size and updates; and layout and style recalculation.
 
 ## Usage
 
-TBD
+### Development
+
+1. `yarn start`
+2. Select `stress-test` from the list of packages
+3. Open `localhost:3000` in your browser
+4. Run manual tests
+
+### "Production"
+
+While stress test apps are never meant to be shipped to a production environment testing against production builds is
+useful (for instance, the production version of React is significantly faster than the development build).
+
+1. `yarn workspace @fluentui/stress-test build`
+2. `yarn workspace @fluentui/stress-test serve`
+3. The application should be opened in your default browser
+4. Run manual tests

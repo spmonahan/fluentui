@@ -19,5 +19,6 @@ export default defineConfig({
         v9inlook: resolve(root, 'v9', 'inlook', 'index.html'),
       },
     },
+    sourcemap: true,
   },
 });
