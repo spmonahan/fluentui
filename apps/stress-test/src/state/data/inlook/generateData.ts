@@ -39,7 +39,7 @@ export const generateFolders: (size?: number, folders?: string[]) => InlookFolde
 };
 
 export const generateMessages: InlookDataGenerator = (
-  size = 1000,
+  size = 500,
   people = testPeople,
   subjectLines = testSubjectLines,
   messageBodies = testMessageBodies,
