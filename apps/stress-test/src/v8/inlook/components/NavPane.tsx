@@ -6,6 +6,7 @@ import { DefaultSpacing } from '@fluentui/react/lib/Theme';
 import { NavListItem, NavListItemView } from './NavListItem';
 import { observer } from 'mobx-react';
 import { useStoreContext } from '../../../state/context/StoreContext';
+import { InlookFolder } from '../../../state/data/inlook/types';
 
 const navPaneStyles = mergeStyleSets({
   root: {
@@ -14,11 +15,17 @@ const navPaneStyles = mergeStyleSets({
   },
 });
 
-export const NavPane = ({ folders, itemRenderer = NavListItem, className }) => {
+type NavPaneProps = {
+  folders: InlookFolder[];
+  itemRenderer: any;
+  className?: string;
+};
+
+export const NavPane: React.FC<NavPaneProps> = ({ folders, itemRenderer = NavListItem, className }) => {
   return (
     <div className={className}>
       <AutoSizer>
-        {({ height }) => (
+        {({ height }: { height: number }) => (
           <List
             className={`app-NavPane ${navPaneStyles.root}`}
             height={height}
@@ -35,7 +42,9 @@ export const NavPane = ({ folders, itemRenderer = NavListItem, className }) => {
   );
 };
 
-export const NavPaneView = observer(({ itemRenderer = NavListItemView, className }) => {
-  const { folderStore } = useStoreContext();
-  return <NavPane folders={folderStore.folders} itemRenderer={itemRenderer} className={className} />;
-});
+export const NavPaneView = observer(
+  ({ itemRenderer = NavListItemView, className }: { itemRenderer: any; className?: string }) => {
+    const { folderStore } = useStoreContext();
+    return <NavPane folders={folderStore.folders} itemRenderer={itemRenderer} className={className} />;
+  },
+);

@@ -9,6 +9,8 @@ import { ComposeMailView } from './ComposeMail';
 
 type MailReadComposeProps = {
   message?: InlookMessage;
+  isComposingMessage: boolean;
+  className?: string;
 };
 
 const messageStyles = mergeStyleSets({
@@ -83,7 +85,8 @@ export const MailReadCompose: React.FC<MailReadComposeProps> = ({ message, isCom
   );
 };
 
-export const MailReadComposeView = observer(props => {
+// eslint-disable-next-line
+export const MailReadComposeView = observer((props: any) => {
   const { messageStore } = useStoreContext();
   return (
     <MailReadCompose

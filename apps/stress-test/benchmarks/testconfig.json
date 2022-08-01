@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 25,
+  "timeout": 0,
+  "benchmarks": [
+    {
+      "browser": {
+        "name": "chrome"
+      },
+      "measurement": [
+        {
+          "mode": "performance",
+          "entryName": "message-list"
+        }
+      ],
+      "expand": [
+        {
+          "name": "v8 test",
+          "url": "http://localhost:8080/v8/inlook"
+        },
+        {
+          "name": "v9 test",
+          "url": "http://localhost:8080/v9/inlook"
+        }
+      ]
+    }
+  ]
+}
