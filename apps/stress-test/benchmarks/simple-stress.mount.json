@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
-  "sampleSize": 25,
+  "sampleSize": 50,
   "timeout": 0,
   "benchmarks": [
     {
@@ -10,21 +10,21 @@
       "measurement": [
         {
           "mode": "performance",
-          "entryName": "stress-container"
+          "entryName": "stress"
         }
       ],
       "expand": [
         {
-          "name": "v8",
-          "url": "http://localhost:8080/v8/simple-stress/"
+          "name": "v8 - mount",
+          "url": "http://localhost:8080/v8/simple-stress/?test=mount"
         },
         {
-          "name": "v9",
-          "url": "http://localhost:8080/v9/simple-stress"
+          "name": "v9 - mount",
+          "url": "http://localhost:8080/v9/simple-stress/?test=mount"
         },
         {
-          "name": "wc",
-          "url": "http://localhost:8080/wc/simple-stress"
+          "name": "wc - mount",
+          "url": "http://localhost:8080/wc/simple-stress/?test=mount"
         }
       ]
     }

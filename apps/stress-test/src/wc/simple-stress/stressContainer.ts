@@ -1,4 +1,6 @@
 import { FASTElement, customElement, attr, html, css, repeat } from '@microsoft/fast-element';
+import { injectGlobalCss } from '../../shared/injectStyles';
+import { getTestParams } from '../../shared/testParams';
 import { performanceMeasure } from '../../shared/usePerformanceMeasure';
 
 const styles = css`
@@ -20,27 +22,40 @@ const template = html<StressContainer>`<slot></slot>`;
 export class StressContainer extends FASTElement {
   constructor() {
     super();
-
-    performance.mark('start');
   }
 
   public connectedCallback(): void {
     super.connectedCallback();
+
+    if (getTestParams().test === 'mount') {
+      performance.mark('start');
+    }
+
     const slot = this.shadowRoot?.querySelector('slot');
     slot?.addEventListener(
       'slotchange',
       e => {
-        // requestPostAnimationFrame polyfill
-        requestAnimationFrame(() => {
-          addEventListener(
-            'message',
-            () => {
-              performance.measure('stress-container', 'start');
-            },
-            { once: true },
-          );
-          postMessage('', '*');
-        });
+        if (getTestParams().test === 'inject-styles') {
+          setTimeout(() => {
+            performanceMeasure('stress', 'start');
+            injectGlobalCss();
+          }, 2000);
+          return;
+        }
+
+        if (getTestParams().test === 'mount') {
+          // requestPostAnimationFrame polyfill
+          requestAnimationFrame(() => {
+            addEventListener(
+              'message',
+              () => {
+                performance.measure('stress', 'start');
+              },
+              { once: true },
+            );
+            postMessage('', '*');
+          });
+        }
       },
       { once: true },
     );

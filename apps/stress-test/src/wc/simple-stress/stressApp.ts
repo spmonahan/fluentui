@@ -1,4 +1,5 @@
 import { FASTElement, customElement, attr, html, css, repeat } from '@microsoft/fast-element';
+import { getTestParams } from '../../shared/testParams';
 
 const styles = css`
   :host {
@@ -20,4 +21,8 @@ const template = html<StressApp>`
 })
 export class StressApp extends FASTElement {
   @attr numChildren: number = 10;
+
+  public connectedCallback(): void {
+    super.connectedCallback();
+  }
 }

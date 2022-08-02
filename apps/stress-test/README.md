@@ -22,3 +22,10 @@ useful (for instance, the production version of React is significantly faster th
 2. `yarn workspace @fluentui/stress-test serve`
 3. The application should be opened in your default browser
 4. Run manual tests
+
+### Automated Tests
+
+The "Simple Stress" applications have automated tests.
+
+1. `yarn workspace @fluentui/stress-test bench:mount`, tests component mounting performance
+2. `yarn workspace @fluentui/stress-test bench:inject-styles`, tests style recalculation performance

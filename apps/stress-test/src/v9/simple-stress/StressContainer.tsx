@@ -1,6 +1,8 @@
 import { makeStyles, shorthands } from '@fluentui/react-components';
 import * as React from 'react';
-import { usePerformanceMeasure } from '../../shared/usePerformanceMeasure';
+import { injectGlobalCss } from '../../shared/injectStyles';
+import { getTestParams } from '../../shared/testParams';
+import { performanceMeasure, usePerformanceMeasure } from '../../shared/usePerformanceMeasure';
 import { StressComponent } from './StressComponent';
 
 const useStyles = makeStyles({
@@ -16,7 +18,14 @@ export type StressContainerProps = {
 };
 
 export const StressContainer: React.FC<StressContainerProps> = ({ numChildren = 10 }) => {
-  usePerformanceMeasure('stress-container', 'start');
+  if (getTestParams().test === 'mount') {
+    performanceMeasure('stress', 'start');
+  } else if (getTestParams().test === 'inject-styles') {
+    setTimeout(() => {
+      performanceMeasure('stress', 'start');
+      injectGlobalCss();
+    }, 2000);
+  }
 
   const styles = useStyles();
 

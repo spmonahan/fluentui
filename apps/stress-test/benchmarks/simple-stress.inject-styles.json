@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 25,
+  "timeout": 0,
+  "benchmarks": [
+    {
+      "browser": {
+        "name": "chrome"
+      },
+      "measurement": [
+        {
+          "mode": "performance",
+          "entryName": "stress"
+        }
+      ],
+      "expand": [
+        {
+          "name": "v8 - inject styles",
+          "url": "http://localhost:8080/v8/simple-stress/?test=inject-styles"
+        },
+        {
+          "name": "v9 - inject styles",
+          "url": "http://localhost:8080/v9/simple-stress/?test=inject-styles"
+        },
+        {
+          "name": "wc - inject styles",
+          "url": "http://localhost:8080/wc/simple-stress/?test=inject-styles"
+        }
+      ]
+    }
+  ]
+}
