@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 25,
+  "timeout": 0,
+  "benchmarks": [
+    {
+      "browser": {
+        "name": "chrome"
+      },
+      "measurement": [
+        {
+          "mode": "performance",
+          "entryName": "stress-container"
+        }
+      ],
+      "expand": [
+        {
+          "name": "v8",
+          "url": "http://localhost:8080/v8/simple-stress/"
+        },
+        {
+          "name": "v9",
+          "url": "http://localhost:8080/v9/simple-stress"
+        },
+        {
+          "name": "wc",
+          "url": "http://localhost:8080/wc/simple-stress"
+        }
+      ]
+    }
+  ]
+}

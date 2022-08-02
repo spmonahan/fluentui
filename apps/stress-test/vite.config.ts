@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import alias from '@rollup/plugin-alias';
 
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist');
@@ -18,12 +17,10 @@ export default defineConfig({
         main: resolve(root, 'index.html'),
         v8inlook: resolve(root, 'v8', 'inlook', 'index.html'),
         v9inlook: resolve(root, 'v9', 'inlook', 'index.html'),
+        v8SimpleStress: resolve(root, 'v8', 'simple-stress', 'index.html'),
+        v9SimpleStress: resolve(root, 'v9', 'simple-stress', 'index.html'),
+        wcSimpleStress: resolve(root, 'wc', 'simple-stress', 'index.html'),
       },
-      plugins: [
-        alias({
-          entries: [{ find: 'react-dom', replacement: 'react-dom/profiling' }],
-        }),
-      ],
     },
     sourcemap: true,
   },

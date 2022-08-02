@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WC: Simple Stress</title>
+  </head>
+  <body>
+    <div id="app">
+      <stress-app numChildren="100"></stress-app>
+    </div>
+    <script type="module" src="./main.ts"></script>
+    <script type="module" src="./stressComponent.ts"></script>
+    <script type="module" src="./stressContainer.ts"></script>
+    <script type="module" src="./stressApp.ts"></script>
+    <script type="module">
+      // import { performanceMeasure } from '../../shared/usePerformanceMeasure';
+
+      // // performanceMeasure('stress-container', 'start');
+
+      // const container = document.createElement('stress-container');
+      // container.numChildren = 100;
+
+      // document.getElementById('app').appendChild(container);
+    </script>
+  </body>
+</html>

@@ -2295,6 +2295,17 @@
     "@fluentui/keyboard-keys" "^9.0.0"
     tslib "^2.1.0"
 
+"@fluentui/web-components@^2.5.3":
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@fluentui/web-components/-/web-components-2.5.3.tgz#7f68c64a8de18933b77321995bd6cd93996ba353"
+  integrity sha512-pIG7vxtQiEpllkRVSgzB2aDRZC9v6X8XHFRNgh8EcsfWhfL5c9Av2r6Xu1Mw7hHrEo3YoQqduk9Y/pdzyP3P4g==
+  dependencies:
+    "@microsoft/fast-colors" "^5.3.0"
+    "@microsoft/fast-element" "^1.10.0"
+    "@microsoft/fast-foundation" "^2.46.0"
+    "@microsoft/fast-web-utilities" "^5.4.0"
+    tslib "^1.13.0"
+
 "@griffel/babel-preset@1.3.1", "@griffel/babel-preset@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@griffel/babel-preset/-/babel-preset-1.3.1.tgz#a3bd339fa32c5df5f72c944cae0960e470c48f10"
@@ -3639,6 +3650,16 @@
   resolved "https://registry.yarnpkg.com/@microsoft/fast-colors/-/fast-colors-5.1.5.tgz#3d7dacae85c263030c793ba457991d4cdcec7538"
   integrity sha512-g8FByhbmRxibSpHkDE90CLCsh61HzH4ujPBG5N1zWXgM8LtzaF6OYBzfd8uGJ/md+SGeHf3aH9fcT8HTCbarXw==
 
+"@microsoft/fast-colors@^5.3.0":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-colors/-/fast-colors-5.3.1.tgz#defc59874176e42316be7e6d24c31885ead8ca56"
+  integrity sha512-72RZXVfCbwQzvo5sXXkuLXLT7rMeYaSf5r/6ewQiv/trBtqpWRm4DEH2EilHw/iWTBKOXs1qZNQndgUMa5n4LA==
+
+"@microsoft/fast-element@^1.10.0", "@microsoft/fast-element@^1.10.4":
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-element/-/fast-element-1.10.4.tgz#c1929cdcf73d665f2278a7fd3a8857bcddd733d9"
+  integrity sha512-SD0L3Kt++VSTqdkmGupB5tNaSLboEB7H/rh70a4eECpzCQewEzjd85jVNpgab1A8n5d3N9sPwZGIyfiUN6x4hg==
+
 "@microsoft/fast-element@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@microsoft/fast-element/-/fast-element-1.9.0.tgz#9d3bb5a029772c0e99c230acdcd6df9640a55715"
@@ -3654,10 +3675,27 @@
     tabbable "^5.2.0"
     tslib "^1.13.0"
 
+"@microsoft/fast-foundation@^2.46.0":
+  version "2.46.11"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-foundation/-/fast-foundation-2.46.11.tgz#4761bb3b923875a50fd0ea01c45d8ce56f273477"
+  integrity sha512-5ehg6l2g/PsAR+90EEWSR7QAiAKsdscAnP6upE2ysp2U1luER4tAVDIP2wGQneLhaHq2i4Htnb4t+K1dcrw6AQ==
+  dependencies:
+    "@microsoft/fast-element" "^1.10.4"
+    "@microsoft/fast-web-utilities" "^5.4.1"
+    tabbable "^5.2.0"
+    tslib "^1.13.0"
+
 "@microsoft/fast-web-utilities@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@microsoft/fast-web-utilities/-/fast-web-utilities-5.3.0.tgz#cf6031cc2d4b6668649006d2a0877920f8c0d2fd"
   integrity sha512-bC3JEM0tOFpxFOWTnBIFUwcH58BzBbW5zJFYcYvgNOSs4GN7Jg/90VJfiAqyEYyzxM6HPQbQUjQqOBytwwGT1g==
+  dependencies:
+    exenv-es6 "^1.1.1"
+
+"@microsoft/fast-web-utilities@^5.4.0", "@microsoft/fast-web-utilities@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-web-utilities/-/fast-web-utilities-5.4.1.tgz#8e3082ee2ff2b5467f17e7cb1fb01b0e4906b71f"
+  integrity sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==
   dependencies:
     exenv-es6 "^1.1.1"
 
@@ -4221,13 +4259,6 @@
     enhanced-resolve "^5.8.3"
     eslint-plugin-jest "^25.0.0"
     eslint-plugin-react "^7.26.0"
-
-"@rollup/plugin-alias@^3.1.9":
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.9.tgz#a5d267548fe48441f34be8323fb64d1d4a1b3fdf"
-  integrity sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==
-  dependencies:
-    slash "^3.0.0"
 
 "@rollup/pluginutils@^3.0.8":
   version "3.1.0"

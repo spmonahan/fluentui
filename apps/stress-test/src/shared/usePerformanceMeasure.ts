@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export type UsePerformanceMeasureFn = (measureName: string, startMark: string) => void;
+export type PerformanceMeasureFn = (measureName: string, startMark: string) => void;
 
-export const usePerformanceMeasure: UsePerformanceMeasureFn = (measureName, startMark) => {
+export const usePerformanceMeasure: PerformanceMeasureFn = (measureName, startMark) => {
   React.useEffect(() => {
     performance.mark(startMark);
 
@@ -17,5 +17,21 @@ export const usePerformanceMeasure: UsePerformanceMeasureFn = (measureName, star
       );
       postMessage('', '*');
     });
+  });
+};
+
+export const performanceMeasure: PerformanceMeasureFn = (measureName, startMark) => {
+  performance.mark(startMark);
+
+  // requestPostAnimationFrame polyfill
+  requestAnimationFrame(() => {
+    addEventListener(
+      'message',
+      () => {
+        performance.measure(measureName, startMark);
+      },
+      { once: true },
+    );
+    postMessage('', '*');
   });
 };
