@@ -38,6 +38,16 @@ export class StressApp extends FASTElement {
         performanceMeasure('stress', 'start');
         this.checked = true;
       }, 2000);
+    } else if (getTestParams().test === 'add-node') {
+      setTimeout(() => {
+        performanceMeasure('stress', 'start');
+        this.numChildren = 200;
+      }, 2000);
+    } else if (getTestParams().test === 'remove-node') {
+      setTimeout(() => {
+        performanceMeasure('stress', 'start');
+        this.numChildren = 1;
+      }, 2000);
     }
   }
 }

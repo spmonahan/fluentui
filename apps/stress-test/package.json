@@ -19,7 +19,9 @@
     "serve": "http-server ./dist -o",
     "bench:mount": "tach --config ./benchmarks/simple-stress.mount.json --json-file ./benchmarks/results/results.simple-stress.mount.json",
     "bench:inject-styles": "tach --config ./benchmarks/simple-stress.inject-styles.json --json-file ./benchmarks/results/results.simple-stress.inject-styles.json",
-    "bench:prop-update": "tach --config ./benchmarks/simple-stress.prop-update.json --json-file ./benchmarks/results/results.simple-stress.prop-update.json"
+    "bench:prop-update": "tach --config ./benchmarks/simple-stress.prop-update.json --json-file ./benchmarks/results/results.simple-stress.prop-update.json",
+    "bench:add-node": "tach --config ./benchmarks/simple-stress.add-node.json --json-file ./benchmarks/results/results.simple-stress.add-node.json",
+    "bench:remove-node": "tach --config ./benchmarks/simple-stress.remove-node.json --json-file ./benchmarks/results/results.simple-stress.remove-node.json"
   },
   "dependencies": {
     "@fluentui/react": "^8.72.3",

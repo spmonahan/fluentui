@@ -30,3 +30,5 @@ The "Simple Stress" applications have automated tests.
 1. `yarn workspace @fluentui/stress-test bench:mount`, tests component mounting performance
 2. `yarn workspace @fluentui/stress-test bench:inject-styles`, tests style recalculation performance
 3. `yarn workspace @fluentui/stress-test bench:prop-update`, test prop updating performance
+4. `yarn workspace @fluentui/stress-test bench:add-node`, test adding nodes
+5. `yarn workspace @fluentui/stress-test bench:remove-node`, test removing nodes

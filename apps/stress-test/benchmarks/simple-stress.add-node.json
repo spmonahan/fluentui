@@ -15,16 +15,16 @@
       ],
       "expand": [
         {
-          "name": "v8 - prop-update",
-          "url": "http://localhost:8080/v8/simple-stress/?test=prop-update"
+          "name": "v8 - add-node",
+          "url": "http://localhost:8080/v8/simple-stress/?test=add-node"
         },
         {
-          "name": "v9 - prop-update",
-          "url": "http://localhost:8080/v9/simple-stress/?test=prop-update"
+          "name": "v9 - add-node",
+          "url": "http://localhost:8080/v9/simple-stress/?test=add-node"
         },
         {
-          "name": "wc - prop-update",
-          "url": "http://localhost:8080/wc/simple-stress/?test=prop-update"
+          "name": "wc - add-node",
+          "url": "http://localhost:8080/wc/simple-stress/?test=add-node"
         }
       ]
     }
