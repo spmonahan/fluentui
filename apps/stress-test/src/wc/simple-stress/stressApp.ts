@@ -1,5 +1,7 @@
 import { FASTElement, customElement, attr, html, css, repeat } from '@microsoft/fast-element';
 import { getTestParams } from '../../shared/testParams';
+import { performanceMeasure } from '../../shared/usePerformanceMeasure';
+import { StressComponent } from './stressComponent';
 
 const styles = css`
   :host {
@@ -10,7 +12,12 @@ const styles = css`
 
 const template = html<StressApp>`
   <stress-container>
-    ${repeat(el => new Array(Number(el.numChildren)), html`<stress-component></stress-component>`)}
+    ${repeat(
+      el => new Array(Number(el.numChildren)),
+      html<StressComponent, StressApp>`<stress-component
+        checked=${(el, ctx) => ctx.parent.checked}
+      ></stress-component>`,
+    )}
   </stress-container>
 `;
 
@@ -21,8 +28,16 @@ const template = html<StressApp>`
 })
 export class StressApp extends FASTElement {
   @attr numChildren: number = 10;
+  @attr checked: boolean = false;
 
   public connectedCallback(): void {
     super.connectedCallback();
+
+    if (getTestParams().test === 'prop-update') {
+      setTimeout(() => {
+        performanceMeasure('stress', 'start');
+        this.checked = true;
+      }, 2000);
+    }
   }
 }

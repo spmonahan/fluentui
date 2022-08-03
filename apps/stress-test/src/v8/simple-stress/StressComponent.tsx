@@ -23,14 +23,15 @@ const styles = mergeStyleSets({
 
 export type StressComponentProps = {
   id?: string;
+  checked: boolean;
 };
 
-export const StressComponent: React.FC<StressComponentProps> = ({ id = '' }) => {
+export const StressComponent: React.FC<StressComponentProps> = ({ id = '', checked }) => {
   return (
     <div className={styles.stressComponent} id={id}>
       <DefaultButton>A button</DefaultButton>
       <Separator />
-      <Checkbox label="Check me out" />
+      <Checkbox label="Check me out" checked={checked} />
       <Separator />
       <Spinner />
       <Separator />

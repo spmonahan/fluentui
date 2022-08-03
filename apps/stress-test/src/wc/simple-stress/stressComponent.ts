@@ -16,7 +16,7 @@ const template = html<StressComponent>`
   <div class="stress-component" ${el => (el.id ? 'id="' + el.id + '"' : '')}>
     <fluent-button>A button</fluent-button>
     <fluent-divider></fluent-divider>
-    <fluent-checkbox>Check me out</fluent-checkbox>
+    <fluent-checkbox checked=${el => el.checked}>Check me out</fluent-checkbox>
     <fluent-divider></fluent-divider>
     <fluent-progress-ring></fluent-progress-ring>
     <fluent-divider></fluent-divider>
@@ -32,4 +32,5 @@ const template = html<StressComponent>`
 })
 export class StressComponent extends FASTElement {
   @attr id: string = '';
+  @attr checked: boolean = false;
 }

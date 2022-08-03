@@ -18,6 +18,8 @@ export type StressContainerProps = {
 };
 
 export const StressContainer: React.FC<StressContainerProps> = ({ numChildren = 10 }) => {
+  const [checked, setChecked] = React.useState(false);
+
   if (getTestParams().test === 'mount') {
     performanceMeasure('stress', 'start');
   } else if (getTestParams().test === 'inject-styles') {
@@ -25,6 +27,13 @@ export const StressContainer: React.FC<StressContainerProps> = ({ numChildren = 
       performanceMeasure('stress', 'start');
       injectGlobalCss();
     }, 2000);
+  } else if (getTestParams().test === 'prop-update') {
+    React.useEffect(() => {
+      setTimeout(() => {
+        performanceMeasure('stress', 'start');
+        setChecked(true);
+      }, 2000);
+    }, []);
   }
 
   const styles = useStyles();
@@ -33,7 +42,7 @@ export const StressContainer: React.FC<StressContainerProps> = ({ numChildren = 
   return (
     <div className={styles.container}>
       {kids.map((_, index) => {
-        return <StressComponent />;
+        return <StressComponent checked={checked} />;
       })}
     </div>
   );

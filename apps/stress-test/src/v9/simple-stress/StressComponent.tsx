@@ -26,9 +26,10 @@ const useStyles = makeStyles({
 
 export type StressComponentProps = {
   id?: string;
+  checked: boolean;
 };
 
-export const StressComponent: React.FC<StressComponentProps> = ({ id = '' }) => {
+export const StressComponent: React.FC<StressComponentProps> = ({ id = '', checked }) => {
   const styles = useStyles();
   const checkboxId = useId('checkbox');
 
@@ -37,7 +38,7 @@ export const StressComponent: React.FC<StressComponentProps> = ({ id = '' }) => 
       <Button>A button</Button>
       <Divider />
       <Label htmlFor={checkboxId}>Check me out</Label>
-      <Checkbox id={checkboxId} />
+      <Checkbox id={checkboxId} checked={checked} />
       <Divider />
       <Spinner />
       <Divider />
