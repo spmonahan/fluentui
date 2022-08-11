@@ -5,7 +5,7 @@ import { Tree } from '../../../shared/Tree';
 
 ReactDOM.render(
   <FluentProvider theme={webLightTheme}>
-    <Tree breadth={2} depth={10}>
+    <Tree breadth={20} depth={1}>
       <Button>Click me!</Button>
     </Tree>
   </FluentProvider>,
