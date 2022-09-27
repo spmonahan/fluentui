@@ -5,7 +5,7 @@ provideFluentDesignSystem().register(fluentButton());
 
 const componentRenderer: DOMSelectorTreeComponentRenderer = (node, depth, index) => {
   const btn = document.createElement('fluent-button');
-  btn.innerHTML = node.value.name + ' ' + index;
+  btn.textContent = node.value.name + ' ' + index;
 
   return btn;
 };
