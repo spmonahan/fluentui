@@ -17,7 +17,10 @@ const chances: { [key: string]: number } = {
   addSibling: 0.25,
   addPseudo: 0.25,
   useDescendantCombinator: 0.2,
+  useNonMatchingSelector: 0.2,
 };
+
+const nonMatchingSelector = '.non-matching-selector';
 
 const buildDescendentSelector = <T extends RandomSelectorTreeNode>(
   node: TreeNode<T> | null,
@@ -27,8 +30,13 @@ const buildDescendentSelector = <T extends RandomSelectorTreeNode>(
     return selector;
   }
 
+  let selectorChoices = getSelectorsFromNode(node);
+  if (coin(chances.useNonMatchingSelector)) {
+    selectorChoices = [...selectorChoices, nonMatchingSelector];
+  }
+
   selector = (
-    maybeNot(choice(getSelectorsFromNode(node))) +
+    maybeNot(choice(selectorChoices)) +
     (coin(chances.useDescendantCombinator) ? ' > ' : ' ') +
     selector
   ).trim();
@@ -68,11 +76,27 @@ const getAttributes = () => {
   return attributes;
 };
 
-const getSiblingSelectors = () => {
+// type Huh = keyof RandomSelectorTreeNode;
+
+const getSiblingSelectors = (
+  parent: TreeNode<RandomSelectorTreeNode> | null,
+  node: TreeNode<RandomSelectorTreeNode>,
+) => {
   const siblings = [] as string[];
 
-  if (coin(chances.addSibling)) {
-    siblings.push(randomSelector.randomSelector(['nth-child']));
+  if (parent && coin(chances.addSibling)) {
+    // const combinator = choice(['~', '+', 'nth-child']);
+    const combinator = 'nth-child';
+    if (combinator === 'nth-child') {
+      siblings.push(randomSelector.randomSelector(['nth-child']));
+    } else {
+      // const sibling = choice(parent.children);
+      // const siblingSelectorType = choice(['classNames', 'attribute']) as Huh;
+      // const siblingSelector = choice<Huh>(sibling.value[siblingSelectorType]);
+      // const nodeSelectorType = choice(['classNames', 'attribute']);
+      // const nodeSelector = choice(node.value[nodeSelectorType]);
+      // siblings.push(`${siblingSelector} ${combinator} ${nodeSelector}`);
+    }
   }
 
   return siblings;
@@ -106,12 +130,14 @@ export const selectorTreeCreator: RandomSelectorTreeCreator = selectors => {
         name: `${depth}-${breadth}`,
         classNames: getNodeClassNames(),
         attributes: getAttributes(),
-        siblings: getSiblingSelectors(),
+        siblings: [] as string[],
         pseudos: getPseudoSelectors(),
       },
       children: [],
       parent,
     };
+
+    node.value.siblings = getSiblingSelectors(parent, node);
 
     if (coin(chances.buildDescendentSelector)) {
       const descendentSelector = buildDescendentSelector(node);

@@ -281,14 +281,7 @@ const DetailsListInner: React.ComponentType<IDetailsListInnerProps> = (
   const columnReorderOnDragEnd = columnReorderOptions && columnReorderOptions.onDragEnd;
 
   const onColumnDragEnd = React.useCallback(
-    (
-      {
-        dropLocation,
-      }: {
-        dropLocation?: ColumnDragEndLocation;
-      },
-      event: MouseEvent,
-    ): void => {
+    ({ dropLocation }: { Hea; dropLocation?: ColumnDragEndLocation }, event: MouseEvent): void => {
       let finalDropLocation: ColumnDragEndLocation = ColumnDragEndLocation.outside;
       if (columnReorderOnDragEnd) {
         if (dropLocation && dropLocation !== ColumnDragEndLocation.header) {
