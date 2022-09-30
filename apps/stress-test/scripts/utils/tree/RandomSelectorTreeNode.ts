@@ -12,25 +12,35 @@ const randomSelector = new RandomSelector();
 const chances: { [key: string]: number } = {
   not: 0.05,
   addClassName: 0.5,
-  addAttribute: 0.25,
-  buildDescendentSelector: 0.75,
-  addSibling: 0.25,
-  addPseudo: 0.25,
+  addAttribute: 0.2,
+  buildDescendentSelector: 0.5,
+  addSibling: 0.1,
+  addPseudo: 0.1,
   useDescendantCombinator: 0.2,
-  useNonMatchingSelector: 0.2,
+  useNonMatchingSelector: 0.5,
 };
 
 const nonMatchingSelector = '.non-matching-selector';
 
 const buildDescendentSelector = <T extends RandomSelectorTreeNode>(
   node: TreeNode<T> | null,
-  selector: string = '',
+  selector?: string,
 ): string => {
   if (!node) {
+    return selector ?? '';
+  }
+
+  if (!selector) {
+    selector = choice(getSelectorsFromNode(node, { pseudos: false }));
+  }
+
+  const parent = node.parent;
+
+  if (!parent) {
     return selector;
   }
 
-  let selectorChoices = getSelectorsFromNode(node);
+  let selectorChoices = getSelectorsFromNode(parent, { pseudos: false });
   if (coin(chances.useNonMatchingSelector)) {
     selectorChoices = [...selectorChoices, nonMatchingSelector];
   }
@@ -46,6 +56,27 @@ const buildDescendentSelector = <T extends RandomSelectorTreeNode>(
   }
 
   return selector;
+
+  // if (selector === '') {
+  //   selector = choice(getSelectorsFromNode(node));
+  // }
+
+  // let selectorChoices = getSelectorsFromNode(node);
+  // if (coin(chances.useNonMatchingSelector)) {
+  //   selectorChoices = [...selectorChoices, nonMatchingSelector];
+  // }
+
+  // selector = (
+  //   maybeNot(choice(selectorChoices)) +
+  //   (coin(chances.useDescendantCombinator) ? ' > ' : ' ') +
+  //   selector
+  // ).trim();
+
+  // if (coin(chances.buildDescendentSelector)) {
+  //   selector = buildDescendentSelector(node.parent, selector);
+  // }
+
+  // return selector;
 };
 
 const getNodeClassNames = () => {
@@ -76,8 +107,6 @@ const getAttributes = () => {
   return attributes;
 };
 
-// type Huh = keyof RandomSelectorTreeNode;
-
 const getSiblingSelectors = (
   parent: TreeNode<RandomSelectorTreeNode> | null,
   node: TreeNode<RandomSelectorTreeNode>,
@@ -85,17 +114,31 @@ const getSiblingSelectors = (
   const siblings = [] as string[];
 
   if (parent && coin(chances.addSibling)) {
-    // const combinator = choice(['~', '+', 'nth-child']);
-    const combinator = 'nth-child';
+    const combinator = choice(['nth-child']);
+    // const combinator = 'nth-child';
     if (combinator === 'nth-child') {
       siblings.push(randomSelector.randomSelector(['nth-child']));
     } else {
-      // const sibling = choice(parent.children);
-      // const siblingSelectorType = choice(['classNames', 'attribute']) as Huh;
-      // const siblingSelector = choice<Huh>(sibling.value[siblingSelectorType]);
-      // const nodeSelectorType = choice(['classNames', 'attribute']);
-      // const nodeSelector = choice(node.value[nodeSelectorType]);
-      // siblings.push(`${siblingSelector} ${combinator} ${nodeSelector}`);
+      const sibling = choice(parent.children);
+      if (!sibling) {
+        return siblings;
+      }
+      const siblingSelectorType = choice(['classNames', 'attribute']);
+      let siblingSelector;
+      if (siblingSelectorType === 'classNames') {
+        siblingSelector = choice(sibling.value.classNames) ?? '*';
+      } else {
+        siblingSelector = choice(sibling.value.attributes)?.selector ?? '*';
+      }
+
+      const nodeSelectorType = choice(['classNames', 'attribute']);
+      let nodeSelector;
+      if (nodeSelectorType === 'classNames') {
+        nodeSelector = choice(node.value.classNames) ?? '*';
+      } else {
+        nodeSelector = choice(node.value.attributes)?.selector ?? '*';
+      }
+      siblings.push(`${siblingSelector} ${combinator} ${nodeSelector}`);
     }
   }
 
@@ -112,13 +155,37 @@ const getPseudoSelectors = () => {
   return pseudo;
 };
 
-const getSelectorsFromNode = (node: TreeNode<RandomSelectorTreeNode>): string[] => {
-  return [
-    ...node.value.classNames,
-    ...node.value.attributes.map(attr => attr.selector),
-    ...node.value.siblings,
-    ...node.value.pseudos,
-  ];
+type IncludeOptions = {
+  [k in keyof RandomSelectorTreeNode]?: boolean;
+};
+const getSelectorsFromNode = (node: TreeNode<RandomSelectorTreeNode>, include?: IncludeOptions): string[] => {
+  const { classNames = true, attributes = true, siblings = true, pseudos = true } = include ?? {};
+
+  let selectors = [] as string[];
+
+  if (classNames) {
+    selectors = selectors.concat(...node.value.classNames);
+  }
+
+  if (attributes) {
+    selectors = selectors.concat(...node.value.attributes.map(attr => attr.selector));
+  }
+
+  if (siblings) {
+    selectors = selectors.concat(...node.value.siblings);
+  }
+
+  if (pseudos) {
+    selectors = selectors.concat(...node.value.pseudos);
+  }
+
+  return selectors;
+
+  //   return [
+  //     ...node.value.classNames,
+  //     ...node.value.attributes.map(attr => attr.selector),
+  // ...node.value.siblings,...node.value.pseudos,
+  //   ];
 };
 
 export type RandomSelectorTreeCreator = (selectors: string[]) => TreeNodeCreateCallback<RandomSelectorTreeNode>;

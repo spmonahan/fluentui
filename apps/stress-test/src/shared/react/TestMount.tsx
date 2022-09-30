@@ -10,6 +10,7 @@ export const TestMount: React.FC<TestProps> = ({ tree, selectors, componentRende
     if (testOptions.withStyles === 'true') {
       styleInjector(selectors);
     }
+    console.log('ye', performance.now());
     performanceMeasure();
   }, []);
 
