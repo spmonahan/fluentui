@@ -21,6 +21,7 @@ const useRootStyles = makeStyles({
     display: 'inline-flex',
     ...shorthands.padding(tokens.spacingVerticalS, tokens.spacingHorizontalS),
     ...createFocusOutlineStyle({ style: {}, selector: 'focus-within' }),
+    contain: 'content',
   },
 });
 
@@ -37,111 +38,111 @@ const useInputStyles = makeStyles({
     cursor: 'pointer',
 
     // When unchecked, hide the the checkmark icon (child of the indicator slot)
-    [`:not(:checked):not(:indeterminate) ~ .${checkboxClassNames.indicator} > *`]: {
-      opacity: 0,
-    },
+    // [`:not(:checked):not(:indeterminate) ~ .${checkboxClassNames.indicator} > *`]: {
+    //   opacity: 0,
+    // },
 
     // Colors for the unchecked state
-    ':enabled:not(:checked):not(:indeterminate)': {
-      [`& ~ .${checkboxClassNames.label}`]: {
-        color: tokens.colorNeutralForeground3,
-      },
-      [`& ~ .${checkboxClassNames.indicator}`]: {
-        ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
-      },
+    // ':enabled:not(:checked):not(:indeterminate)': {
+    //   // [`& ~ .${checkboxClassNames.label}`]: {
+    //   //   color: tokens.colorNeutralForeground3,
+    //   // },
+    //   // [`& ~ .${checkboxClassNames.indicator}`]: {
+    //   //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
+    //   // },
 
-      ':hover': {
-        [`& ~ .${checkboxClassNames.label}`]: {
-          color: tokens.colorNeutralForeground2,
-        },
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
-        },
-      },
+    //   ':hover': {
+    //     // [`& ~ .${checkboxClassNames.label}`]: {
+    //     //   color: tokens.colorNeutralForeground2,
+    //     // },
+    //     // [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
+    //     // },
+    //   },
 
-      ':active:hover': {
-        [`& ~ .${checkboxClassNames.label}`]: {
-          color: tokens.colorNeutralForeground1,
-        },
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
-        },
-      },
-    },
+    //   ':active:hover': {
+    //     // [`& ~ .${checkboxClassNames.label}`]: {
+    //     //   color: tokens.colorNeutralForeground1,
+    //     // },
+    //     // [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
+    //     // },
+    //   },
+    // },
 
     // Colors for the checked state
-    ':enabled:checked:not(:indeterminate)': {
-      [`& ~ .${checkboxClassNames.label}`]: {
-        color: tokens.colorNeutralForeground1,
-      },
-      [`& ~ .${checkboxClassNames.indicator}`]: {
-        backgroundColor: tokens.colorCompoundBrandBackground,
-        color: tokens.colorNeutralForegroundInverted,
-        ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
-      },
+    // ':enabled:checked:not(:indeterminate)': {
+    // [`& ~ .${checkboxClassNames.label}`]: {
+    //   color: tokens.colorNeutralForeground1,
+    // },
+    // [`& ~ .${checkboxClassNames.indicator}`]: {
+    //   backgroundColor: tokens.colorCompoundBrandBackground,
+    //   color: tokens.colorNeutralForegroundInverted,
+    //   ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
+    // },
 
-      ':hover': {
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          backgroundColor: tokens.colorCompoundBrandBackgroundHover,
-          ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
-        },
-      },
+    // ':hover': {
+    //   [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     backgroundColor: tokens.colorCompoundBrandBackgroundHover,
+    //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
+    //   },
+    // },
 
-      ':active:hover': {
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
-          ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
-        },
-      },
-    },
+    // ':active:hover': {
+    //   [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
+    //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
+    //   },
+    // },
+    // },
 
     // Colors for the mixed state
-    ':enabled:indeterminate': {
-      [`& ~ .${checkboxClassNames.label}`]: {
-        color: tokens.colorNeutralForeground1,
-      },
-      [`& ~ .${checkboxClassNames.indicator}`]: {
-        ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
-        color: tokens.colorCompoundBrandForeground1,
-      },
+    // ':enabled:indeterminate': {
+    //   // [`& ~ .${checkboxClassNames.label}`]: {
+    //   //   color: tokens.colorNeutralForeground1,
+    //   // },
+    //   [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
+    //     color: tokens.colorCompoundBrandForeground1,
+    //   },
 
-      ':hover': {
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
-          color: tokens.colorCompoundBrandForeground1Hover,
-        },
-      },
+    //   ':hover': {
+    //     [`& ~ .${checkboxClassNames.indicator}`]: {
+    //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
+    //       color: tokens.colorCompoundBrandForeground1Hover,
+    //     },
+    //   },
 
-      ':active:hover': {
-        [`& ~ .${checkboxClassNames.indicator}`]: {
-          ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
-          color: tokens.colorCompoundBrandForeground1Pressed,
-        },
-      },
-    },
+    //   ':active:hover': {
+    //     [`& ~ .${checkboxClassNames.indicator}`]: {
+    //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
+    //       color: tokens.colorCompoundBrandForeground1Pressed,
+    //     },
+    //   },
+    // },
 
-    ':disabled': {
-      cursor: 'default',
+    // ':disabled': {
+    //   cursor: 'default',
 
-      [`& ~ .${checkboxClassNames.label}`]: {
-        color: tokens.colorNeutralForegroundDisabled,
-        '@media (forced-colors: active)': {
-          color: 'GrayText',
-        },
-      },
-      [`& ~ .${checkboxClassNames.indicator}`]: {
-        ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
-        color: tokens.colorNeutralForegroundDisabled,
-        '@media (forced-colors: active)': {
-          color: 'GrayText',
-        },
-      },
-      [`& ~ .${checkboxClassNames.indicator} svg`]: {
-        '@media (forced-colors: active)': {
-          color: 'GrayText',
-        },
-      },
-    },
+    //   // [`& ~ .${checkboxClassNames.label}`]: {
+    //   //   color: tokens.colorNeutralForegroundDisabled,
+    //   //   '@media (forced-colors: active)': {
+    //   //     color: 'GrayText',
+    //   //   },
+    //   // },
+    //   [`& ~ .${checkboxClassNames.indicator}`]: {
+    //     ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
+    //     color: tokens.colorNeutralForegroundDisabled,
+    //     '@media (forced-colors: active)': {
+    //       color: 'GrayText',
+    //     },
+    //   },
+    //   [`& ~ .${checkboxClassNames.indicator} svg`]: {
+    //     '@media (forced-colors: active)': {
+    //       color: 'GrayText',
+    //     },
+    //   },
+    // },
   },
 });
 
@@ -177,6 +178,66 @@ const useIndicatorStyles = makeStyles({
   circular: {
     ...shorthands.borderRadius(tokens.borderRadiusCircular),
   },
+
+  rest: {
+    ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
+
+    '> svg': {
+      opacity: 0,
+    },
+
+    ':hover': {
+      ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
+    },
+
+    ':active:hover': {
+      ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
+    },
+  },
+
+  checked: {
+    backgroundColor: tokens.colorCompoundBrandBackground,
+    color: tokens.colorNeutralForegroundInverted,
+    ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
+
+    ':hover': {
+      backgroundColor: tokens.colorCompoundBrandBackgroundHover,
+      ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
+    },
+
+    ':active:hover': {
+      backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
+      ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
+    },
+  },
+
+  indeterminate: {
+    ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
+    color: tokens.colorCompoundBrandForeground1,
+
+    ':hover': {
+      ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
+      color: tokens.colorCompoundBrandForeground1Hover,
+    },
+
+    ':active:hover': {
+      ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
+      color: tokens.colorCompoundBrandForeground1Pressed,
+    },
+  },
+
+  disabled: {
+    ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
+    color: tokens.colorNeutralForegroundDisabled,
+    '@media (forced-colors: active)': {
+      color: 'GrayText',
+    },
+    '> svg': {
+      '@media (forced-colors: active)': {
+        color: 'GrayText',
+      },
+    },
+  },
 });
 
 const useLabelStyles = makeStyles({
@@ -203,6 +264,33 @@ const useLabelStyles = makeStyles({
     marginTop: `calc((${indicatorSizeLarge} - ${tokens.lineHeightBase300}) / 2)`,
     marginBottom: `calc((${indicatorSizeLarge} - ${tokens.lineHeightBase300}) / 2)`,
   },
+
+  rest: {
+    color: tokens.colorNeutralForeground3,
+
+    ':hover': {
+      color: tokens.colorNeutralForeground2,
+    },
+
+    ':active:hover': {
+      color: tokens.colorNeutralForeground1,
+    },
+  },
+
+  checked: {
+    color: tokens.colorNeutralForeground1,
+  },
+
+  indeterminate: {
+    color: tokens.colorNeutralForeground1,
+  },
+
+  disabled: {
+    color: tokens.colorNeutralForegroundDisabled,
+    '@media (forced-colors: active)': {
+      color: 'GrayText',
+    },
+  },
 });
 
 /**
@@ -215,11 +303,16 @@ export const useCheckboxStyles_unstable = (state: CheckboxState): CheckboxState 
   const inputStyles = useInputStyles();
   state.input.className = mergeClasses(checkboxClassNames.input, inputStyles.base, state.input.className);
 
+  const { checked } = state;
+
   const indicatorStyles = useIndicatorStyles();
   if (state.indicator) {
     state.indicator.className = mergeClasses(
       checkboxClassNames.indicator,
       indicatorStyles.base,
+      checked === true && indicatorStyles.checked,
+      checked === 'mixed' && indicatorStyles.indeterminate,
+      checked === false && indicatorStyles.rest,
       indicatorStyles[state.size],
       state.shape === 'circular' && indicatorStyles.circular,
       state.indicator.className,
@@ -231,6 +324,9 @@ export const useCheckboxStyles_unstable = (state: CheckboxState): CheckboxState 
     state.label.className = mergeClasses(
       checkboxClassNames.label,
       labelStyles.base,
+      checked === true && labelStyles.checked,
+      checked === 'mixed' && labelStyles.indeterminate,
+      checked === false && labelStyles.rest,
       labelStyles[state.size],
       labelStyles[state.labelPosition],
       state.label.className,
