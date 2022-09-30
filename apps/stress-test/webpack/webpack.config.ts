@@ -31,6 +31,10 @@ const createConfig: WebpackConfigurationCreator = (_env, argv) => {
     },
     devtool: 'source-map',
     resolve: {
+      alias: {
+        'react-dom$': 'react-dom/profiling',
+        'scheduler/tracing': 'scheduler/tracing-profiling',
+      },
       extensions: ['.tsx', '.ts', '.js'],
       plugins: [
         new TsconfigPathsPlugin({
