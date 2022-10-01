@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { styleInjector } from '../css/injectStyles';
-import { performanceMeasure } from '../utils/performanceMeasure';
+// import { performanceMeasure } from '../utils/performanceMeasure';
 import { ReactSelectorTree } from './ReactSelectorTree';
 import type { TestProps } from './types';
 
 export const TestInjectStyles: React.FC<TestProps> = ({ tree, selectors, componentRenderer, testOptions }) => {
   // eslint-disable-next-line no-restricted-properties
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setTimeout(() => {
-      styleInjector(selectors);
-      performanceMeasure();
+      requestAnimationFrame(() => {
+        styleInjector(selectors);
+        performance.mark('start');
+        requestAnimationFrame(() => {
+          performance.measure('stress', 'start');
+        });
+        // performanceMeasure();
+      });
     }, 2000);
   }, []);
 

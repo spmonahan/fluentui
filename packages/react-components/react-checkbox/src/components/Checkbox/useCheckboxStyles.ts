@@ -1,4 +1,4 @@
-import { shorthands, makeStyles, mergeClasses } from '@griffel/react';
+import { makeStyles, mergeClasses, unstableMakeResetStyles } from '@griffel/react';
 import { createFocusOutlineStyle } from '@fluentui/react-tabster';
 import { tokens } from '@fluentui/react-theme';
 import { CheckboxSlots, CheckboxState } from './Checkbox.types';
@@ -15,135 +15,141 @@ export const checkboxClassNames: SlotClassNames<CheckboxSlots> = {
 const indicatorSizeMedium = '16px';
 const indicatorSizeLarge = '20px';
 
-const useRootStyles = makeStyles({
-  base: {
-    position: 'relative',
-    display: 'inline-flex',
-    ...shorthands.padding(tokens.spacingVerticalS, tokens.spacingHorizontalS),
-    ...createFocusOutlineStyle({ style: {}, selector: 'focus-within' }),
-    contain: 'content',
-  },
+const useRootStyles = unstableMakeResetStyles({
+  position: 'relative',
+  display: 'inline-flex',
+  // ...shorthands.padding(tokens.spacingVerticalS, tokens.spacingHorizontalS),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @griffel/no-shorthands
+  padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalS}`,
+  ...createFocusOutlineStyle({ style: {}, selector: 'focus-within' }),
+  contain: 'content',
 });
 
-const useInputStyles = makeStyles({
-  base: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: '100%',
-    height: '100%',
-    boxSizing: 'border-box',
-    ...shorthands.margin(0),
-    opacity: 0,
-    cursor: 'pointer',
+const useInputStyles = unstableMakeResetStyles({
+  // base: {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  height: '100%',
+  boxSizing: 'border-box',
+  // ...shorthands.margin(0),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @griffel/no-shorthands
+  margin: 0,
+  opacity: 0,
+  cursor: 'pointer',
 
-    // When unchecked, hide the the checkmark icon (child of the indicator slot)
-    // [`:not(:checked):not(:indeterminate) ~ .${checkboxClassNames.indicator} > *`]: {
-    //   opacity: 0,
-    // },
+  // When unchecked, hide the the checkmark icon (child of the indicator slot)
+  // [`:not(:checked):not(:indeterminate) ~ .${checkboxClassNames.indicator} > *`]: {
+  //   opacity: 0,
+  // },
 
-    // Colors for the unchecked state
-    // ':enabled:not(:checked):not(:indeterminate)': {
-    //   // [`& ~ .${checkboxClassNames.label}`]: {
-    //   //   color: tokens.colorNeutralForeground3,
-    //   // },
-    //   // [`& ~ .${checkboxClassNames.indicator}`]: {
-    //   //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
-    //   // },
+  // Colors for the unchecked state
+  // ':enabled:not(:checked):not(:indeterminate)': {
+  //   // [`& ~ .${checkboxClassNames.label}`]: {
+  //   //   color: tokens.colorNeutralForeground3,
+  //   // },
+  //   // [`& ~ .${checkboxClassNames.indicator}`]: {
+  //   //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
+  //   // },
 
-    //   ':hover': {
-    //     // [`& ~ .${checkboxClassNames.label}`]: {
-    //     //   color: tokens.colorNeutralForeground2,
-    //     // },
-    //     // [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
-    //     // },
-    //   },
+  //   ':hover': {
+  //     // [`& ~ .${checkboxClassNames.label}`]: {
+  //     //   color: tokens.colorNeutralForeground2,
+  //     // },
+  //     // [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
+  //     // },
+  //   },
 
-    //   ':active:hover': {
-    //     // [`& ~ .${checkboxClassNames.label}`]: {
-    //     //   color: tokens.colorNeutralForeground1,
-    //     // },
-    //     // [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
-    //     // },
-    //   },
-    // },
+  //   ':active:hover': {
+  //     // [`& ~ .${checkboxClassNames.label}`]: {
+  //     //   color: tokens.colorNeutralForeground1,
+  //     // },
+  //     // [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     //   ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
+  //     // },
+  //   },
+  // },
 
-    // Colors for the checked state
-    // ':enabled:checked:not(:indeterminate)': {
-    // [`& ~ .${checkboxClassNames.label}`]: {
-    //   color: tokens.colorNeutralForeground1,
-    // },
-    // [`& ~ .${checkboxClassNames.indicator}`]: {
-    //   backgroundColor: tokens.colorCompoundBrandBackground,
-    //   color: tokens.colorNeutralForegroundInverted,
-    //   ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
-    // },
+  // Colors for the checked state
+  // ':enabled:checked:not(:indeterminate)': {
+  // [`& ~ .${checkboxClassNames.label}`]: {
+  //   color: tokens.colorNeutralForeground1,
+  // },
+  // [`& ~ .${checkboxClassNames.indicator}`]: {
+  //   backgroundColor: tokens.colorCompoundBrandBackground,
+  //   color: tokens.colorNeutralForegroundInverted,
+  //   ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
+  // },
 
-    // ':hover': {
-    //   [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     backgroundColor: tokens.colorCompoundBrandBackgroundHover,
-    //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
-    //   },
-    // },
+  // ':hover': {
+  //   [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     backgroundColor: tokens.colorCompoundBrandBackgroundHover,
+  //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
+  //   },
+  // },
 
-    // ':active:hover': {
-    //   [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
-    //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
-    //   },
-    // },
-    // },
+  // ':active:hover': {
+  //   [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
+  //     ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
+  //   },
+  // },
+  // },
 
-    // Colors for the mixed state
-    // ':enabled:indeterminate': {
-    //   // [`& ~ .${checkboxClassNames.label}`]: {
-    //   //   color: tokens.colorNeutralForeground1,
-    //   // },
-    //   [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
-    //     color: tokens.colorCompoundBrandForeground1,
-    //   },
+  // Colors for the mixed state
+  // ':enabled:indeterminate': {
+  //   // [`& ~ .${checkboxClassNames.label}`]: {
+  //   //   color: tokens.colorNeutralForeground1,
+  //   // },
+  //   [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
+  //     color: tokens.colorCompoundBrandForeground1,
+  //   },
 
-    //   ':hover': {
-    //     [`& ~ .${checkboxClassNames.indicator}`]: {
-    //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
-    //       color: tokens.colorCompoundBrandForeground1Hover,
-    //     },
-    //   },
+  //   ':hover': {
+  //     [`& ~ .${checkboxClassNames.indicator}`]: {
+  //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
+  //       color: tokens.colorCompoundBrandForeground1Hover,
+  //     },
+  //   },
 
-    //   ':active:hover': {
-    //     [`& ~ .${checkboxClassNames.indicator}`]: {
-    //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
-    //       color: tokens.colorCompoundBrandForeground1Pressed,
-    //     },
-    //   },
-    // },
+  //   ':active:hover': {
+  //     [`& ~ .${checkboxClassNames.indicator}`]: {
+  //       ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
+  //       color: tokens.colorCompoundBrandForeground1Pressed,
+  //     },
+  //   },
+  // },
 
-    // ':disabled': {
-    //   cursor: 'default',
+  // ':disabled': {
+  //   cursor: 'default',
 
-    //   // [`& ~ .${checkboxClassNames.label}`]: {
-    //   //   color: tokens.colorNeutralForegroundDisabled,
-    //   //   '@media (forced-colors: active)': {
-    //   //     color: 'GrayText',
-    //   //   },
-    //   // },
-    //   [`& ~ .${checkboxClassNames.indicator}`]: {
-    //     ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
-    //     color: tokens.colorNeutralForegroundDisabled,
-    //     '@media (forced-colors: active)': {
-    //       color: 'GrayText',
-    //     },
-    //   },
-    //   [`& ~ .${checkboxClassNames.indicator} svg`]: {
-    //     '@media (forced-colors: active)': {
-    //       color: 'GrayText',
-    //     },
-    //   },
-    // },
-  },
+  //   // [`& ~ .${checkboxClassNames.label}`]: {
+  //   //   color: tokens.colorNeutralForegroundDisabled,
+  //   //   '@media (forced-colors: active)': {
+  //   //     color: 'GrayText',
+  //   //   },
+  //   // },
+  //   [`& ~ .${checkboxClassNames.indicator}`]: {
+  //     ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
+  //     color: tokens.colorNeutralForegroundDisabled,
+  //     '@media (forced-colors: active)': {
+  //       color: 'GrayText',
+  //     },
+  //   },
+  //   [`& ~ .${checkboxClassNames.indicator} svg`]: {
+  //     '@media (forced-colors: active)': {
+  //       color: 'GrayText',
+  //     },
+  //   },
+  // },
+  // },
 });
 
 const useIndicatorStyles = makeStyles({
@@ -155,10 +161,22 @@ const useIndicatorStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    ...shorthands.overflow('hidden'),
+    // ...shorthands.overflow('hidden'),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    overflow: 'hidden',
 
-    ...shorthands.border(tokens.strokeWidthThin, 'solid'),
-    ...shorthands.borderRadius(tokens.borderRadiusSmall),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    border: `${tokens.strokeWidthThick} solid`,
+    // ...shorthands.border(tokens.strokeWidthThin, 'solid'),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderRadius: tokens.borderRadiusSmall,
+    // ...shorthands.borderRadius(tokens.borderRadiusSmall),
     fill: 'currentColor',
     pointerEvents: 'none',
   },
@@ -176,58 +194,108 @@ const useIndicatorStyles = makeStyles({
   },
 
   circular: {
-    ...shorthands.borderRadius(tokens.borderRadiusCircular),
+    // ...shorthands.borderRadius(tokens.borderRadiusCircular),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderRadius: tokens.borderRadiusCircular,
   },
 
   rest: {
-    ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderColor: tokens.colorNeutralStrokeAccessible,
+    // ...shorthands.borderColor(tokens.colorNeutralStrokeAccessible),
 
     '> svg': {
       opacity: 0,
     },
 
     ':hover': {
-      ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
+      // ...shorthands.borderColor(tokens.colorNeutralStrokeAccessibleHover),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorNeutralStrokeAccessibleHover,
     },
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     ':active:hover': {
-      ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
+      // ...shorthands.borderColor(tokens.colorNeutralStrokeAccessiblePressed),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorNeutralStrokeAccessiblePressed,
     },
   },
 
   checked: {
     backgroundColor: tokens.colorCompoundBrandBackground,
     color: tokens.colorNeutralForegroundInverted,
-    ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderColor: tokens.colorCompoundBrandBackground,
+    // ...shorthands.borderColor(tokens.colorCompoundBrandBackground),
 
     ':hover': {
       backgroundColor: tokens.colorCompoundBrandBackgroundHover,
-      ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorCompountBrandBackgroundHover,
+      // ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundHover),
     },
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     ':active:hover': {
       backgroundColor: tokens.colorCompoundBrandBackgroundPressed,
-      ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorCompoundBrandBackgroundPressed,
+      // ...shorthands.borderColor(tokens.colorCompoundBrandBackgroundPressed),
     },
   },
 
   indeterminate: {
-    ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderColor: tokens.colorCompoundBrandStroke,
+    // ...shorthands.borderColor(tokens.colorCompoundBrandStroke),
     color: tokens.colorCompoundBrandForeground1,
 
     ':hover': {
-      ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorCompoundBrandStrokeHover,
+      // ...shorthands.borderColor(tokens.colorCompoundBrandStrokeHover),
       color: tokens.colorCompoundBrandForeground1Hover,
     },
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     ':active:hover': {
-      ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @griffel/no-shorthands
+      borderColor: tokens.colorCompoundBrandStrokePressed,
+      // ...shorthands.borderColor(tokens.colorCompoundBrandStrokePressed),
       color: tokens.colorCompoundBrandForeground1Pressed,
     },
   },
 
   disabled: {
-    ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @griffel/no-shorthands
+    borderColor: tokens.colorNeutralStrokeDisabled,
+    // ...shorthands.borderColor(tokens.colorNeutralStrokeDisabled),
     color: tokens.colorNeutralForegroundDisabled,
     '@media (forced-colors: active)': {
       color: 'GrayText',
@@ -298,10 +366,10 @@ const useLabelStyles = makeStyles({
  */
 export const useCheckboxStyles_unstable = (state: CheckboxState): CheckboxState => {
   const rootStyles = useRootStyles();
-  state.root.className = mergeClasses(checkboxClassNames.root, rootStyles.base, state.root.className);
+  state.root.className = mergeClasses(checkboxClassNames.root, rootStyles, state.root.className);
 
   const inputStyles = useInputStyles();
-  state.input.className = mergeClasses(checkboxClassNames.input, inputStyles.base, state.input.className);
+  state.input.className = mergeClasses(checkboxClassNames.input, inputStyles, state.input.className);
 
   const { checked } = state;
 
