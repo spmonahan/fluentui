@@ -1,8 +1,39 @@
 import * as React from 'react';
 import { styleInjector } from '../css/injectStyles';
-import { requestPostAnimationFrame } from '../utils/requestPostAnimationFrame';
+// import { requestPostAnimationFrame } from '../utils/requestPostAnimationFrame';
 import { ReactSelectorTree } from './ReactSelectorTree';
 import type { TestProps } from './types';
+
+type DebouncedOnRender = () => React.ProfilerOnRenderCallback;
+
+const debouncedOnRender: DebouncedOnRender = () => {
+  let start: number;
+  // let end: number;
+  let timeoutId: number;
+  return (_profilerId, _mode, _actualTime, _baseTime, startTime, commitTime) => {
+    if (!start) {
+      start = startTime;
+    }
+
+    // end = commitTime;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      requestAnimationFrame(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        performance.measure('stress', {
+          start,
+          end: performance.now(),
+        });
+        // console.log('boogers');
+      });
+    }, 250);
+  };
+};
 
 // const onRender: React.ProfilerOnRenderCallback = (profilerId, mode, actualTime, baseTime, startTime, commitTime) => {
 //   requestPostAnimationFrame(() => {
@@ -19,7 +50,7 @@ import type { TestProps } from './types';
 //     // performance.measure('stress', 'start');
 //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //     // @ts-ignore
-//     performance.measure('stress', {
+//     performance.measure('boogers', {
 //       start: startTime,
 //       end: commitTime,
 //     });
@@ -27,25 +58,25 @@ import type { TestProps } from './types';
 // };
 
 export const TestMount: React.FC<TestProps> = ({ tree, selectors, componentRenderer, testOptions }) => {
-  // eslint-disable-next-line no-restricted-properties
-  React.useLayoutEffect(() => {
-    requestPostAnimationFrame(() => {
-      performance.measure('stress', 'start');
-    });
-  }, []);
+  // // eslint-disable-next-line no-restricted-properties
+  // React.useLayoutEffect(() => {
+  //   requestAnimationFrame(() => {
+  //     performance.measure('stress', 'start');
+  //   });
+  // }, []);
 
   const ref = React.useRef(false);
   if (!ref.current) {
     ref.current = true;
-    performance.mark('start');
+    // performance.mark('start');
     if (testOptions.withStyles === 'true') {
       styleInjector(selectors);
     }
   }
 
   return (
-    // <React.Profiler id="mount" onRender={onRender}>
-    <ReactSelectorTree tree={tree} componentRenderer={componentRenderer} />
-    // </React.Profiler>
+    <React.Profiler id="mount" onRender={debouncedOnRender()}>
+      <ReactSelectorTree tree={tree} componentRenderer={componentRenderer} />
+    </React.Profiler>
   );
 };
