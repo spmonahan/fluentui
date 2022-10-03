@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Checkbox, ICheckboxStyles } from '@fluentui/react';
-import { ReactSelectorTreeComponentRenderer } from '../../shared/react/types';
+import { ReactSelectorTreeComponentRenderer } from '../../../shared/react/types';
 
 const styles: Partial<ICheckboxStyles> = {
   checkbox: {

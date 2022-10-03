@@ -14,7 +14,7 @@ const chances: { [key: string]: number } = {
   addClassName: 0.5,
   addAttribute: 0.2,
   buildDescendentSelector: 0.5,
-  addSibling: 0.1,
+  addSibling: 0.5,
   addPseudo: 0.1,
   useDescendantCombinator: 0.2,
   useNonMatchingSelector: 0.5,
@@ -114,7 +114,7 @@ const getSiblingSelectors = (
   const siblings = [] as string[];
 
   if (parent && coin(chances.addSibling)) {
-    const combinator = choice(['nth-child']);
+    const combinator = choice(['nth-child', '~', '+']);
     // const combinator = 'nth-child';
     if (combinator === 'nth-child') {
       siblings.push(randomSelector.randomSelector(['nth-child']));

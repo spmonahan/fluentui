@@ -29,7 +29,7 @@ const debouncedOnRender: DebouncedOnRender = () => {
           start,
           end: performance.now(),
         });
-        // console.log('boogers');
+        console.log('boogers', start, performance.now());
       });
     }, 250);
   };
