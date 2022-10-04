@@ -94,7 +94,7 @@ export class RandomSelector {
   };
 
   private _pseudoElement = (): string => {
-    const choices = [/*'::after',*/ '::before', /*'::part',*/ '::placeholder', '::slotted'];
+    const choices = ['::after', '::before', /*'::part',*/ '::placeholder', '::slotted'];
     const selector = this.rando.choice(choices);
 
     return selector;

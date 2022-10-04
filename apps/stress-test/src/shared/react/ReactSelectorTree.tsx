@@ -11,17 +11,18 @@ type ReactSelectorTreeProps = {
 
 const buildRenderer = (componentRenderer: ReactSelectorTreeComponentRenderer) => {
   const renderer = (node: SelectorTreeNode, depth: number, index: number): JSX.Element => {
-    // const { value } = node;
+    const { value } = node;
 
-    // const className = value.classNames.map(cn => cn.substring(1)).join(' ');
-    // const attrs = value.attributes.reduce((map, attr) => {
-    //   map[attr.key] = attr.value ?? '';
-    //   return map;
-    // }, {} as { [key: string]: string });
+    const className = value.classNames.map(cn => cn.substring(1)).join(' ');
+    const attrs = value.attributes.reduce((map, attr) => {
+      map[attr.key] = attr.value ?? '';
+      return map;
+    }, {} as { [key: string]: string });
 
     return (
-      // <div className={className} {...attrs} style={{ marginLeft: `${depth * 10}px` }}>
-      <div style={{ marginLeft: `${depth * 10}px` }}>{componentRenderer(node, depth, index)}</div>
+      <div className={className} {...attrs} style={{ marginLeft: `${depth * 10}px` }}>
+        {componentRenderer(node, depth, index)}
+      </div>
     );
   };
 

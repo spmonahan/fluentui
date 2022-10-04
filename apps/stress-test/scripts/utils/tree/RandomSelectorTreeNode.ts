@@ -56,27 +56,6 @@ const buildDescendentSelector = <T extends RandomSelectorTreeNode>(
   }
 
   return selector;
-
-  // if (selector === '') {
-  //   selector = choice(getSelectorsFromNode(node));
-  // }
-
-  // let selectorChoices = getSelectorsFromNode(node);
-  // if (coin(chances.useNonMatchingSelector)) {
-  //   selectorChoices = [...selectorChoices, nonMatchingSelector];
-  // }
-
-  // selector = (
-  //   maybeNot(choice(selectorChoices)) +
-  //   (coin(chances.useDescendantCombinator) ? ' > ' : ' ') +
-  //   selector
-  // ).trim();
-
-  // if (coin(chances.buildDescendentSelector)) {
-  //   selector = buildDescendentSelector(node.parent, selector);
-  // }
-
-  // return selector;
 };
 
 const getNodeClassNames = () => {
@@ -114,8 +93,7 @@ const getSiblingSelectors = (
   const siblings = [] as string[];
 
   if (parent && coin(chances.addSibling)) {
-    const combinator = choice(['nth-child']);
-    // const combinator = 'nth-child';
+    const combinator = choice(['nth-child', '~', '+']);
     if (combinator === 'nth-child') {
       siblings.push(randomSelector.randomSelector(['nth-child']));
     } else {
@@ -180,12 +158,6 @@ const getSelectorsFromNode = (node: TreeNode<RandomSelectorTreeNode>, include?: 
   }
 
   return selectors;
-
-  //   return [
-  //     ...node.value.classNames,
-  //     ...node.value.attributes.map(attr => attr.selector),
-  // ...node.value.siblings,...node.value.pseudos,
-  //   ];
 };
 
 export type RandomSelectorTreeCreator = (selectors: string[]) => TreeNodeCreateCallback<RandomSelectorTreeNode>;
