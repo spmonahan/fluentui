@@ -1739,6 +1739,17 @@
     stylis "^4.0.13"
     tslib "^2.1.0"
 
+"@griffel/core@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@griffel/core/-/core-1.7.0.tgz#def2c54a221f93c8b7290b296bddc84ba137ae34"
+  integrity sha512-WJ/lO1vL9+I8BVr9/BIPYejvAC/HX83L9pqJMbxkJWLk76aPo9NHlMGzH5XSp6RVhYOd2mlJDKx/es8zOEqSsg==
+  dependencies:
+    "@emotion/hash" "^0.8.0"
+    csstype "^3.0.10"
+    rtl-css-js "^1.16.0"
+    stylis "^4.0.13"
+    tslib "^2.1.0"
+
 "@griffel/eslint-plugin@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@griffel/eslint-plugin/-/eslint-plugin-1.0.0.tgz#cba251b7a140399c6686b72a72e9fa2ee481f532"
@@ -1768,6 +1779,14 @@
   integrity sha512-JAJesdiyXMcL1D5Ln7sH61fS+K+z1GFWtPfG7bp74wM3EwufPte1oAUSBk5ziLeHeSeoyyIPaWT02IP6AEPYOQ==
   dependencies:
     "@griffel/core" "^1.5.1"
+    tslib "^2.1.0"
+
+"@griffel/react@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@griffel/react/-/react-1.4.0.tgz#dbd56924af99d56aa22550f1804ee667ddcd3f30"
+  integrity sha512-AR9tY0AJX734MNno/j4uYpkfjKS8OA9rWreBZYIeQMdPApRBnbZjEnkUqmIUBfT8JcsNgQFPv6ssETCK0+dWtQ==
+  dependencies:
+    "@griffel/core" "^1.7.0"
     tslib "^2.1.0"
 
 "@griffel/webpack-extraction-plugin@0.1.4":
