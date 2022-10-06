@@ -8,13 +8,12 @@ const itemRenderer = (componentRenderer: DOMSelectorTreeComponentRenderer) => (
   depth: number,
   index: number,
 ): HTMLElement => {
-  const { value } = node;
-
   const div = document.createElement('div');
-  div.classList.add(...value.classNames.map(cn => cn.substring(1)));
-  value.attributes.forEach(attr => {
-    div.setAttribute(attr.key, attr.value ?? '');
-  });
+  // const { value } = node;
+  // div.classList.add(...value.classNames.map(cn => cn.substring(1)));
+  // value.attributes.forEach(attr => {
+  //   div.setAttribute(attr.key, attr.value ?? '');
+  // });
 
   div.style.marginLeft = `${depth * 10}px`;
   div.appendChild(componentRenderer(node, depth, index));

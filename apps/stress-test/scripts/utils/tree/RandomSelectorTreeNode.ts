@@ -10,12 +10,12 @@ const choice = <T>(choices: T[]): T => rando.choice(choices);
 const randomSelector = new RandomSelector();
 
 const chances: { [key: string]: number } = {
-  not: 0.05,
+  not: 0.0,
   addClassName: 0.5,
-  addAttribute: 0.2,
+  addAttribute: 0.0,
   buildDescendentSelector: 0.5,
-  addSibling: 0.1,
-  addPseudo: 0.1,
+  addSibling: 0.0,
+  addPseudo: 0.0,
   useDescendantCombinator: 0.2,
   useNonMatchingSelector: 0.5,
 };
