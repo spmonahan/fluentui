@@ -20,11 +20,12 @@ type ReactTestProps = {
   target: string;
   fixtureName: string;
   rendererName: string;
+  testOptions?: Exclude<TestOptions, 'test' | 'fixtureName' | 'rendererName'>;
 };
 
-export const ReactTest: React.FC<ReactTestProps> = ({ target, fixtureName, rendererName }) => {
+export const ReactTest: React.FC<ReactTestProps> = ({ target, fixtureName, rendererName, testOptions = {} }) => {
   const [testData, setTestData] = React.useState<TestData>({
-    testOptions: getTestOptions(),
+    testOptions: { ...getTestOptions(), ...testOptions },
   });
 
   React.useEffect(() => {

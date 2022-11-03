@@ -170,42 +170,36 @@ function createStyleTag(css: string) {
   return style;
 }
 
-export function injectGlobalCss(css?: string) {
+export type StyleInjectorOptions = {
+  target?: HTMLElement;
+  constructableStylesheets?: boolean;
+};
+
+export function injectGlobalCss(css: string, options: StyleInjectorOptions = {}) {
+  const { target = document.head, constructableStylesheets = false } = options;
+
   performance.mark('fluent-inject-global-css-start');
-  css =
-    css ??
-    `
-    div {
-      background-color: yellow;
-    }
 
-    button {
-      background-color: hotpink;
+  if (constructableStylesheets) {
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(css);
+    // if (!window.__adoptedStylesheets__) {
+    //   window.__adoptedStylesheets__ = [];
+    // }
+    // window.__adoptedStylesheets__.push(sheet);
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+  } else {
+    const style = createStyleTag(css);
+    if (target.shadowRoot) {
+      target.shadowRoot.appendChild(style);
+    } else {
+      target.appendChild(style);
     }
+  }
 
-    hr {
-      background-color: red;
-    }
-
-    stress-app {
-      background-color: yellow;
-    }
-
-    stress-container {
-      background-color: green;
-    }
-
-    stress-component {
-      background-color: aliceblue;
-    }
-  `;
-
-  const style = createStyleTag(css);
-  document.head.appendChild(style);
   performance.measure('fluent-inject-global-css', 'fluent-inject-global-css-start');
-  return style;
 }
 
-export const styleInjector = (selectors: string[]): HTMLStyleElement => {
-  return injectGlobalCss(randomCssFromSelectors(selectors));
+export const styleInjector = (selectors: string[], options?: StyleInjectorOptions): void => {
+  injectGlobalCss(randomCssFromSelectors(selectors), options);
 };
