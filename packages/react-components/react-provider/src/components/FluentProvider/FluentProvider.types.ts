@@ -18,11 +18,13 @@ export type FluentProviderProps = Omit<ComponentProps<FluentProviderSlots>, 'dir
   /** Provides the document, can be undefined during SSR render. */
   targetDocument?: Document;
 
+  targetElement?: HTMLElement | null;
+
   theme?: PartialTheme;
 };
 
 export type FluentProviderState = ComponentState<FluentProviderSlots> &
-  Pick<FluentProviderProps, 'targetDocument'> &
+  Pick<FluentProviderProps, 'targetDocument' | 'targetElement'> &
   Required<Pick<FluentProviderProps, 'dir'>> & {
     theme: ThemeContextValue;
     themeClassName: string;

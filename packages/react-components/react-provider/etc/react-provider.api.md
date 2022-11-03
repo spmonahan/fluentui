@@ -20,6 +20,7 @@ import type { TooltipVisibilityContextValue_unstable } from '@fluentui/react-sha
 export const FluentProvider: React_2.ForwardRefExoticComponent<Omit<ComponentProps<FluentProviderSlots, "root">, "dir"> & {
     dir?: "ltr" | "rtl" | undefined;
     targetDocument?: Document | undefined;
+    targetElement?: HTMLElement | null | undefined;
     theme?: Partial<Theme> | undefined;
 } & React_2.RefAttributes<HTMLElement>>;
 
@@ -38,6 +39,7 @@ export type FluentProviderContextValues = Pick<FluentProviderState, 'theme'> & {
 export type FluentProviderProps = Omit<ComponentProps<FluentProviderSlots>, 'dir'> & {
     dir?: 'ltr' | 'rtl';
     targetDocument?: Document;
+    targetElement?: HTMLElement | null;
     theme?: PartialTheme;
 };
 
@@ -47,7 +49,7 @@ export type FluentProviderSlots = {
 };
 
 // @public (undocumented)
-export type FluentProviderState = ComponentState<FluentProviderSlots> & Pick<FluentProviderProps, 'targetDocument'> & Required<Pick<FluentProviderProps, 'dir'>> & {
+export type FluentProviderState = ComponentState<FluentProviderSlots> & Pick<FluentProviderProps, 'targetDocument' | 'targetElement'> & Required<Pick<FluentProviderProps, 'dir'>> & {
     theme: ThemeContextValue_unstable;
     themeClassName: string;
 };
@@ -65,7 +67,7 @@ export function useFluentProviderContextValues_unstable(state: FluentProviderSta
 export const useFluentProviderStyles_unstable: (state: FluentProviderState) => FluentProviderState;
 
 // @public
-export const useFluentProviderThemeStyleTag: (options: Pick<FluentProviderState, 'theme' | 'targetDocument'>) => string;
+export const useFluentProviderThemeStyleTag: (options: Pick<FluentProviderState, 'theme' | 'targetDocument' | 'targetElement'>) => string;
 
 // (No @packageDocumentation comment for this package)
 

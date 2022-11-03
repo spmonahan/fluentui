@@ -8,13 +8,21 @@ const useInsertionEffect = (React as never)['useInsertion' + 'Effect']
   ? (React as never)['useInsertion' + 'Effect']
   : useIsomorphicLayoutEffect;
 
-const createStyleTag = (target: Document | undefined, id: string) => {
+const createStyleTag = (target: Document | undefined, targetElement: HTMLElement | undefined | null, id: string) => {
   if (!target) {
     return undefined;
   }
   const tag = target.createElement('style');
   tag.setAttribute('id', id);
-  target.head.appendChild(tag);
+  if (targetElement) {
+    if (targetElement.shadowRoot) {
+      targetElement.shadowRoot.appendChild(tag);
+    } else {
+      targetElement.appendChild(tag);
+    }
+  } else {
+    target.head.appendChild(tag);
+  }
   return tag;
 };
 
@@ -37,8 +45,10 @@ const insertSheet = (tag: HTMLStyleElement, rule: string) => {
  *
  * @returns CSS class to apply the rule
  */
-export const useFluentProviderThemeStyleTag = (options: Pick<FluentProviderState, 'theme' | 'targetDocument'>) => {
-  const { targetDocument, theme } = options;
+export const useFluentProviderThemeStyleTag = (
+  options: Pick<FluentProviderState, 'theme' | 'targetDocument' | 'targetElement'>,
+) => {
+  const { targetDocument, theme, targetElement } = options;
   const styleTag = React.useRef<HTMLStyleElement>();
 
   const styleTagId = useId(fluentProviderClassNames.root);
@@ -55,7 +65,7 @@ export const useFluentProviderThemeStyleTag = (options: Pick<FluentProviderState
   const rule = `.${styleTagId} { ${cssVarsAsString} }`;
 
   useInsertionEffect(() => {
-    styleTag.current = createStyleTag(targetDocument, styleTagId);
+    styleTag.current = createStyleTag(targetDocument, targetElement, styleTagId);
 
     if (styleTag.current) {
       insertSheet(styleTag.current, rule);
