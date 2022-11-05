@@ -158,7 +158,8 @@ export const randomCssFromSelectors = (selectors: string[]): string => {
   let css = '';
 
   selectors.forEach(selector => {
-    css += `${selector} { background-color: ${choice(colors)}; }\n`;
+    // Transitions make style recalc measurements unreliable
+    css += `${selector} { background-color: ${choice(colors)}; transition-duration: 0s; }\n`;
   });
 
   return css;
