@@ -318,7 +318,8 @@
     "yargs-unparser": "2.0.0"
   },
   "dependencies": {
-    "copy-to-clipboard": "3.3.1"
+    "copy-to-clipboard": "3.3.1",
+    "react-shadow": "19.0.3"
   },
   "license": "MIT",
   "workspaces": {
