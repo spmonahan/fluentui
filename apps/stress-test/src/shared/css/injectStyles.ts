@@ -1,5 +1,6 @@
 // Inspired by: https://github.com/nolanlawson/shadow-selector-benchmark
 import { random } from '../utils/random';
+import { getTestOptions } from '../utils/testOptions';
 
 const colors = [
   'aliceblue',
@@ -158,8 +159,10 @@ export const randomCssFromSelectors = (selectors: string[]): string => {
   let css = '';
 
   selectors.forEach(selector => {
+    const { scopeGlobal } = getTestOptions();
+    const preSelector = scopeGlobal === 'true' ? '#root-2 ' : '';
     // Transitions make style recalc measurements unreliable
-    css += `${selector} { background-color: ${choice(colors)}; transition-duration: 0s; }\n`;
+    css += `${preSelector}${selector} { background-color: ${choice(colors)}; transition-duration: 0s; }\n`;
   });
 
   return css;

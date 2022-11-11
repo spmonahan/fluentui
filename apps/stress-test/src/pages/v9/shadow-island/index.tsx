@@ -4,19 +4,25 @@ import * as ReactDOM from 'react-dom';
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import { ReactTest } from '../../../shared/react/ReactTest';
 import { getTestOptions } from '../../../shared/utils/testOptions';
-import { mountReactShadowIsland } from '../../../shared/react/ReactShadowIsland';
+import root from 'react-shadow/griffel';
 
 const { fixtureName, rendererName, r } = getTestOptions();
 document.title += ' | ' + r ?? rendererName;
 
 type TestProps = {
-  targetElement: HTMLElement | null;
-  disableTest: boolean;
+  isShadow: boolean;
 };
 
-const Test: React.FC<TestProps> = ({ targetElement, disableTest }) => {
+type InnerTestProps = {
+  disableTest: boolean;
+  targetElementId: string;
+};
+
+const InnerTest: React.FC<InnerTestProps> = ({ disableTest, targetElementId }) => {
+  // Need to wrap FluentProvider in this inner component
+  // so we get a DOM node from the document.getElementById call.
   return (
-    <FluentProvider theme={webLightTheme} targetElement={targetElement}>
+    <FluentProvider theme={webLightTheme} targetElement={document.getElementById(targetElementId)}>
       <ReactTest
         target="v9"
         fixtureName={fixtureName}
@@ -29,37 +35,22 @@ const Test: React.FC<TestProps> = ({ targetElement, disableTest }) => {
   );
 };
 
+const Test: React.FC<TestProps> = ({ isShadow }) => {
+  const Wrapper = isShadow ? root.div : 'div';
+
+  return (
+    <>
+      <Wrapper id="root-1">
+        <InnerTest disableTest={true} targetElementId="root-1" />
+      </Wrapper>
+      <Wrapper id="root-2">
+        <InnerTest disableTest={false} targetElementId="root-2" />
+      </Wrapper>
+    </>
+  );
+};
+
 const { shadowIsland } = getTestOptions();
 const useShadowIsland = shadowIsland === 'true';
 
-if (useShadowIsland) {
-  const root1 = document.createElement('shadow-island');
-  root1.id = 'root-1';
-
-  const root2 = document.createElement('shadow-island');
-  root2.id = 'root-2';
-
-  document.body.prepend(root2);
-  document.body.prepend(root1);
-
-  mountReactShadowIsland(
-    <Test disableTest={false} targetElement={document.getElementById('root-1')} />,
-    document.getElementById('root-1'),
-  );
-  mountReactShadowIsland(
-    <Test disableTest={true} targetElement={document.getElementById('root-2')} />,
-    document.getElementById('root-2'),
-  );
-} else {
-  const root1 = document.createElement('div');
-  root1.id = 'root-1';
-
-  const root2 = document.createElement('div');
-  root2.id = 'root-2';
-
-  document.body.prepend(root2);
-  document.body.prepend(root1);
-
-  ReactDOM.render(<Test disableTest={false} targetElement={null} />, document.getElementById('root-1'));
-  ReactDOM.render(<Test disableTest={true} targetElement={null} />, document.getElementById('root-2'));
-}
+ReactDOM.render(<Test isShadow={useShadowIsland} />, document.getElementById('root'));
