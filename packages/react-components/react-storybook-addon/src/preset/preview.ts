@@ -10,5 +10,6 @@
  */
 
 import { withFluentProvider } from '../decorators/withFluentProvider';
+import { withWhyDidYouRender } from '../decorators/withWhyDidYouRender';
 
-export const decorators = [withFluentProvider];
+export const decorators = [withFluentProvider, withWhyDidYouRender];

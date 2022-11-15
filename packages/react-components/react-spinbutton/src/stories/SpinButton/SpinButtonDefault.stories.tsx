@@ -13,6 +13,8 @@ const useLayoutStyles = makeStyles({
   },
 });
 
+SpinButton.whyDidYouRender = true;
+
 export const Default = () => {
   const layoutStyles = useLayoutStyles();
   const id = useId();

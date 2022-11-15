@@ -14,6 +14,11 @@ const useLayoutStyles = makeStyles({
   },
 });
 
+// SpinButton.whyDidYouRender = {
+//   logOnDifferentValues: false,
+//   customName: 'cats',
+// };
+
 export const Controlled = () => {
   const layoutStyles = useLayoutStyles();
   const id = useId();
