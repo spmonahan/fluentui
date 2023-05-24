@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { DetailsList } from './DetailsList';
 import { CheckboxVisibility } from './DetailsList.types';
 import { SelectionMode, Selection } from '../../Selection';
@@ -137,5 +138,28 @@ describe('DetailsRow', () => {
     );
 
     expect(onRenderCheckboxMock).toHaveBeenCalledWith({ checked: false, theme: getTheme() }, expect.any(Function));
+  });
+
+  it('renders onRenderItemColumn before wrapper', () => {
+    // See: https://github.com/microsoft/fluentui/issues/27535
+
+    const onRenderItemColumn = (item: any, index: number, column: IColumn) => {
+      const fieldContent = item[column.fieldName as string];
+      if (!column.className) {
+        column.className = 'test-classname';
+      } else {
+        column.className += 'test-classname';
+      }
+
+      return <span>{fieldContent}</span>;
+    };
+
+    const { container } = render(
+      <DetailsRow item={mockProps.items[0]} itemIndex={0} columns={_columns} onRenderItemColumn={onRenderItemColumn} />,
+    );
+
+    const customizedColumn = container.querySelector('.test-classname');
+    expect(customizedColumn).toBeTruthy();
+    expect(customizedColumn!.parentElement).toEqual(container.querySelector('.ms-DetailsRow-fields'));
   });
 });

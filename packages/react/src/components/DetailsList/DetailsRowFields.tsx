@@ -60,6 +60,8 @@ export const DetailsRowFields: React.FunctionComponent<IDetailsRowFieldsProps> =
 
       const key = `${column.key}${cellValueKey !== undefined ? `-${cellValueKey}` : ''}`;
 
+      const renderedContent = onRender(fieldItem, fieldItemIndex, column);
+
       return (
         <div
           key={key}
@@ -77,7 +79,7 @@ export const DetailsRowFields: React.FunctionComponent<IDetailsRowFieldsProps> =
           data-automationid="DetailsRowCell"
           data-automation-key={column.key}
         >
-          {onRender(fieldItem, fieldItemIndex, column)}
+          {renderedContent}
         </div>
       );
     },
