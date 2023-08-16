@@ -1,16 +1,33 @@
 import * as React from 'react';
-import { Callout, Link, mergeStyleSets, Text, FontWeights } from '@fluentui/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import root from 'react-shadow';
+
+import {
+  Callout,
+  Link,
+  mergeStyleSets,
+  Text,
+  FontWeights,
+  MergeStylesRootProvider_unstable,
+  MergeStylesShadowRootProvider_unstable,
+  LayerHost,
+} from '@fluentui/react';
 import { useBoolean, useId } from '@fluentui/react-hooks';
 import { DefaultButton } from '@fluentui/react/lib/Button';
 
-export const CalloutBasicExample: React.FunctionComponent = () => {
+interface ICalloutBasicExampleImplProps {
+  inShadowDom?: boolean;
+}
+
+export const CalloutBasicExampleImpl: React.FC<ICalloutBasicExampleImplProps> = ({ inShadowDom }) => {
   const [isCalloutVisible, { toggle: toggleIsCalloutVisible }] = useBoolean(false);
-  const buttonId = useId('callout-button');
+  const buttonId = `${useId('callout-button')}${inShadowDom ? '-shadow' : ''}`;
   const labelId = useId('callout-label');
   const descriptionId = useId('callout-description');
 
   return (
     <>
+      <Text variant="large">{inShadowDom ? 'Shadow DOM' : 'Light DOM'}</Text>
       <DefaultButton
         id={buttonId}
         onClick={toggleIsCalloutVisible}
@@ -27,6 +44,7 @@ export const CalloutBasicExample: React.FunctionComponent = () => {
           target={`#${buttonId}`}
           onDismiss={toggleIsCalloutVisible}
           setInitialFocus
+          layerProps={inShadowDom ? { hostId: 'layer-host' } : undefined}
         >
           <Text as="h1" block variant="xLarge" className={styles.title} id={labelId}>
             Callout title here
@@ -40,6 +58,24 @@ export const CalloutBasicExample: React.FunctionComponent = () => {
           </Link>
         </Callout>
       )}
+    </>
+  );
+};
+
+export const CalloutBasicExample: React.FunctionComponent = () => {
+  const [shadowRootEl, setShadowRootEl] = React.useState<HTMLElement | null>(null);
+
+  return (
+    <>
+      <MergeStylesRootProvider_unstable>
+        <root.div className="shadow-root" delegatesFocus ref={setShadowRootEl}>
+          <MergeStylesShadowRootProvider_unstable shadowRoot={shadowRootEl?.shadowRoot}>
+            <CalloutBasicExampleImpl inShadowDom={true} />
+            <LayerHost id="layer-host" />
+          </MergeStylesShadowRootProvider_unstable>
+        </root.div>
+      </MergeStylesRootProvider_unstable>
+      <CalloutBasicExampleImpl inShadowDom={false} />
     </>
   );
 };
