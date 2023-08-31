@@ -1,6 +1,7 @@
 import { extractStyleParts } from './extractStyleParts';
 import { IStyle, IStyleBaseArray } from './IStyle';
 import { IStyleOptions } from './IStyleOptions';
+import { ShadowConfig } from './mergeStyleSets';
 import { getStyleOptions } from './StyleOptionsState';
 import { styleToClassName } from './styleToClassName';
 
@@ -22,12 +23,15 @@ export function mergeStyles(...args: (IStyle | IStyleBaseArray | false | null | 
 export function mergeCss(
   args: (IStyle | IStyleBaseArray | false | null | undefined) | (IStyle | IStyleBaseArray | false | null | undefined)[],
   options?: IStyleOptions,
+  shadowConfig?: ShadowConfig,
 ): string {
   const styleArgs = args instanceof Array ? args : [args];
-  const { classes, objects } = extractStyleParts(styleArgs);
+  const opts = options || {};
+  const { shadowConfig } = opts;
+  const { classes, objects } = extractStyleParts(shadowConfig, styleArgs);
 
   if (objects.length) {
-    classes.push(styleToClassName(options || {}, objects));
+    classes.push(styleToClassName(opts, objects));
   }
 
   return classes.join(' ');
