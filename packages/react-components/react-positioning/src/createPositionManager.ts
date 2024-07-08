@@ -5,7 +5,6 @@ import type { PositionManager, TargetElement } from './types';
 import { debounce, writeArrowUpdates, writeContainerUpdates } from './utils';
 import { listScrollParents } from './utils/listScrollParents';
 import { POSITIONING_END_EVENT } from './constants';
-import { createResizeObserver } from './utils/createResizeObserver';
 
 interface PositionManagerOptions {
   /**
@@ -71,7 +70,7 @@ export function createPositionManager(options: PositionManagerOptions): Position
   // When the dimensions of the target or the container change - trigger a position update
   const resizeObserver = disableUpdateOnResize
     ? null
-    : createResizeObserver(targetWindow, entries => {
+    : new targetWindow.ResizeObserver(entries => {
         // If content rect dimensions to go 0 -> very likely that `display: none` is being used to hide the element
         // In this case don't update and let users update imperatively
         const shouldUpdateOnResize = entries.every(entry => {
