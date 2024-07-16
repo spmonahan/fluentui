@@ -1,7 +1,7 @@
 import type { CurveTokens } from '../types';
 
 export const curves: CurveTokens = {
-  curveAccelerateMax: 'cubic-bezier(0.9,0.1,1,0.2)',
+  // curveAccelerateMax: 'cubic-bezier(0.9,0.1,1,0.2)',
   curveAccelerateMid: 'cubic-bezier(1,0,1,1)',
   curveAccelerateMin: 'cubic-bezier(0.8,0,0.78,1)',
   curveDecelerateMax: 'cubic-bezier(0.1,0.9,0.2,1)',
