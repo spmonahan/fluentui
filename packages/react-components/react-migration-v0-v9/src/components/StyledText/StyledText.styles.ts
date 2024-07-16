@@ -57,21 +57,21 @@ export const useStyles = makeStyles({
     color: tokens.colorBrandForegroundLink,
   },
   mentionMe: {
-    color: tokens.colorPalettePumpkinBorderActive,
+    // color: tokens.colorPalettePumpkinBorderActive,
     fontWeight: 700,
   },
   disabled: {
     color: tokens.colorNeutralForegroundDisabled,
   },
   error: {
-    color: tokens.colorPaletteRedForeground3,
+    // color: tokens.colorPaletteRedForeground3,
   },
   important: {
-    color: tokens.colorPaletteDarkOrangeForeground3,
+    // color: tokens.colorPaletteDarkOrangeForeground3,
     fontWeight: 700,
   },
   success: {
-    color: tokens.colorPaletteGreenForeground3,
+    // color: tokens.colorPaletteGreenForeground3,
   },
   temporary: {
     fontStyle: 'italic',

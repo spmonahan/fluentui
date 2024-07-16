@@ -33,10 +33,10 @@ const useStyles = makeStyles({
   },
   customLineColor: {
     '::before': {
-      ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
+      // ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
     },
     '::after': {
-      ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
+      // ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
     },
   },
   customLineStyle: {
@@ -69,7 +69,7 @@ export const CustomStyles = () => {
       </div>
       <div className={styles.example}>
         <Divider className={styles.customLineColor}>
-          Custom line color (<code>tokens.colorPaletteRedBorder2</code>)
+          {/* Custom line color (<code>tokens.colorPaletteRedBorder2</code>) */}
         </Divider>
       </div>
       <div className={styles.example}>

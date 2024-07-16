@@ -41,19 +41,19 @@ const useIconClassName = makeResetStyles({
 
 const useStyles = makeStyles({
   statusBusy: {
-    color: tokens.colorPaletteRedBackground3,
+    // color: tokens.colorPaletteRedBackground3,
   },
   statusAway: {
-    color: tokens.colorPaletteMarigoldBackground3,
+    // color: tokens.colorPaletteMarigoldBackground3,
   },
   statusAvailable: {
-    color: tokens.colorPaletteLightGreenForeground3,
+    // color: tokens.colorPaletteLightGreenForeground3,
   },
   statusOffline: {
     color: tokens.colorNeutralForeground3,
   },
   statusOutOfOffice: {
-    color: tokens.colorPaletteBerryForeground3,
+    // color: tokens.colorPaletteBerryForeground3,
   },
   statusUnknown: {
     color: tokens.colorNeutralForeground3,
@@ -62,10 +62,10 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralBackground1,
   },
   outOfOfficeAvailable: {
-    color: tokens.colorPaletteLightGreenForeground3,
+    // color: tokens.colorPaletteLightGreenForeground3,
   },
   outOfOfficeBusy: {
-    color: tokens.colorPaletteRedBackground3,
+    // color: tokens.colorPaletteRedBackground3,
   },
   outOfOfficeUnknown: {
     color: tokens.colorNeutralForeground3,

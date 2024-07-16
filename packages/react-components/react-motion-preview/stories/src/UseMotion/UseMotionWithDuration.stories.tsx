@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: tokens.colorPaletteDarkOrangeBackground3,
+    // backgroundColor: tokens.colorPaletteDarkOrangeBackground3,
     opacity: 0,
     transform: 'translate3D(-100%, 0, 0)',
     transitionDuration: `${DURATION}ms, ${DURATION}ms, ${DURATION / 2}ms`,
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   visible: {
     opacity: 1,
     transform: 'translate3D(0, 0, 0)',
-    backgroundColor: tokens.colorPaletteGreenBackground3,
+    // backgroundColor: tokens.colorPaletteGreenBackground3,
   },
 });
 

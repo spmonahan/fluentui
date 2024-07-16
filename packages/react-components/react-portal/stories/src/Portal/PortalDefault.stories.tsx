@@ -3,7 +3,7 @@ import { makeStyles, tokens, Portal } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
   content: {
-    backgroundColor: tokens.colorPaletteYellowBackground3,
+    // backgroundColor: tokens.colorPaletteYellowBackground3,
     border: '3px dashed',
     padding: '5px',
   },

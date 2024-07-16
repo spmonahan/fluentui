@@ -95,7 +95,7 @@ const useIndicatorStyles = makeStyles({
     color: tokens.colorBrandForeground1,
   },
   marigold: {
-    color: tokens.colorPaletteMarigoldBorderActive,
+    // color: tokens.colorPaletteMarigoldBorderActive,
   },
   filled: {
     color: tokens.colorNeutralBackground6,
@@ -109,7 +109,7 @@ const useIndicatorStyles = makeStyles({
     color: tokens.colorBrandBackground2,
   },
   marigoldFilled: {
-    color: tokens.colorPaletteMarigoldBackground2,
+    // color: tokens.colorPaletteMarigoldBackground2,
   },
 });
 

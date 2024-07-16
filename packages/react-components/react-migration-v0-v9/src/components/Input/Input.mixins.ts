@@ -5,11 +5,11 @@ const fluid = (): GriffelStyle => ({ width: '100%' });
 const error = (): GriffelStyle => ({ border: `1px solid ${tokens.colorPaletteRedBorderActive}` });
 
 const errorIndicator = (): GriffelStyle => ({
-  color: tokens.colorPaletteRedBorderActive,
+  // color: tokens.colorPaletteRedBorderActive,
 });
 
 const successIndicator = (): GriffelStyle => ({
-  color: tokens.colorPaletteGreenForeground1,
+  // color: tokens.colorPaletteGreenForeground1,
 });
 
 export const input = {

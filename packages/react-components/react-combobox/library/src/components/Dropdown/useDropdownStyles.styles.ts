@@ -172,12 +172,12 @@ const useStyles = makeStyles({
   },
   invalid: {
     ':not(:focus-within),:hover:not(:focus-within)': {
-      ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
+      // ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
     },
   },
   invalidUnderline: {
     ':not(:focus-within),:hover:not(:focus-within)': {
-      borderBottomColor: tokens.colorPaletteRedBorder2,
+      // borderBottomColor: tokens.colorPaletteRedBorder2,
     },
   },
   disabled: {

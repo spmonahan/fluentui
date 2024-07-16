@@ -169,56 +169,56 @@ export const tokens: Record<string, string> = {
   // colorBrandShadowAmbient: 'var(--colorBrandShadowAmbient)',
   // colorBrandShadowKey: 'var(--colorBrandShadowKey)',
 
-  // Color palette tokens
+  // // Color palette tokens
 
-  // Color palette red tokens
-  colorPaletteRedBackground1: 'var(--colorPaletteRedBackground1)',
-  colorPaletteRedBackground2: 'var(--colorPaletteRedBackground2)',
-  colorPaletteRedBackground3: 'var(--colorPaletteRedBackground3)',
-  colorPaletteRedBorderActive: 'var(--colorPaletteRedBorderActive)',
-  colorPaletteRedBorder1: 'var(--colorPaletteRedBorder1)',
-  colorPaletteRedBorder2: 'var(--colorPaletteRedBorder2)',
-  colorPaletteRedForeground1: 'var(--colorPaletteRedForeground1)',
-  colorPaletteRedForeground2: 'var(--colorPaletteRedForeground2)',
-  colorPaletteRedForeground3: 'var(--colorPaletteRedForeground3)',
+  // // Color palette red tokens
+  // colorPaletteRedBackground1: 'var(--colorPaletteRedBackground1)',
+  // colorPaletteRedBackground2: 'var(--colorPaletteRedBackground2)',
+  // colorPaletteRedBackground3: 'var(--colorPaletteRedBackground3)',
+  // colorPaletteRedBorderActive: 'var(--colorPaletteRedBorderActive)',
+  // colorPaletteRedBorder1: 'var(--colorPaletteRedBorder1)',
+  // colorPaletteRedBorder2: 'var(--colorPaletteRedBorder2)',
+  // colorPaletteRedForeground1: 'var(--colorPaletteRedForeground1)',
+  // colorPaletteRedForeground2: 'var(--colorPaletteRedForeground2)',
+  // colorPaletteRedForeground3: 'var(--colorPaletteRedForeground3)',
   // colorPaletteRedForegroundInverted: 'var(--colorPaletteRedForegroundInverted)',
 
-  // Color palette green tokens
-  colorPaletteGreenBackground1: 'var(--colorPaletteGreenBackground1)',
+  // // Color palette green tokens
+  // colorPaletteGreenBackground1: 'var(--colorPaletteGreenBackground1)',
   // colorPaletteGreenBackground2: 'var(--colorPaletteGreenBackground2)',
-  colorPaletteGreenBackground3: 'var(--colorPaletteGreenBackground3)',
+  // colorPaletteGreenBackground3: 'var(--colorPaletteGreenBackground3)',
   // colorPaletteGreenBorderActive: 'var(--colorPaletteGreenBorderActive)',
-  colorPaletteGreenBorder1: 'var(--colorPaletteGreenBorder1)',
-  colorPaletteGreenBorder2: 'var(--colorPaletteGreenBorder2)',
-  colorPaletteGreenForeground1: 'var(--colorPaletteGreenForeground1)',
+  // colorPaletteGreenBorder1: 'var(--colorPaletteGreenBorder1)',
+  // colorPaletteGreenBorder2: 'var(--colorPaletteGreenBorder2)',
+  // colorPaletteGreenForeground1: 'var(--colorPaletteGreenForeground1)',
   // colorPaletteGreenForeground2: 'var(--colorPaletteGreenForeground2)',
-  colorPaletteGreenForeground3: 'var(--colorPaletteGreenForeground3)',
+  // colorPaletteGreenForeground3: 'var(--colorPaletteGreenForeground3)',
   // colorPaletteGreenForegroundInverted: 'var(--colorPaletteGreenForegroundInverted)',
 
-  // Color palette dark orange tokens
-  colorPaletteDarkOrangeBackground1: 'var(--colorPaletteDarkOrangeBackground1)',
+  // // Color palette dark orange tokens
+  // colorPaletteDarkOrangeBackground1: 'var(--colorPaletteDarkOrangeBackground1)',
   // colorPaletteDarkOrangeBackground2: 'var(--colorPaletteDarkOrangeBackground2)',
-  colorPaletteDarkOrangeBackground3: 'var(--colorPaletteDarkOrangeBackground3)',
+  // colorPaletteDarkOrangeBackground3: 'var(--colorPaletteDarkOrangeBackground3)',
   // colorPaletteDarkOrangeBorderActive: 'var(--colorPaletteDarkOrangeBorderActive)',
-  colorPaletteDarkOrangeBorder1: 'var(--colorPaletteDarkOrangeBorder1)',
+  // colorPaletteDarkOrangeBorder1: 'var(--colorPaletteDarkOrangeBorder1)',
   // colorPaletteDarkOrangeBorder2: 'var(--colorPaletteDarkOrangeBorder2)',
-  colorPaletteDarkOrangeForeground1: 'var(--colorPaletteDarkOrangeForeground1)',
+  // colorPaletteDarkOrangeForeground1: 'var(--colorPaletteDarkOrangeForeground1)',
   // colorPaletteDarkOrangeForeground2: 'var(--colorPaletteDarkOrangeForeground2)',
-  colorPaletteDarkOrangeForeground3: 'var(--colorPaletteDarkOrangeForeground3)',
+  // colorPaletteDarkOrangeForeground3: 'var(--colorPaletteDarkOrangeForeground3)',
 
-  // Color palette yellow tokens
-  colorPaletteYellowBackground1: 'var(--colorPaletteYellowBackground1)',
+  // // Color palette yellow tokens
+  // colorPaletteYellowBackground1: 'var(--colorPaletteYellowBackground1)',
   // colorPaletteYellowBackground2: 'var(--colorPaletteYellowBackground2)',
-  colorPaletteYellowBackground3: 'var(--colorPaletteYellowBackground3)',
+  // colorPaletteYellowBackground3: 'var(--colorPaletteYellowBackground3)',
   // colorPaletteYellowBorderActive: 'var(--colorPaletteYellowBorderActive)',
-  colorPaletteYellowBorder1: 'var(--colorPaletteYellowBorder1)',
+  // colorPaletteYellowBorder1: 'var(--colorPaletteYellowBorder1)',
   // colorPaletteYellowBorder2: 'var(--colorPaletteYellowBorder2)',
-  colorPaletteYellowForeground1: 'var(--colorPaletteYellowForeground1)',
-  colorPaletteYellowForeground2: 'var(--colorPaletteYellowForeground2)',
+  // colorPaletteYellowForeground1: 'var(--colorPaletteYellowForeground1)',
+  // colorPaletteYellowForeground2: 'var(--colorPaletteYellowForeground2)',
   // colorPaletteYellowForeground3: 'var(--colorPaletteYellowForeground3)',
   // colorPaletteYellowForegroundInverted: 'var(--colorPaletteYellowForegroundInverted)',
 
-  // Color palette berry tokens
+  // // Color palette berry tokens
   // colorPaletteBerryBackground1: 'var(--colorPaletteBerryBackground1)',
   // colorPaletteBerryBackground2: 'var(--colorPaletteBerryBackground2)',
   // colorPaletteBerryBackground3: 'var(--colorPaletteBerryBackground3)',
@@ -227,169 +227,169 @@ export const tokens: Record<string, string> = {
   // colorPaletteBerryBorder2: 'var(--colorPaletteBerryBorder2)',
   // colorPaletteBerryForeground1: 'var(--colorPaletteBerryForeground1)',
   // colorPaletteBerryForeground2: 'var(--colorPaletteBerryForeground2)',
-  colorPaletteBerryForeground3: 'var(--colorPaletteBerryForeground3)',
+  // colorPaletteBerryForeground3: 'var(--colorPaletteBerryForeground3)',
 
-  // Color palette marigold tokens
+  // // Color palette marigold tokens
   // colorPaletteMarigoldBackground1: 'var(--colorPaletteMarigoldBackground1)',
-  colorPaletteMarigoldBackground2: 'var(--colorPaletteMarigoldBackground2)',
-  colorPaletteMarigoldBackground3: 'var(--colorPaletteMarigoldBackground3)',
-  colorPaletteMarigoldBorderActive: 'var(--colorPaletteMarigoldBorderActive)',
+  // colorPaletteMarigoldBackground2: 'var(--colorPaletteMarigoldBackground2)',
+  // colorPaletteMarigoldBackground3: 'var(--colorPaletteMarigoldBackground3)',
+  // colorPaletteMarigoldBorderActive: 'var(--colorPaletteMarigoldBorderActive)',
   // colorPaletteMarigoldBorder1: 'var(--colorPaletteMarigoldBorder1)',
   // colorPaletteMarigoldBorder2: 'var(--colorPaletteMarigoldBorder2)',
   // colorPaletteMarigoldForeground1: 'var(--colorPaletteMarigoldForeground1)',
-  colorPaletteMarigoldForeground2: 'var(--colorPaletteMarigoldForeground2)',
+  // colorPaletteMarigoldForeground2: 'var(--colorPaletteMarigoldForeground2)',
   // colorPaletteMarigoldForeground3: 'var(--colorPaletteMarigoldForeground3)',
 
-  // Color palette light green tokens
+  // // Color palette light green tokens
   // colorPaletteLightGreenBackground1: 'var(--colorPaletteLightGreenBackground1)',
   // colorPaletteLightGreenBackground2: 'var(--colorPaletteLightGreenBackground2)',
-  colorPaletteLightGreenBackground3: 'var(--colorPaletteLightGreenBackground3)',
+  // colorPaletteLightGreenBackground3: 'var(--colorPaletteLightGreenBackground3)',
   // colorPaletteLightGreenBorderActive: 'var(--colorPaletteLightGreenBorderActive)',
   // colorPaletteLightGreenBorder1: 'var(--colorPaletteLightGreenBorder1)',
   // colorPaletteLightGreenBorder2: 'var(--colorPaletteLightGreenBorder2)',
   // colorPaletteLightGreenForeground1: 'var(--colorPaletteLightGreenForeground1)',
   // colorPaletteLightGreenForeground2: 'var(--colorPaletteLightGreenForeground2)',
-  colorPaletteLightGreenForeground3: 'var(--colorPaletteLightGreenForeground3)',
+  // colorPaletteLightGreenForeground3: 'var(--colorPaletteLightGreenForeground3)',
 
-  // Color palette anchor tokens
-  colorPaletteAnchorBackground2: 'var(--colorPaletteAnchorBackground2)',
-  colorPaletteAnchorBorderActive: 'var(--colorPaletteAnchorBorderActive)',
-  colorPaletteAnchorForeground2: 'var(--colorPaletteAnchorForeground2)',
+  // // Color palette anchor tokens
+  // colorPaletteAnchorBackground2: 'var(--colorPaletteAnchorBackground2)',
+  // colorPaletteAnchorBorderActive: 'var(--colorPaletteAnchorBorderActive)',
+  // colorPaletteAnchorForeground2: 'var(--colorPaletteAnchorForeground2)',
 
-  // Color palette beige tokens
-  colorPaletteBeigeBackground2: 'var(--colorPaletteBeigeBackground2)',
-  colorPaletteBeigeBorderActive: 'var(--colorPaletteBeigeBorderActive)',
-  colorPaletteBeigeForeground2: 'var(--colorPaletteBeigeForeground2)',
+  // // Color palette beige tokens
+  // colorPaletteBeigeBackground2: 'var(--colorPaletteBeigeBackground2)',
+  // colorPaletteBeigeBorderActive: 'var(--colorPaletteBeigeBorderActive)',
+  // colorPaletteBeigeForeground2: 'var(--colorPaletteBeigeForeground2)',
 
-  // Color palette blue tokens
-  colorPaletteBlueBackground2: 'var(--colorPaletteBlueBackground2)',
-  colorPaletteBlueBorderActive: 'var(--colorPaletteBlueBorderActive)',
-  colorPaletteBlueForeground2: 'var(--colorPaletteBlueForeground2)',
+  // // Color palette blue tokens
+  // colorPaletteBlueBackground2: 'var(--colorPaletteBlueBackground2)',
+  // colorPaletteBlueBorderActive: 'var(--colorPaletteBlueBorderActive)',
+  // colorPaletteBlueForeground2: 'var(--colorPaletteBlueForeground2)',
 
-  // Color palette brass tokens
-  colorPaletteBrassBackground2: 'var(--colorPaletteBrassBackground2)',
-  colorPaletteBrassBorderActive: 'var(--colorPaletteBrassBorderActive)',
-  colorPaletteBrassForeground2: 'var(--colorPaletteBrassForeground2)',
+  // // Color palette brass tokens
+  // colorPaletteBrassBackground2: 'var(--colorPaletteBrassBackground2)',
+  // colorPaletteBrassBorderActive: 'var(--colorPaletteBrassBorderActive)',
+  // colorPaletteBrassForeground2: 'var(--colorPaletteBrassForeground2)',
 
-  // Color palette brown tokens
-  colorPaletteBrownBackground2: 'var(--colorPaletteBrownBackground2)',
-  colorPaletteBrownBorderActive: 'var(--colorPaletteBrownBorderActive)',
-  colorPaletteBrownForeground2: 'var(--colorPaletteBrownForeground2)',
+  // // Color palette brown tokens
+  // colorPaletteBrownBackground2: 'var(--colorPaletteBrownBackground2)',
+  // colorPaletteBrownBorderActive: 'var(--colorPaletteBrownBorderActive)',
+  // colorPaletteBrownForeground2: 'var(--colorPaletteBrownForeground2)',
 
-  // Color palette cornflower tokens
-  colorPaletteCornflowerBackground2: 'var(--colorPaletteCornflowerBackground2)',
-  colorPaletteCornflowerBorderActive: 'var(--colorPaletteCornflowerBorderActive)',
-  colorPaletteCornflowerForeground2: 'var(--colorPaletteCornflowerForeground2)',
+  // // Color palette cornflower tokens
+  // colorPaletteCornflowerBackground2: 'var(--colorPaletteCornflowerBackground2)',
+  // colorPaletteCornflowerBorderActive: 'var(--colorPaletteCornflowerBorderActive)',
+  // colorPaletteCornflowerForeground2: 'var(--colorPaletteCornflowerForeground2)',
 
-  // Color palette cranberry tokens
-  colorPaletteCranberryBackground2: 'var(--colorPaletteCranberryBackground2)',
-  colorPaletteCranberryBorderActive: 'var(--colorPaletteCranberryBorderActive)',
-  colorPaletteCranberryForeground2: 'var(--colorPaletteCranberryForeground2)',
+  // // Color palette cranberry tokens
+  // colorPaletteCranberryBackground2: 'var(--colorPaletteCranberryBackground2)',
+  // colorPaletteCranberryBorderActive: 'var(--colorPaletteCranberryBorderActive)',
+  // colorPaletteCranberryForeground2: 'var(--colorPaletteCranberryForeground2)',
 
-  // Color palette dark green tokens
-  colorPaletteDarkGreenBackground2: 'var(--colorPaletteDarkGreenBackground2)',
-  colorPaletteDarkGreenBorderActive: 'var(--colorPaletteDarkGreenBorderActive)',
-  colorPaletteDarkGreenForeground2: 'var(--colorPaletteDarkGreenForeground2)',
+  // // Color palette dark green tokens
+  // colorPaletteDarkGreenBackground2: 'var(--colorPaletteDarkGreenBackground2)',
+  // colorPaletteDarkGreenBorderActive: 'var(--colorPaletteDarkGreenBorderActive)',
+  // colorPaletteDarkGreenForeground2: 'var(--colorPaletteDarkGreenForeground2)',
 
-  // Color palette dark red tokens
-  colorPaletteDarkRedBackground2: 'var(--colorPaletteDarkRedBackground2)',
-  colorPaletteDarkRedBorderActive: 'var(--colorPaletteDarkRedBorderActive)',
-  colorPaletteDarkRedForeground2: 'var(--colorPaletteDarkRedForeground2)',
+  // // Color palette dark red tokens
+  // colorPaletteDarkRedBackground2: 'var(--colorPaletteDarkRedBackground2)',
+  // colorPaletteDarkRedBorderActive: 'var(--colorPaletteDarkRedBorderActive)',
+  // colorPaletteDarkRedForeground2: 'var(--colorPaletteDarkRedForeground2)',
 
-  // Color palette forest tokens
-  colorPaletteForestBackground2: 'var(--colorPaletteForestBackground2)',
-  colorPaletteForestBorderActive: 'var(--colorPaletteForestBorderActive)',
-  colorPaletteForestForeground2: 'var(--colorPaletteForestForeground2)',
+  // // Color palette forest tokens
+  // colorPaletteForestBackground2: 'var(--colorPaletteForestBackground2)',
+  // colorPaletteForestBorderActive: 'var(--colorPaletteForestBorderActive)',
+  // colorPaletteForestForeground2: 'var(--colorPaletteForestForeground2)',
 
-  // Color palette gold tokens
-  colorPaletteGoldBackground2: 'var(--colorPaletteGoldBackground2)',
-  colorPaletteGoldBorderActive: 'var(--colorPaletteGoldBorderActive)',
-  colorPaletteGoldForeground2: 'var(--colorPaletteGoldForeground2)',
+  // // Color palette gold tokens
+  // colorPaletteGoldBackground2: 'var(--colorPaletteGoldBackground2)',
+  // colorPaletteGoldBorderActive: 'var(--colorPaletteGoldBorderActive)',
+  // colorPaletteGoldForeground2: 'var(--colorPaletteGoldForeground2)',
 
-  // Color palette grape tokens
-  colorPaletteGrapeBackground2: 'var(--colorPaletteGrapeBackground2)',
-  colorPaletteGrapeBorderActive: 'var(--colorPaletteGrapeBorderActive)',
-  colorPaletteGrapeForeground2: 'var(--colorPaletteGrapeForeground2)',
+  // // Color palette grape tokens
+  // colorPaletteGrapeBackground2: 'var(--colorPaletteGrapeBackground2)',
+  // colorPaletteGrapeBorderActive: 'var(--colorPaletteGrapeBorderActive)',
+  // colorPaletteGrapeForeground2: 'var(--colorPaletteGrapeForeground2)',
 
-  // Color palette lavender tokens
-  colorPaletteLavenderBackground2: 'var(--colorPaletteLavenderBackground2)',
-  colorPaletteLavenderBorderActive: 'var(--colorPaletteLavenderBorderActive)',
-  colorPaletteLavenderForeground2: 'var(--colorPaletteLavenderForeground2)',
+  // // Color palette lavender tokens
+  // colorPaletteLavenderBackground2: 'var(--colorPaletteLavenderBackground2)',
+  // colorPaletteLavenderBorderActive: 'var(--colorPaletteLavenderBorderActive)',
+  // colorPaletteLavenderForeground2: 'var(--colorPaletteLavenderForeground2)',
 
-  // Color palette light teal tokens
-  colorPaletteLightTealBackground2: 'var(--colorPaletteLightTealBackground2)',
-  colorPaletteLightTealBorderActive: 'var(--colorPaletteLightTealBorderActive)',
-  colorPaletteLightTealForeground2: 'var(--colorPaletteLightTealForeground2)',
+  // // Color palette light teal tokens
+  // colorPaletteLightTealBackground2: 'var(--colorPaletteLightTealBackground2)',
+  // colorPaletteLightTealBorderActive: 'var(--colorPaletteLightTealBorderActive)',
+  // colorPaletteLightTealForeground2: 'var(--colorPaletteLightTealForeground2)',
 
-  // Color palette lilac tokens
-  colorPaletteLilacBackground2: 'var(--colorPaletteLilacBackground2)',
-  colorPaletteLilacBorderActive: 'var(--colorPaletteLilacBorderActive)',
-  colorPaletteLilacForeground2: 'var(--colorPaletteLilacForeground2)',
+  // // Color palette lilac tokens
+  // colorPaletteLilacBackground2: 'var(--colorPaletteLilacBackground2)',
+  // colorPaletteLilacBorderActive: 'var(--colorPaletteLilacBorderActive)',
+  // colorPaletteLilacForeground2: 'var(--colorPaletteLilacForeground2)',
 
-  // Color palette magenta tokens
-  colorPaletteMagentaBackground2: 'var(--colorPaletteMagentaBackground2)',
-  colorPaletteMagentaBorderActive: 'var(--colorPaletteMagentaBorderActive)',
-  colorPaletteMagentaForeground2: 'var(--colorPaletteMagentaForeground2)',
+  // // Color palette magenta tokens
+  // colorPaletteMagentaBackground2: 'var(--colorPaletteMagentaBackground2)',
+  // colorPaletteMagentaBorderActive: 'var(--colorPaletteMagentaBorderActive)',
+  // colorPaletteMagentaForeground2: 'var(--colorPaletteMagentaForeground2)',
 
-  // Color palette mink tokens
-  colorPaletteMinkBackground2: 'var(--colorPaletteMinkBackground2)',
-  colorPaletteMinkBorderActive: 'var(--colorPaletteMinkBorderActive)',
-  colorPaletteMinkForeground2: 'var(--colorPaletteMinkForeground2)',
+  // // Color palette mink tokens
+  // colorPaletteMinkBackground2: 'var(--colorPaletteMinkBackground2)',
+  // colorPaletteMinkBorderActive: 'var(--colorPaletteMinkBorderActive)',
+  // colorPaletteMinkForeground2: 'var(--colorPaletteMinkForeground2)',
 
-  // Color palette navy tokens
-  colorPaletteNavyBackground2: 'var(--colorPaletteNavyBackground2)',
-  colorPaletteNavyBorderActive: 'var(--colorPaletteNavyBorderActive)',
-  colorPaletteNavyForeground2: 'var(--colorPaletteNavyForeground2)',
+  // // Color palette navy tokens
+  // colorPaletteNavyBackground2: 'var(--colorPaletteNavyBackground2)',
+  // colorPaletteNavyBorderActive: 'var(--colorPaletteNavyBorderActive)',
+  // colorPaletteNavyForeground2: 'var(--colorPaletteNavyForeground2)',
 
-  // Color palette peach tokens
-  colorPalettePeachBackground2: 'var(--colorPalettePeachBackground2)',
-  colorPalettePeachBorderActive: 'var(--colorPalettePeachBorderActive)',
-  colorPalettePeachForeground2: 'var(--colorPalettePeachForeground2)',
+  // // Color palette peach tokens
+  // colorPalettePeachBackground2: 'var(--colorPalettePeachBackground2)',
+  // colorPalettePeachBorderActive: 'var(--colorPalettePeachBorderActive)',
+  // colorPalettePeachForeground2: 'var(--colorPalettePeachForeground2)',
 
-  // Color palette pink tokens
-  colorPalettePinkBackground2: 'var(--colorPalettePinkBackground2)',
-  colorPalettePinkBorderActive: 'var(--colorPalettePinkBorderActive)',
-  colorPalettePinkForeground2: 'var(--colorPalettePinkForeground2)',
+  // // Color palette pink tokens
+  // colorPalettePinkBackground2: 'var(--colorPalettePinkBackground2)',
+  // colorPalettePinkBorderActive: 'var(--colorPalettePinkBorderActive)',
+  // colorPalettePinkForeground2: 'var(--colorPalettePinkForeground2)',
 
-  // Color palette platinum tokens
-  colorPalettePlatinumBackground2: 'var(--colorPalettePlatinumBackground2)',
-  colorPalettePlatinumBorderActive: 'var(--colorPalettePlatinumBorderActive)',
-  colorPalettePlatinumForeground2: 'var(--colorPalettePlatinumForeground2)',
+  // // Color palette platinum tokens
+  // colorPalettePlatinumBackground2: 'var(--colorPalettePlatinumBackground2)',
+  // colorPalettePlatinumBorderActive: 'var(--colorPalettePlatinumBorderActive)',
+  // colorPalettePlatinumForeground2: 'var(--colorPalettePlatinumForeground2)',
 
-  // Color palette plum tokens
-  colorPalettePlumBackground2: 'var(--colorPalettePlumBackground2)',
-  colorPalettePlumBorderActive: 'var(--colorPalettePlumBorderActive)',
-  colorPalettePlumForeground2: 'var(--colorPalettePlumForeground2)',
+  // // Color palette plum tokens
+  // colorPalettePlumBackground2: 'var(--colorPalettePlumBackground2)',
+  // colorPalettePlumBorderActive: 'var(--colorPalettePlumBorderActive)',
+  // colorPalettePlumForeground2: 'var(--colorPalettePlumForeground2)',
 
-  // Color palette pumpkin tokens
-  colorPalettePumpkinBackground2: 'var(--colorPalettePumpkinBackground2)',
-  colorPalettePumpkinBorderActive: 'var(--colorPalettePumpkinBorderActive)',
-  colorPalettePumpkinForeground2: 'var(--colorPalettePumpkinForeground2)',
+  // // Color palette pumpkin tokens
+  // colorPalettePumpkinBackground2: 'var(--colorPalettePumpkinBackground2)',
+  // colorPalettePumpkinBorderActive: 'var(--colorPalettePumpkinBorderActive)',
+  // colorPalettePumpkinForeground2: 'var(--colorPalettePumpkinForeground2)',
 
-  // Color palette purple tokens
-  colorPalettePurpleBackground2: 'var(--colorPalettePurpleBackground2)',
-  colorPalettePurpleBorderActive: 'var(--colorPalettePurpleBorderActive)',
-  colorPalettePurpleForeground2: 'var(--colorPalettePurpleForeground2)',
+  // // Color palette purple tokens
+  // colorPalettePurpleBackground2: 'var(--colorPalettePurpleBackground2)',
+  // colorPalettePurpleBorderActive: 'var(--colorPalettePurpleBorderActive)',
+  // colorPalettePurpleForeground2: 'var(--colorPalettePurpleForeground2)',
 
-  // Color palette royal blue tokens
-  colorPaletteRoyalBlueBackground2: 'var(--colorPaletteRoyalBlueBackground2)',
-  colorPaletteRoyalBlueBorderActive: 'var(--colorPaletteRoyalBlueBorderActive)',
-  colorPaletteRoyalBlueForeground2: 'var(--colorPaletteRoyalBlueForeground2)',
+  // // Color palette royal blue tokens
+  // colorPaletteRoyalBlueBackground2: 'var(--colorPaletteRoyalBlueBackground2)',
+  // colorPaletteRoyalBlueBorderActive: 'var(--colorPaletteRoyalBlueBorderActive)',
+  // colorPaletteRoyalBlueForeground2: 'var(--colorPaletteRoyalBlueForeground2)',
 
-  // Color palette seafoam tokens
-  colorPaletteSeafoamBackground2: 'var(--colorPaletteSeafoamBackground2)',
-  colorPaletteSeafoamBorderActive: 'var(--colorPaletteSeafoamBorderActive)',
-  colorPaletteSeafoamForeground2: 'var(--colorPaletteSeafoamForeground2)',
+  // // Color palette seafoam tokens
+  // colorPaletteSeafoamBackground2: 'var(--colorPaletteSeafoamBackground2)',
+  // colorPaletteSeafoamBorderActive: 'var(--colorPaletteSeafoamBorderActive)',
+  // colorPaletteSeafoamForeground2: 'var(--colorPaletteSeafoamForeground2)',
 
-  // Color palette steel tokens
-  colorPaletteSteelBackground2: 'var(--colorPaletteSteelBackground2)',
-  colorPaletteSteelBorderActive: 'var(--colorPaletteSteelBorderActive)',
-  colorPaletteSteelForeground2: 'var(--colorPaletteSteelForeground2)',
+  // // Color palette steel tokens
+  // colorPaletteSteelBackground2: 'var(--colorPaletteSteelBackground2)',
+  // colorPaletteSteelBorderActive: 'var(--colorPaletteSteelBorderActive)',
+  // colorPaletteSteelForeground2: 'var(--colorPaletteSteelForeground2)',
 
-  // Color palette teal tokens
-  colorPaletteTealBackground2: 'var(--colorPaletteTealBackground2)',
-  colorPaletteTealBorderActive: 'var(--colorPaletteTealBorderActive)',
-  colorPaletteTealForeground2: 'var(--colorPaletteTealForeground2)',
+  // // Color palette teal tokens
+  // colorPaletteTealBackground2: 'var(--colorPaletteTealBackground2)',
+  // colorPaletteTealBorderActive: 'var(--colorPaletteTealBorderActive)',
+  // colorPaletteTealForeground2: 'var(--colorPaletteTealForeground2)',
 
   // Color status success tokens
   colorStatusSuccessBackground1: 'var(--colorStatusSuccessBackground1)',

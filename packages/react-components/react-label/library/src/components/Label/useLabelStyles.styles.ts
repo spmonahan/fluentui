@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 
   required: {
-    color: tokens.colorPaletteRedForeground3,
+    // color: tokens.colorPaletteRedForeground3,
     paddingLeft: tokens.spacingHorizontalXS,
   },
 

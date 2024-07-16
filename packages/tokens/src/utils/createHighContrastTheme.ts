@@ -1,4 +1,4 @@
-import { colorPaletteTokens, colorStatusTokens } from '../alias/highContrastColorPalette';
+import { /*olorPaletteTokens,*/ colorStatusTokens } from '../alias/highContrastColorPalette';
 import { generateColorTokens } from '../alias/highContrastColor';
 
 import { borderRadius, fontSizes, lineHeights, fontFamilies, strokeWidths, fontWeights } from '../global/index';
@@ -24,7 +24,7 @@ export const createHighContrastTheme = (): Theme => {
     ...curves,
 
     ...colorTokens,
-    ...colorPaletteTokens,
+    // ...colorPaletteTokens,
     ...colorStatusTokens,
 
     ...createShadowTokens(colorTokens.colorNeutralShadowAmbient, colorTokens.colorNeutralShadowKey),

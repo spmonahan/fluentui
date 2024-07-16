@@ -111,7 +111,7 @@ const useRootStyles = makeStyles({
     color: tokens.colorNeutralForegroundOnBrand,
   },
   'filled-danger': {
-    backgroundColor: tokens.colorPaletteRedBackground3,
+    // backgroundColor: tokens.colorPaletteRedBackground3,
     color: tokens.colorNeutralForegroundOnBrand,
   },
   'filled-important': {
@@ -123,7 +123,7 @@ const useRootStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
   },
   'filled-severe': {
-    backgroundColor: tokens.colorPaletteDarkOrangeBackground3,
+    // backgroundColor: tokens.colorPaletteDarkOrangeBackground3,
     color: tokens.colorNeutralForegroundOnBrand,
   },
   'filled-subtle': {
@@ -131,11 +131,11 @@ const useRootStyles = makeStyles({
     color: tokens.colorNeutralForeground1,
   },
   'filled-success': {
-    backgroundColor: tokens.colorPaletteGreenBackground3,
+    // backgroundColor: tokens.colorPaletteGreenBackground3,
     color: tokens.colorNeutralForegroundOnBrand,
   },
   'filled-warning': {
-    backgroundColor: tokens.colorPaletteYellowBackground3,
+    // backgroundColor: tokens.colorPaletteYellowBackground3,
     color: tokens.colorNeutralForeground1Static,
   },
 
@@ -148,7 +148,7 @@ const useRootStyles = makeStyles({
     color: tokens.colorBrandForeground1,
   },
   'ghost-danger': {
-    color: tokens.colorPaletteRedForeground3,
+    // color: tokens.colorPaletteRedForeground3,
   },
   'ghost-important': {
     color: tokens.colorNeutralForeground1,
@@ -157,16 +157,16 @@ const useRootStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
   },
   'ghost-severe': {
-    color: tokens.colorPaletteDarkOrangeForeground3,
+    // color: tokens.colorPaletteDarkOrangeForeground3,
   },
   'ghost-subtle': {
     color: tokens.colorNeutralForegroundStaticInverted,
   },
   'ghost-success': {
-    color: tokens.colorPaletteGreenForeground3,
+    // color: tokens.colorPaletteGreenForeground3,
   },
   'ghost-warning': {
-    color: tokens.colorPaletteYellowForeground2,
+    // color: tokens.colorPaletteYellowForeground2,
   },
 
   // appearance: outline
@@ -178,8 +178,8 @@ const useRootStyles = makeStyles({
     color: tokens.colorBrandForeground1,
   },
   'outline-danger': {
-    color: tokens.colorPaletteRedForeground3,
-    ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
+    // color: tokens.colorPaletteRedForeground3,
+    // ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
   },
   'outline-important': {
     color: tokens.colorNeutralForeground3,
@@ -190,17 +190,17 @@ const useRootStyles = makeStyles({
     ...shorthands.borderColor(tokens.colorNeutralStroke2),
   },
   'outline-severe': {
-    color: tokens.colorPaletteDarkOrangeForeground3,
+    // color: tokens.colorPaletteDarkOrangeForeground3,
   },
   'outline-subtle': {
     color: tokens.colorNeutralForegroundStaticInverted,
   },
   'outline-success': {
-    color: tokens.colorPaletteGreenForeground3,
-    ...shorthands.borderColor(tokens.colorPaletteGreenBorder2),
+    // color: tokens.colorPaletteGreenForeground3,
+    // ...shorthands.borderColor(tokens.colorPaletteGreenBorder2),
   },
   'outline-warning': {
-    color: tokens.colorPaletteYellowForeground2,
+    // color: tokens.colorPaletteYellowForeground2,
   },
 
   // appearance: tint
@@ -214,9 +214,9 @@ const useRootStyles = makeStyles({
     ...shorthands.borderColor(tokens.colorBrandStroke2),
   },
   'tint-danger': {
-    backgroundColor: tokens.colorPaletteRedBackground1,
-    color: tokens.colorPaletteRedForeground1,
-    ...shorthands.borderColor(tokens.colorPaletteRedBorder1),
+    // backgroundColor: tokens.colorPaletteRedBackground1,
+    // color: tokens.colorPaletteRedForeground1,
+    // ...shorthands.borderColor(tokens.colorPaletteRedBorder1),
   },
   'tint-important': {
     backgroundColor: tokens.colorNeutralForeground3,
@@ -229,9 +229,9 @@ const useRootStyles = makeStyles({
     ...shorthands.borderColor(tokens.colorNeutralStroke2),
   },
   'tint-severe': {
-    backgroundColor: tokens.colorPaletteDarkOrangeBackground1,
-    color: tokens.colorPaletteDarkOrangeForeground1,
-    ...shorthands.borderColor(tokens.colorPaletteDarkOrangeBorder1),
+    // backgroundColor: tokens.colorPaletteDarkOrangeBackground1,
+    // color: tokens.colorPaletteDarkOrangeForeground1,
+    // ...shorthands.borderColor(tokens.colorPaletteDarkOrangeBorder1),
   },
   'tint-subtle': {
     backgroundColor: tokens.colorNeutralBackground1,
@@ -239,14 +239,14 @@ const useRootStyles = makeStyles({
     ...shorthands.borderColor(tokens.colorNeutralStroke2),
   },
   'tint-success': {
-    backgroundColor: tokens.colorPaletteGreenBackground1,
-    color: tokens.colorPaletteGreenForeground1,
-    ...shorthands.borderColor(tokens.colorPaletteGreenBorder1),
+    // backgroundColor: tokens.colorPaletteGreenBackground1,
+    // color: tokens.colorPaletteGreenForeground1,
+    // ...shorthands.borderColor(tokens.colorPaletteGreenBorder1),
   },
   'tint-warning': {
-    backgroundColor: tokens.colorPaletteYellowBackground1,
-    color: tokens.colorPaletteYellowForeground1,
-    ...shorthands.borderColor(tokens.colorPaletteYellowBorder1),
+    // backgroundColor: tokens.colorPaletteYellowBackground1,
+    // color: tokens.colorPaletteYellowForeground1,
+    // ...shorthands.borderColor(tokens.colorPaletteYellowBorder1),
   },
 });
 

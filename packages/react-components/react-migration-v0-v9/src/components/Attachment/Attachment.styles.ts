@@ -59,7 +59,7 @@ export const useAttachmentStyles = makeStyles({
     right: 0,
   },
   progressBar: {
-    backgroundColor: tokens.colorPaletteLightGreenBackground3,
+    // backgroundColor: tokens.colorPaletteLightGreenBackground3,
     height: '100%',
     maxWidth: '100%',
     transition: 'width 0.2s',

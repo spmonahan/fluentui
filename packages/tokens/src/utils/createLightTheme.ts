@@ -1,4 +1,4 @@
-import { colorPaletteTokens, colorStatusTokens } from '../alias/lightColorPalette';
+import { /*colorPaletteTokens,*/ colorStatusTokens } from '../alias/lightColorPalette';
 import { generateColorTokens } from '../alias/lightColor';
 
 import { borderRadius, fontSizes, lineHeights, fontFamilies, strokeWidths, fontWeights } from '../global/index';
@@ -24,7 +24,7 @@ export const createLightTheme: (brand: BrandVariants) => Theme = brand => {
     ...curves,
 
     ...colorTokens,
-    ...colorPaletteTokens,
+    // ...colorPaletteTokens,
     ...colorStatusTokens,
 
     ...createShadowTokens(colorTokens.colorNeutralShadowAmbient, colorTokens.colorNeutralShadowKey),

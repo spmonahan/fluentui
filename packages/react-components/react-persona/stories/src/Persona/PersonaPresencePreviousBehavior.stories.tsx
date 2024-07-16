@@ -9,7 +9,7 @@ import {
 
 const useStyles = makeStyles({
   statusAway: {
-    color: tokens.colorPaletteMarigoldBackground3,
+    // color: tokens.colorPaletteMarigoldBackground3,
   },
   statusOffline: {
     color: tokens.colorNeutralForeground3,

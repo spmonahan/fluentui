@@ -54,7 +54,7 @@ export const AccessibilityContrastChip: React.FunctionComponent<AccessibilityCon
 
   return (
     <Badge appearance="outline" color="important" style={{ justifyContent: 'unset' }}>
-      {failKeys.length > 0 ? (
+      {/* {failKeys.length > 0 ? (
         <>
           {testType === TestType.contrastRatio ? (
             <ErrorCircleRegular className={styles.icon} color={tokens.colorPaletteRedForeground1} />
@@ -68,7 +68,7 @@ export const AccessibilityContrastChip: React.FunctionComponent<AccessibilityCon
           <CheckmarkCircleRegular className={styles.icon} color={tokens.colorPaletteGreenForeground1} />
           {detailText()}
         </>
-      )}
+      )} */}
     </Badge>
   );
 };

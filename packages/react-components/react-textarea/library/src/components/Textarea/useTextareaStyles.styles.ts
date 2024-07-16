@@ -139,7 +139,7 @@ const useRootStyles = makeStyles({
 
   invalid: {
     ':not(:focus-within),:hover:not(:focus-within)': {
-      ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
+      // ...shorthands.borderColor(tokens.colorPaletteRedBorder2),
     },
   },
 });

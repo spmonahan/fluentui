@@ -257,124 +257,124 @@ const useColorStyles = makeStyles({
     backgroundColor: tokens.colorBrandBackgroundStatic,
   },
   'dark-red': {
-    color: tokens.colorPaletteDarkRedForeground2,
-    backgroundColor: tokens.colorPaletteDarkRedBackground2,
+    // color: tokens.colorPaletteDarkRedForeground2,
+    // backgroundColor: tokens.colorPaletteDarkRedBackground2,
   },
   cranberry: {
-    color: tokens.colorPaletteCranberryForeground2,
-    backgroundColor: tokens.colorPaletteCranberryBackground2,
+    // color: tokens.colorPaletteCranberryForeground2,
+    // backgroundColor: tokens.colorPaletteCranberryBackground2,
   },
   red: {
-    color: tokens.colorPaletteRedForeground2,
-    backgroundColor: tokens.colorPaletteRedBackground2,
+    // color: tokens.colorPaletteRedForeground2,
+    // backgroundColor: tokens.colorPaletteRedBackground2,
   },
   pumpkin: {
-    color: tokens.colorPalettePumpkinForeground2,
-    backgroundColor: tokens.colorPalettePumpkinBackground2,
+    // color: tokens.colorPalettePumpkinForeground2,
+    // backgroundColor: tokens.colorPalettePumpkinBackground2,
   },
   peach: {
-    color: tokens.colorPalettePeachForeground2,
-    backgroundColor: tokens.colorPalettePeachBackground2,
+    // color: tokens.colorPalettePeachForeground2,
+    // backgroundColor: tokens.colorPalettePeachBackground2,
   },
   marigold: {
-    color: tokens.colorPaletteMarigoldForeground2,
-    backgroundColor: tokens.colorPaletteMarigoldBackground2,
+    // color: tokens.colorPaletteMarigoldForeground2,
+    // backgroundColor: tokens.colorPaletteMarigoldBackground2,
   },
   gold: {
-    color: tokens.colorPaletteGoldForeground2,
-    backgroundColor: tokens.colorPaletteGoldBackground2,
+    // color: tokens.colorPaletteGoldForeground2,
+    // backgroundColor: tokens.colorPaletteGoldBackground2,
   },
   brass: {
-    color: tokens.colorPaletteBrassForeground2,
-    backgroundColor: tokens.colorPaletteBrassBackground2,
+    // color: tokens.colorPaletteBrassForeground2,
+    // backgroundColor: tokens.colorPaletteBrassBackground2,
   },
   brown: {
-    color: tokens.colorPaletteBrownForeground2,
-    backgroundColor: tokens.colorPaletteBrownBackground2,
+    // color: tokens.colorPaletteBrownForeground2,
+    // backgroundColor: tokens.colorPaletteBrownBackground2,
   },
   forest: {
-    color: tokens.colorPaletteForestForeground2,
-    backgroundColor: tokens.colorPaletteForestBackground2,
+    // color: tokens.colorPaletteForestForeground2,
+    // backgroundColor: tokens.colorPaletteForestBackground2,
   },
   seafoam: {
-    color: tokens.colorPaletteSeafoamForeground2,
-    backgroundColor: tokens.colorPaletteSeafoamBackground2,
+    // color: tokens.colorPaletteSeafoamForeground2,
+    // backgroundColor: tokens.colorPaletteSeafoamBackground2,
   },
   'dark-green': {
-    color: tokens.colorPaletteDarkGreenForeground2,
-    backgroundColor: tokens.colorPaletteDarkGreenBackground2,
+    // color: tokens.colorPaletteDarkGreenForeground2,
+    // backgroundColor: tokens.colorPaletteDarkGreenBackground2,
   },
   'light-teal': {
-    color: tokens.colorPaletteLightTealForeground2,
-    backgroundColor: tokens.colorPaletteLightTealBackground2,
+    // color: tokens.colorPaletteLightTealForeground2,
+    // backgroundColor: tokens.colorPaletteLightTealBackground2,
   },
   teal: {
-    color: tokens.colorPaletteTealForeground2,
-    backgroundColor: tokens.colorPaletteTealBackground2,
+    // color: tokens.colorPaletteTealForeground2,
+    // backgroundColor: tokens.colorPaletteTealBackground2,
   },
   steel: {
-    color: tokens.colorPaletteSteelForeground2,
-    backgroundColor: tokens.colorPaletteSteelBackground2,
+    // color: tokens.colorPaletteSteelForeground2,
+    // backgroundColor: tokens.colorPaletteSteelBackground2,
   },
   blue: {
-    color: tokens.colorPaletteBlueForeground2,
-    backgroundColor: tokens.colorPaletteBlueBackground2,
+    // color: tokens.colorPaletteBlueForeground2,
+    // backgroundColor: tokens.colorPaletteBlueBackground2,
   },
   'royal-blue': {
-    color: tokens.colorPaletteRoyalBlueForeground2,
-    backgroundColor: tokens.colorPaletteRoyalBlueBackground2,
+    // color: tokens.colorPaletteRoyalBlueForeground2,
+    // backgroundColor: tokens.colorPaletteRoyalBlueBackground2,
   },
   cornflower: {
-    color: tokens.colorPaletteCornflowerForeground2,
-    backgroundColor: tokens.colorPaletteCornflowerBackground2,
+    // color: tokens.colorPaletteCornflowerForeground2,
+    // backgroundColor: tokens.colorPaletteCornflowerBackground2,
   },
   navy: {
-    color: tokens.colorPaletteNavyForeground2,
-    backgroundColor: tokens.colorPaletteNavyBackground2,
+    // color: tokens.colorPaletteNavyForeground2,
+    // backgroundColor: tokens.colorPaletteNavyBackground2,
   },
   lavender: {
-    color: tokens.colorPaletteLavenderForeground2,
-    backgroundColor: tokens.colorPaletteLavenderBackground2,
+    // color: tokens.colorPaletteLavenderForeground2,
+    // backgroundColor: tokens.colorPaletteLavenderBackground2,
   },
   purple: {
-    color: tokens.colorPalettePurpleForeground2,
-    backgroundColor: tokens.colorPalettePurpleBackground2,
+    // color: tokens.colorPalettePurpleForeground2,
+    // backgroundColor: tokens.colorPalettePurpleBackground2,
   },
   grape: {
-    color: tokens.colorPaletteGrapeForeground2,
-    backgroundColor: tokens.colorPaletteGrapeBackground2,
+    // color: tokens.colorPaletteGrapeForeground2,
+    // backgroundColor: tokens.colorPaletteGrapeBackground2,
   },
   lilac: {
-    color: tokens.colorPaletteLilacForeground2,
-    backgroundColor: tokens.colorPaletteLilacBackground2,
+    // color: tokens.colorPaletteLilacForeground2,
+    // backgroundColor: tokens.colorPaletteLilacBackground2,
   },
   pink: {
-    color: tokens.colorPalettePinkForeground2,
-    backgroundColor: tokens.colorPalettePinkBackground2,
+    // color: tokens.colorPalettePinkForeground2,
+    // backgroundColor: tokens.colorPalettePinkBackground2,
   },
   magenta: {
-    color: tokens.colorPaletteMagentaForeground2,
-    backgroundColor: tokens.colorPaletteMagentaBackground2,
+    // color: tokens.colorPaletteMagentaForeground2,
+    // backgroundColor: tokens.colorPaletteMagentaBackground2,
   },
   plum: {
-    color: tokens.colorPalettePlumForeground2,
-    backgroundColor: tokens.colorPalettePlumBackground2,
+    // color: tokens.colorPalettePlumForeground2,
+    // backgroundColor: tokens.colorPalettePlumBackground2,
   },
   beige: {
-    color: tokens.colorPaletteBeigeForeground2,
-    backgroundColor: tokens.colorPaletteBeigeBackground2,
+    // color: tokens.colorPaletteBeigeForeground2,
+    // backgroundColor: tokens.colorPaletteBeigeBackground2,
   },
   mink: {
-    color: tokens.colorPaletteMinkForeground2,
-    backgroundColor: tokens.colorPaletteMinkBackground2,
+    // color: tokens.colorPaletteMinkForeground2,
+    // backgroundColor: tokens.colorPaletteMinkBackground2,
   },
   platinum: {
-    color: tokens.colorPalettePlatinumForeground2,
-    backgroundColor: tokens.colorPalettePlatinumBackground2,
+    // color: tokens.colorPalettePlatinumForeground2,
+    // backgroundColor: tokens.colorPalettePlatinumBackground2,
   },
   anchor: {
-    color: tokens.colorPaletteAnchorForeground2,
-    backgroundColor: tokens.colorPaletteAnchorBackground2,
+    // color: tokens.colorPaletteAnchorForeground2,
+    // backgroundColor: tokens.colorPaletteAnchorBackground2,
   },
 });
 
@@ -386,94 +386,94 @@ const useRingColorStyles = makeStyles({
     '::before': { color: tokens.colorBrandStroke1 },
   },
   'dark-red': {
-    '::before': { color: tokens.colorPaletteDarkRedBorderActive },
+    // '::before': { color: tokens.colorPaletteDarkRedBorderActive },
   },
   cranberry: {
-    '::before': { color: tokens.colorPaletteCranberryBorderActive },
+    // '::before': { color: tokens.colorPaletteCranberryBorderActive },
   },
   red: {
-    '::before': { color: tokens.colorPaletteRedBorderActive },
+    // '::before': { color: tokens.colorPaletteRedBorderActive },
   },
   pumpkin: {
-    '::before': { color: tokens.colorPalettePumpkinBorderActive },
+    // '::before': { color: tokens.colorPalettePumpkinBorderActive },
   },
   peach: {
-    '::before': { color: tokens.colorPalettePeachBorderActive },
+    // '::before': { color: tokens.colorPalettePeachBorderActive },
   },
   marigold: {
-    '::before': { color: tokens.colorPaletteMarigoldBorderActive },
+    // '::before': { color: tokens.colorPaletteMarigoldBorderActive },
   },
   gold: {
-    '::before': { color: tokens.colorPaletteGoldBorderActive },
+    // '::before': { color: tokens.colorPaletteGoldBorderActive },
   },
   brass: {
-    '::before': { color: tokens.colorPaletteBrassBorderActive },
+    // '::before': { color: tokens.colorPaletteBrassBorderActive },
   },
   brown: {
-    '::before': { color: tokens.colorPaletteBrownBorderActive },
+    // '::before': { color: tokens.colorPaletteBrownBorderActive },
   },
   forest: {
-    '::before': { color: tokens.colorPaletteForestBorderActive },
+    // '::before': { color: tokens.colorPaletteForestBorderActive },
   },
   seafoam: {
-    '::before': { color: tokens.colorPaletteSeafoamBorderActive },
+    // '::before': { color: tokens.colorPaletteSeafoamBorderActive },
   },
   'dark-green': {
-    '::before': { color: tokens.colorPaletteDarkGreenBorderActive },
+    // '::before': { color: tokens.colorPaletteDarkGreenBorderActive },
   },
   'light-teal': {
-    '::before': { color: tokens.colorPaletteLightTealBorderActive },
+    // '::before': { color: tokens.colorPaletteLightTealBorderActive },
   },
   teal: {
-    '::before': { color: tokens.colorPaletteTealBorderActive },
+    // '::before': { color: tokens.colorPaletteTealBorderActive },
   },
   steel: {
-    '::before': { color: tokens.colorPaletteSteelBorderActive },
+    // '::before': { color: tokens.colorPaletteSteelBorderActive },
   },
   blue: {
-    '::before': { color: tokens.colorPaletteBlueBorderActive },
+    // '::before': { color: tokens.colorPaletteBlueBorderActive },
   },
   'royal-blue': {
-    '::before': { color: tokens.colorPaletteRoyalBlueBorderActive },
+    // '::before': { color: tokens.colorPaletteRoyalBlueBorderActive },
   },
   cornflower: {
-    '::before': { color: tokens.colorPaletteCornflowerBorderActive },
+    // '::before': { color: tokens.colorPaletteCornflowerBorderActive },
   },
   navy: {
-    '::before': { color: tokens.colorPaletteNavyBorderActive },
+    // '::before': { color: tokens.colorPaletteNavyBorderActive },
   },
   lavender: {
-    '::before': { color: tokens.colorPaletteLavenderBorderActive },
+    // '::before': { color: tokens.colorPaletteLavenderBorderActive },
   },
   purple: {
-    '::before': { color: tokens.colorPalettePurpleBorderActive },
+    // '::before': { color: tokens.colorPalettePurpleBorderActive },
   },
   grape: {
-    '::before': { color: tokens.colorPaletteGrapeBorderActive },
+    // '::before': { color: tokens.colorPaletteGrapeBorderActive },
   },
   lilac: {
-    '::before': { color: tokens.colorPaletteLilacBorderActive },
+    // '::before': { color: tokens.colorPaletteLilacBorderActive },
   },
   pink: {
-    '::before': { color: tokens.colorPalettePinkBorderActive },
+    // '::before': { color: tokens.colorPalettePinkBorderActive },
   },
   magenta: {
-    '::before': { color: tokens.colorPaletteMagentaBorderActive },
+    // '::before': { color: tokens.colorPaletteMagentaBorderActive },
   },
   plum: {
-    '::before': { color: tokens.colorPalettePlumBorderActive },
+    // '::before': { color: tokens.colorPalettePlumBorderActive },
   },
   beige: {
-    '::before': { color: tokens.colorPaletteBeigeBorderActive },
+    // '::before': { color: tokens.colorPaletteBeigeBorderActive },
   },
   mink: {
-    '::before': { color: tokens.colorPaletteMinkBorderActive },
+    // '::before': { color: tokens.colorPaletteMinkBorderActive },
   },
   platinum: {
-    '::before': { color: tokens.colorPalettePlatinumBorderActive },
+    // '::before': { color: tokens.colorPalettePlatinumBorderActive },
   },
   anchor: {
-    '::before': { color: tokens.colorPaletteAnchorBorderActive },
+    // '::before': { color: tokens.colorPaletteAnchorBorderActive },
   },
 });
 

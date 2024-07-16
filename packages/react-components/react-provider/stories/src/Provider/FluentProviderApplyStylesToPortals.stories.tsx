@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorBrandBackground2,
     marginBottom: '20px',
   },
-  portal: { border: `3x dotted ${tokens.colorPaletteDarkOrangeBorder2}`, padding: '5px' },
+  // portal: { border: `3x dotted ${tokens.colorPaletteDarkOrangeBorder2}`, padding: '5px' },
 });
 
 type FrameRendererProps = {
