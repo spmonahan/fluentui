@@ -351,7 +351,7 @@
     "webpack-dev-server": "4.15.1",
     "webpack-hot-middleware": "2.26.1",
     "webpack-merge": "5.10.0",
-    "workspace-tools": "0.29.1",
+    "workspace-tools": "0.38.2",
     "yargs": "13.3.2",
     "yargs-parser": "13.1.2",
     "yargs-unparser": "2.0.0"
