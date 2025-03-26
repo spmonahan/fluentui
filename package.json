@@ -330,7 +330,7 @@
     "style-loader": "2.0.0",
     "swc-loader": "0.2.6",
     "swc-plugin-de-indent-template-literal": "1.4.0",
-    "syncpack": "10.6.1",
+    "syncpack": "13.0.3",
     "terser": "5.28.1",
     "terser-webpack-plugin": "5.3.10",
     "through2": "4.0.2",
